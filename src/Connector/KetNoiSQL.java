@@ -6,6 +6,7 @@ package Connector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -16,7 +17,7 @@ public class KetNoiSQL {
     static String instance = "";
     static String serverName = "localhost";
     static String portNumber = "1433";
-    static String dbName = "quanliktx1";
+    static String dbName = "quanLyNuocCongTy";
     static String userID = "sa";
     static String password = "1234567";
 
@@ -30,4 +31,29 @@ public class KetNoiSQL {
         }
         return con;
     }
+    public static boolean kiemTraKetNoi() {
+        Connection connection = getConnection();
+        if (connection != null) {
+            try {
+               
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return true;
+        } else {
+           
+            return false;
+        }
+    }
+ 
+    public static void main(String[] args) {
+        if (KetNoiSQL.kiemTraKetNoi()) {
+            System.out.println("connect success!");
+        } else {
+           System.out.println("Can't connect DB!");
+        }
+    }
+
+
 }

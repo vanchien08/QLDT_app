@@ -1,21 +1,34 @@
 package login.raven.component;
 
+import Dao.ChuHoDao;
+import Dao.AccountDao;
+import Model.ThongTinChuHo;
 import View.Main;
+import View.Login;
 import login.raven.swing.Button;
 import login.raven.swing.MyPasswordField;
 import login.raven.swing.MyTextField;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
+    private ActionListener event;
 
     public PanelLoginAndRegister() {
         initComponents();
@@ -24,7 +37,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         login.setVisible(false);
         register.setVisible(true);
     }
-
+  
     private void initRegister() {
      //   register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
       register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]10[]10[]10[]10[]25[]push"));
@@ -44,7 +57,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         register.add(txtCCCD, "w 60%");
         MyTextField txtDOB = new MyTextField();
        // txtDOB.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
-        txtDOB.setHint("   Ngày Sinh");
+        txtDOB.setHint("   Ngày Sinh dd/MM/yyyy");
         register.add(txtDOB, "w 60%");
         MyTextField txtAddress = new MyTextField();
        // txtAddress.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
@@ -54,7 +67,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
        // txtPhonenum.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
         txtPhonenum.setHint("   Số điện thoại");
         register.add(txtPhonenum, "w 60%");
-        MyPasswordField txtUsername = new MyPasswordField();
+        MyTextField txtUsername = new MyTextField();
       //  txtUsername.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/pass.png")));
         txtUsername.setHint("   Tên tài khoản");
         register.add(txtUsername, "w 60%");
@@ -73,13 +86,117 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         cmd.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            // Code to handle the button click event
-            // You can perform actions like registering a user here
+            ChuHoDao CHD= new ChuHoDao();
+            AccountDao acd = new AccountDao();
+            
+           // Login loginjframe= new Login();
+            
+//           loginjframe.init();
+           
+        
+             String cccd="";
+             String phonenum="";
+             String username="";
+            String ngaysinh="";
+            cccd = txtCCCD.getText().trim();
+        String name = txtUser.getText().trim();
+       ngaysinh = txtDOB.getText().trim();
+        String address = txtAddress.getText().trim();
+         phonenum = txtPhonenum.getText().trim();
+         username = txtUsername.getText().trim();
+        String password = txtPass.getText().trim();
+       // System.out.println("check data"+cccd+name);
+         String yccccd = "^([0-9]{9})*([0-9]{12})*$";
+          String ycsdt = "^[0]{1}[0-9]{9}";
+       
+          boolean kiemtracccd = CHD.KiemTraCCCD(cccd);
+          boolean kiemtraphonenum = CHD.KiemTraPhoneNum(phonenum);
+          boolean kiemtrausername = CHD.KiemTraUsername(username);
+          
+          if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(login, "Không để trống họ tên. Vui lòng điền thông tin đầy đủ!");
+        }
+          else if (cccd.isEmpty()) {
+            JOptionPane.showMessageDialog(login, "Không để trống Căn cước công dân. Vui lòng điền thông tin đầy đủ!");
+        }
+           else if (!cccd.matches(yccccd)) {
+            JOptionPane.showMessageDialog(login, "Vui lòng nhập đúng định dạng.Căn cước công dân gồm 12 chữ số và chứng minh nhân dân gồm 9 chữ số!");
+        }
+          else if (kiemtracccd) {
+            JOptionPane.showMessageDialog(login, "căn cước công dân này đã tồn tại!");
+        }
+          else if (ngaysinh.isEmpty()) {
+            JOptionPane.showMessageDialog(login, "Không để trống ngày sinh. Vui lòng điền thông tin đầy đủ!");
+        }
+          else if (address.isEmpty()) {
+            JOptionPane.showMessageDialog(login, "Không để trống địa chỉ. Vui lòng điền thông tin đầy đủ!");
+        }
+          
+          else if (phonenum.isEmpty()) {
+            JOptionPane.showMessageDialog(login, "Không để trống số điện thoại. Vui lòng điền thông tin đầy đủ!");
+        }
+          else if (!phonenum.matches(ycsdt)) {
+            JOptionPane.showMessageDialog(login, "Vui lòng nhập đúng định dạng.Số điện thoại gồm 10 chữ số!");
+        }
+           else if (kiemtraphonenum) {
+            JOptionPane.showMessageDialog(login, "Số điện thoại này đã tồn tại!");
+        }
+          else if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(login, "Không để trống tên đăng nhập. Vui lòng điền thông tin đầy đủ!");
+        }
+          else if (kiemtrausername) {
+            JOptionPane.showMessageDialog(login, "Tên đăng nhập này đã tồn tại!");
+        }
+           else if (password.isEmpty()) {
+            JOptionPane.showMessageDialog(login, "Không để trống mật khẩu. Vui lòng điền thông tin đầy đủ!");
+        }
+           else{
+            Login loginFrame = (Login) SwingUtilities.getWindowAncestor((Component) e.getSource());
+           // loginFrame.init();
+            loginFrame.handelSignUp();
+            
+            
+            Map<String,String> account = new HashMap<>();
+            account.put("username", name);
+            account.put("password", password);
+             account.put("CCCD", cccd );
+             account.put("trangThai", "Chờ duyệt");
+           // System.out.print("username password: " + account.get("username") + " " + account.get("password"));
+            String dobText = txtDOB.getText();
 
-            // For example, let's print a message to the console
-            System.out.println("SIGN UP button clicked!");
 
-            // You can add your logic to handle user registration here
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            try {
+             
+            Date dob = dateFormat.parse(dobText);
+                   
+            ThongTinChuHo CH = new ThongTinChuHo();
+            CH.setName(name);
+            CH.setCCCD_CH(cccd);
+            CH.setDOB(dob);
+            CH.setAddress(address);
+            CH.setPhoneNum(phonenum);
+            
+             
+            
+            acd.addAccountChuHo(account);
+              CHD.addThongTinChuHo(CH);
+                JOptionPane.showMessageDialog(login,"Đăng ký tài khoản thành công!");
+//                System.out.println("add chu ho success !");
+//                System.out.println("chu ho"+CH.getDOB());
+            } catch (ParseException pe) {
+            // Handle parsing errors
+         //   pe.printStackTrace();
+                System.out.println("add chu ho fail !");
+        }
+           }
+          
+          
+         
+          
+           
+   
         }
     });
         
@@ -95,7 +212,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         login.add(label);
         MyTextField txtEmail = new MyTextField();
         txtEmail.setPrefixIcon(new ImageIcon(getClass().getResource("/login/raven/icon/mail.png")));
-        txtEmail.setHint("Email");
+        txtEmail.setHint("Username");
         login.add(txtEmail, "w 60%");
         MyPasswordField txtPass = new MyPasswordField();
         txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/login/raven/icon/pass.png")));
@@ -118,8 +235,25 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             // You can perform actions like registering a user here
 
             // For example, let's print a message to the console
-            View.Main main =new Main();
+            String username=txtEmail.getText().trim();
+            String password=txtPass.getText().trim();
+           AccountDao acd= new AccountDao();
+           if(acd.KiemTraUsername(username))
+           {
+               if(acd.getPasswordByUserName(username).equals(password))
+               {
+                    View.Main main =new Main();
             main.show(true);
+               }
+               else{
+               JOptionPane.showMessageDialog(register, "Mật khẩu không đúng!");
+           }
+           }
+           else{
+               JOptionPane.showMessageDialog(register, "Tài khoản không đúng!");
+           }
+           
+           
 
             // You can add your logic to handle user registration here
         }

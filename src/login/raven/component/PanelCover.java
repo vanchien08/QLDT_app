@@ -34,7 +34,7 @@ public class PanelCover extends javax.swing.JPanel {
 
     }
 
-    private void init() {
+    public void init() {
         title = new JLabel("Welcome Back!");
         title.setFont(new Font("sansserif", 1, 30));
         title.setForeground(new Color(245, 245, 245));

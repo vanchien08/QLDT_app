@@ -22,13 +22,13 @@ public class Login extends javax.swing.JFrame {
     private final double addSize = 30;
     private final double coverSize = 40;
     private final double loginSize = 60;
-
+    private Animator animator_;
     public Login() {
         initComponents();
         init();
     }
 
-    private void init() {
+    public void init() {
         layout = new MigLayout("fill, insets 0");
         cover = new PanelCover();
         loginAndRegister = new PanelLoginAndRegister();
@@ -75,10 +75,12 @@ public class Login extends javax.swing.JFrame {
                 isLogin = !isLogin;
             }
         };
+        
         Animator animator = new Animator(800, target);
         animator.setAcceleration(0.5f);
         animator.setDeceleration(0.5f);
         animator.setResolution(0);  //  for smooth animation
+        animator_ =animator;
         bg.setLayout(layout);
         bg.add(cover, "width " + coverSize + "%, pos " + (isLogin ? "1al" : "0al") + " 0 n 100%");
         bg.add(loginAndRegister, "width " + loginSize + "%, pos " + (isLogin ? "0al" : "1al") + " 0 n 100%"); //  1al as 100%
@@ -89,11 +91,20 @@ public class Login extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent ae) {
                 if (!animator.isRunning()) {
                     animator.start();
+                 
                 }
             }
         });
+         
     }
-
+    public void handelSignUp(){
+        
+                if (!animator_.isRunning()) {
+                    animator_.start();
+                }
+            
+      
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
