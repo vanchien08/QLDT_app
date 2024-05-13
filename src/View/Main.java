@@ -13,6 +13,7 @@ import main.raven.form.Form_Home;
 import main.raven.form.Form_HomePage;
 import java.awt.Color;
 import javax.swing.JComponent;
+import main.raven.form.KhoanPhi;
 
 /**
  *
@@ -27,6 +28,7 @@ public class Main extends javax.swing.JFrame {
     private Form_1 form1;
     private Form_2 form2;
     private Form_3 form3;
+    private KhoanPhi khoanphi;
     private Form_HomePage homepage;
     public Main() {
         initComponents();
@@ -35,6 +37,7 @@ public class Main extends javax.swing.JFrame {
         form1 = new Form_1();
         form2 = new Form_2();
         form3 = new Form_3();
+        khoanphi= new KhoanPhi();
         homepage= new Form_HomePage();
         
        menu.initMoving(Main.this);
@@ -49,10 +52,10 @@ public class Main extends javax.swing.JFrame {
                 } else if (index == 2) {
                     setForm(form2);
                 } else if (index == 3) {
-                    setForm(form3);
+                    setForm(home);
                 }
                 else if (index == 4) {
-                    setForm(home);
+                    setForm(khoanphi);
                 }
             }
         });
@@ -138,7 +141,7 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

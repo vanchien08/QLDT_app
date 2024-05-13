@@ -12,9 +12,9 @@ public class Form_Home extends javax.swing.JPanel {
 
     public Form_Home() {
         initComponents();
-        card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/main/raven/icon/stock.png")), "Stock Total", "$200000", "Increased by 60%"));
-        card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/main/raven/icon/profit.png")), "Total Profit", "$15000", "Increased by 25%"));
-        card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/main/raven/icon/flag.png")), "Unique Visitors", "$300000", "Increased by 70%"));
+    //    card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/main/raven/icon/stock.png")), "Stock Total", "$200000", "Increased by 60%"));
+     //   card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/main/raven/icon/profit.png")), "Total Profit", "$15000", "Increased by 25%"));
+     //   card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/main/raven/icon/flag.png")), "Unique Visitors", "$300000", "Increased by 70%"));
         //  add row table
         spTable.setVerticalScrollBar(new ScrollBar());
         spTable.getVerticalScrollBar().setBackground(Color.WHITE);
@@ -25,6 +25,20 @@ public class Form_Home extends javax.swing.JPanel {
         table.addRow(new Object[]{"THúy Ann", "thuyan@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
         table.addRow(new Object[]{"Công Tài", "congtai@gmail.com", "Editor", "25 Apr,2018", StatusType.APPROVED});
         table.addRow(new Object[]{"Việt Trung", "viettrung@gmail.com", "Subscriber", "25 Apr,2018", StatusType.APPROVED});
+             table.addRow(new Object[]{"THúy Ann", "thuyan@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
+        table.addRow(new Object[]{"Công Tài", "congtai@gmail.com", "Editor", "25 Apr,2018", StatusType.APPROVED});
+        table.addRow(new Object[]{"Việt Trung", "viettrung@gmail.com", "Subscriber", "25 Apr,2018", StatusType.APPROVED});
+             table.addRow(new Object[]{"THúy Ann", "thuyan@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
+        table.addRow(new Object[]{"Công Tài", "congtai@gmail.com", "Editor", "25 Apr,2018", StatusType.APPROVED});
+        table.addRow(new Object[]{"Việt Trung", "viettrung@gmail.com", "Subscriber", "25 Apr,2018", StatusType.APPROVED});
+             table.addRow(new Object[]{"THúy Ann", "thuyan@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
+        table.addRow(new Object[]{"Công Tài", "congtai@gmail.com", "Editor", "25 Apr,2018", StatusType.APPROVED});
+        table.addRow(new Object[]{"Việt Trung", "viettrung@gmail.com", "Subscriber", "25 Apr,2018", StatusType.APPROVED});
+             table.addRow(new Object[]{"THúy Ann", "thuyan@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
+        table.addRow(new Object[]{"Công Tài", "congtai@gmail.com", "Editor", "25 Apr,2018", StatusType.APPROVED});
+        table.addRow(new Object[]{"Việt Trung", "viettrung@gmail.com", "Subscriber", "25 Apr,2018", StatusType.APPROVED});     table.addRow(new Object[]{"THúy Ann", "thuyan@gmail.com", "Admin", "25 Apr,2018", StatusType.PENDING});
+        table.addRow(new Object[]{"Công Tài", "congtai@gmail.com", "Editor", "25 Apr,2018", StatusType.APPROVED});
+        table.addRow(new Object[]{"Việt Trung", "viettrung@gmail.com", "Subscriber", "25 Apr,2018", StatusType.APPROVED});
        
     }
 
@@ -33,27 +47,14 @@ public class Form_Home extends javax.swing.JPanel {
     private void initComponents() {
 
         panel = new javax.swing.JLayeredPane();
-        card1 = new main.raven.component.Card();
-        card2 = new main.raven.component.Card();
-        card3 = new main.raven.component.Card();
         panelBorder1 = new main.raven.swing.PanelBorder();
         jLabel1 = new javax.swing.JLabel();
         spTable = new javax.swing.JScrollPane();
         table = new main.raven.swing.Table();
 
+        setOpaque(false);
+
         panel.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
-
-        card1.setColor1(new java.awt.Color(142, 142, 250));
-        card1.setColor2(new java.awt.Color(123, 123, 245));
-        panel.add(card1);
-
-        card2.setColor1(new java.awt.Color(186, 123, 247));
-        card2.setColor2(new java.awt.Color(167, 94, 236));
-        panel.add(card2);
-
-        card3.setColor1(new java.awt.Color(241, 208, 62));
-        card3.setColor2(new java.awt.Color(211, 184, 61));
-        panel.add(card3);
 
         panelBorder1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -128,9 +129,6 @@ public class Form_Home extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private main.raven.component.Card card1;
-    private main.raven.component.Card card2;
-    private main.raven.component.Card card3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane panel;
     private main.raven.swing.PanelBorder panelBorder1;
