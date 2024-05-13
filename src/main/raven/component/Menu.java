@@ -30,11 +30,14 @@ public class Menu extends javax.swing.JPanel {
 
     private void init() {
         listMenu1.addItem(new Model_Menu("1", "Trang chủ", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("2", "Quản lý thông tin chung", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("2", "Quản lý chủ hộ", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("3", "Quản lý nhân viên", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("4", "Khoản phí", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("5", "Thống kê", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
+   //     listMenu1.addItem(new Model_Menu("4", "Khoản phí", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("5", "Danh sách phân công", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("5", "Thông tin sử dụng điện", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("6", "Hóa đơn", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("6", "Đăng xuất", Model_Menu.MenuType.MENU));
 
 //        listMenu1.addItem(new Model_Menu("", "My Data", Model_Menu.MenuType.TITLE));
 //        listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));

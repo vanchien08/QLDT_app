@@ -4,18 +4,27 @@
  */
 package main.raven.form;
 
+import Dao.HoaDonDao;
+import Model.ThongTinHoaDon;
+import java.util.Map;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DELL
  */
 public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
-
+  //  private ThongTinHoaDon hd;
+    private Map hd;
+    private String cccd_ch;
     /**
      * Creates new form JDialogCapNhatHoaDon
      */
-    public JDialogCapNhatHoaDon(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public JDialogCapNhatHoaDon(boolean modal) {
+        
+        
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -34,15 +43,18 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbbTrangThai = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        txtCCCD_CH = new javax.swing.JLabel();
+        txtSoNuoc = new javax.swing.JLabel();
+        txtTien = new javax.swing.JLabel();
+        btUpdate = new javax.swing.JButton();
+        btExit = new javax.swing.JButton();
+        txtDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -77,17 +89,31 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
 
         jLabel5.setText("TỔNG TIỀN");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chưa thanh toán", "Đã thanh toán" }));
 
         jLabel6.setText("TRẠNG THÁI:");
 
-        jLabel7.setText("jLabel7");
+        txtCCCD_CH.setText("jLabel8");
 
-        jLabel8.setText("jLabel8");
+        txtSoNuoc.setText("jLabel9");
 
-        jLabel9.setText("jLabel9");
+        txtTien.setText("jLabel10");
 
-        jLabel10.setText("jLabel10");
+        btUpdate.setText("Cập nhật");
+        btUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUpdateActionPerformed(evt);
+            }
+        });
+
+        btExit.setText("Thoát");
+        btExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExitActionPerformed(evt);
+            }
+        });
+
+        txtDate.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -95,24 +121,32 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtSoNuoc, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                        .addComponent(txtCCCD_CH, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                        .addComponent(txtTien, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(btUpdate)
+                        .addGap(100, 100, 100)
+                        .addComponent(btExit)))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,24 +154,28 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel7))
+                    .addComponent(txtDate))
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel8))
+                    .addComponent(txtCCCD_CH))
                 .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel9))
+                    .addComponent(txtSoNuoc, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel10))
+                    .addComponent(txtTien, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btUpdate)
+                    .addComponent(btExit))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,6 +195,21 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btExitActionPerformed
+
+    private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
+        // TODO add your handling code here:
+        HoaDonDao hdd= new HoaDonDao();
+        String trangthai=(String) cbbTrangThai.getSelectedItem();
+       
+
+        hdd.capNhatTrangThaiHD(cccd_ch, trangthai);
+        JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
+        this.dispose();
+    }//GEN-LAST:event_btUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,7 +241,7 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialogCapNhatHoaDon dialog = new JDialogCapNhatHoaDon(new javax.swing.JFrame(), true);
+                JDialogCapNhatHoaDon dialog = new JDialogCapNhatHoaDon(true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -199,20 +252,37 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
             }
         });
     }
+    public void dataHoaDon(Map tthd,String tongtien){
+        cccd_ch=(String) tthd.get("CCCD_CHUHO");
+        hd= tthd;
+        txtCCCD_CH.setText((String) hd.get("CCCD_CHUHO"));
+        txtDate.setText((String) hd.get("DAY"));
+      //  txtSoNuoc.setText(string(hd.getAmount()));
+        //txtTien.setText(string(n*hd.getAmount()));
+         txtSoNuoc.setText(tongtien);
+    //    txtSoNuoc.setText(String.valueOf(hdp.getSoNuocTieuThu()));
+    cbbTrangThai.setSelectedItem(hd.get("trangThai"));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btExit;
+    private javax.swing.JButton btUpdate;
+    private javax.swing.JComboBox<String> cbbTrangThai;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel txtCCCD_CH;
+    private javax.swing.JLabel txtDate;
+    private javax.swing.JLabel txtSoNuoc;
+    private javax.swing.JLabel txtTien;
     // End of variables declaration//GEN-END:variables
+
+    private String string(float amount) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

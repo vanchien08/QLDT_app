@@ -22,6 +22,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -36,7 +38,9 @@ public class QuanLyNuoc extends javax.swing.JPanel {
     private DefaultTableModel Model;
     private int count = -1;
     private List<ThongTinHoaDon> list;
-
+    private String ngayLoc;
+   
+    private List<Map> listhd;
     /**
      * Creates new form QuanLyDienNuoc
      */
@@ -98,14 +102,10 @@ public class QuanLyNuoc extends javax.swing.JPanel {
         txtTuThang = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtTuNam = new com.toedter.calendar.JYearChooser();
-        jLabel5 = new javax.swing.JLabel();
-        txtDenThang = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        txtDenNam = new com.toedter.calendar.JYearChooser();
         jLabel7 = new javax.swing.JLabel();
-        txtMaPhong = new javax.swing.JComboBox<>();
         cbThanhToan = new javax.swing.JCheckBox();
         btnLocKetQua = new javax.swing.JButton();
+        txtCCCD_CH = new javax.swing.JTextField();
         buttonDelete = new javax.swing.JButton();
         buttonTTHD = new javax.swing.JButton();
         buttonReset = new javax.swing.JButton();
@@ -155,7 +155,7 @@ public class QuanLyNuoc extends javax.swing.JPanel {
 
             },
             new String [] {
-                "THÁNG GHI", "CCCD Chủ hộ", "SỐ NƯỚC TIÊU THỤ", "TỔNG TIỀN", "TRẠNG THÁI"
+                "CCCD Chủ hộ", "SỐ NƯỚC MỚI", "SỐ NƯỚC CŨ", "TỔNG TIỀN", "TRẠNG THÁI"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -191,40 +191,25 @@ public class QuanLyNuoc extends javax.swing.JPanel {
         txtTuThang.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         txtTuThang.setForeground(new java.awt.Color(19, 90, 118));
         txtTuThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" }));
+        txtTuThang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTuThangActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(19, 90, 118));
         jLabel4.setText("Từ năm :");
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(19, 90, 118));
-        jLabel5.setText("Đến tháng :");
-
-        txtDenThang.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        txtDenThang.setForeground(new java.awt.Color(19, 90, 118));
-        txtDenThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" }));
-        txtDenThang.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDenThangActionPerformed(evt);
+        txtTuNam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTuNamMouseClicked(evt);
             }
         });
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(19, 90, 118));
-        jLabel6.setText("Đến năm :");
 
         jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(19, 90, 118));
-        jLabel7.setText("Mã phòng :");
-
-        txtMaPhong.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        txtMaPhong.setForeground(new java.awt.Color(19, 90, 118));
-        txtMaPhong.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" }));
-        txtMaPhong.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaPhongActionPerformed(evt);
-            }
-        });
+        jLabel7.setText("CCCD_CH");
 
         cbThanhToan.setBackground(new java.awt.Color(255, 255, 255));
         cbThanhToan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -248,36 +233,24 @@ public class QuanLyNuoc extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTuThang, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDenThang, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnLocKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtDenNam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtMaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(1, 1, 1))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTuThang, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLocKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCCCD_CH))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(cbThanhToan)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,31 +258,22 @@ public class QuanLyNuoc extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTuThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel4)
-                            .addComponent(txtTuNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtDenThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6))
-                    .addComponent(txtDenNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTuThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTuNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtMaPhong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtCCCD_CH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(cbThanhToan)
                 .addGap(18, 18, 18)
                 .addComponent(btnLocKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         buttonDelete.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -361,9 +325,9 @@ public class QuanLyNuoc extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainLayout.createSequentialGroup()
                         .addComponent(buttonReset, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(mainLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(buttonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,9 +340,9 @@ public class QuanLyNuoc extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(buttonDonGiaDienNuoc, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(mainLayout.createSequentialGroup()
-                                .addGap(137, 137, 137)
+                                .addGap(119, 119, 119)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         mainLayout.setVerticalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,6 +387,26 @@ public class QuanLyNuoc extends javax.swing.JPanel {
 //        this.jPanelDienNuoc.setVisible(true);
 //        this.jPanelDienNuoc.AddComboboxPhong();
 //        this.jPanelDienNuoc.showTable();
+      SimpleDateFormat formatter = new SimpleDateFormat("MM/yyyy");
+      SimpleDateFormat formatter2 = new SimpleDateFormat("dd-MM-yyyy");
+            String tungay = formatter.format(LayNgayThangTu());
+            String tungay2 = formatter2.format(LayNgayThangTu());
+            ngayLoc=tungay;
+            String ngayLoc2=tungay2;
+            System.out.println("ngay2"+tungay2);
+        JDialogGhiSoNuoc jdln =new JDialogGhiSoNuoc(true);
+        jdln.setVisible(true);
+        Map<String,Object> dataHD =new HashMap<>();
+        dataHD.put("thangghi",tungay2);
+        dataHD.put("thangghi1",ngayLoc2);
+        jdln.setData(dataHD);
+        
+        
+        
+        
+
+
+
     }//GEN-LAST:event_buttonGhiSoDienNuocActionPerformed
 
     private void tablehdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablehdMouseClicked
@@ -430,35 +414,26 @@ public class QuanLyNuoc extends javax.swing.JPanel {
         count = tablehd.getSelectedRow();
     }//GEN-LAST:event_tablehdMouseClicked
 
-    private void txtDenThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDenThangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDenThangActionPerformed
-
-    private void txtMaPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPhongActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaPhongActionPerformed
-
     private void btnLocKetQuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocKetQuaActionPerformed
         // TODO add your handling code here:
 //        if (LayNgayThangTu().compareTo(LayNgayThangDen()) > 0) {
 //            JOptionPane.showMessageDialog(null, "Ngày bắt đầu lọc lớn hơn ngày kết thúc lọc. Vui lòng nhập lại!");
 //        } else {
-//            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//            String tungay = formatter.format(LayNgayThangTu());
-//            String denngay = formatter.format(LayNgayThangDen());
-//            String maphong = String.valueOf(txtMaPhong.getSelectedItem());
-//            byte trangthai = 0;
-//            if (cbThanhToan.isSelected()) {
-//                trangthai = 1;
-//            }
-//            if (maphong.equals("Tất cả")) {
-//                LocKetQuaAll(tungay, denngay, trangthai);
-//            } else {
-//                LocKetQua(tungay, denngay, trangthai, maphong);
-//
-//            }
-//        }
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String tungay = formatter.format(LayNgayThangTu());
+           // String denngay = formatter.format(LayNgayThangDen());
+            String maphong = txtCCCD_CH.getText();
+            String trangthai="Chưa thanh toán";
+            if (cbThanhToan.isSelected()) {
+                trangthai = "Đã thanh toán";
+            }
+            if (maphong.equals("Tất cả")) {
+             //   LocKetQuaAll(tungay, denngay, trangthai);
+            } else {
+                LocKetQua(tungay, trangthai, maphong);
 
+            }
+     //   }
     }//GEN-LAST:event_btnLocKetQuaActionPerformed
 
     private void buttonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeleteActionPerformed
@@ -477,16 +452,25 @@ public class QuanLyNuoc extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
     private void buttonTTHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTTHDActionPerformed
-        // TODO add your handling code here:
-//        if (count == -1) {
-//            JOptionPane.showMessageDialog(null, "Vui lòng chọn hóa đơn để cập nhật trạng thái hóa đơn");
-//        } else {
-//            int count = tablehd.getSelectedRow();
-//            JDialogCapNhatTTHD capnhathd = new JDialogCapNhatTTHD(true);
-//            HoaDonPhong hdp = list.get(count);
-//            capnhathd.setVisible(true);
-//            capnhathd.ShowHoaDon(hdp);
-//        }
+       //  TODO add your handling code here:
+        if (count == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn hóa đơn để cập nhật trạng thái hóa đơn");
+        } else {
+            int count1 = tablehd.getSelectedRow();
+            JDialogCapNhatHoaDon capnhathd = new JDialogCapNhatHoaDon(true);
+            Map <String,String> i=listhd.get(count1);
+          
+              float snm = Float.parseFloat((String) i.get("soNuocMoi"));
+             float snc = Float.parseFloat((String) i.get("soNuocCu"));
+
+            float tongtien=(snm-snc)*5;
+            String tongtienstr = String.valueOf(tongtien);
+           //  System.out.println("hoa don"+ hdp.getCCCD_CH());
+            capnhathd.dataHoaDon(i,tongtienstr);
+            capnhathd.setVisible(true);
+            count = -1;
+            showTable();
+        }
     }//GEN-LAST:event_buttonTTHDActionPerformed
 
     private void buttonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetActionPerformed
@@ -495,6 +479,16 @@ public class QuanLyNuoc extends javax.swing.JPanel {
         showTable();
 //        AddComboboxPhong();
     }//GEN-LAST:event_buttonResetActionPerformed
+
+    private void txtTuThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTuThangActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_txtTuThangActionPerformed
+
+    private void txtTuNamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTuNamMouseClicked
+        // TODO add your handling code here:
+        System.out.print("helooo");
+    }//GEN-LAST:event_txtTuNamMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -510,44 +504,40 @@ public class QuanLyNuoc extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel main;
     private javax.swing.JTable tablehd;
-    private com.toedter.calendar.JYearChooser txtDenNam;
-    private javax.swing.JComboBox<String> txtDenThang;
-    private javax.swing.JComboBox<String> txtMaPhong;
+    private javax.swing.JTextField txtCCCD_CH;
     private com.toedter.calendar.JYearChooser txtTuNam;
     private javax.swing.JComboBox<String> txtTuThang;
     // End of variables declaration//GEN-END:variables
 
     void showTable() {
-        list = new HoaDonDao().getAllHoaDonPhong();
+       // list = new HoaDonDao().getAllHoaDonNuoc();
+       listhd=new HoaDonDao().getAllHoaDonNuoc();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat formatter1 = new SimpleDateFormat("MM/yyyy");
         Model.setRowCount(0);
-        for (ThongTinHoaDon hd : list) {
-            Date date = null;
-            try {
-                date = formatter.parse(String.valueOf(hd.getDay()));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
- //           String trangthai;
-            String ngayThang = formatter1.format(date);
-//            if (hd.getTrangThai() == 1) {
-//                trangthai = "Đã thanh toán";
-//            } else {
-//                trangthai = "Chưa thanh toán";
-//            }
+
+        
+        for (Map i :listhd) {
+            float snm = Float.parseFloat((String) i.get("soNuocMoi"));
+             float snc = Float.parseFloat((String) i.get("soNuocCu"));
+
+            float tongtien=(snm-snc)*5;
+            String tongtienstr = String.valueOf(tongtien);
 
             Model.addRow(new Object[]{
-                ngayThang, hd.getId(), hd.getAmount(), "100$", hd.getTrangThai()
-            });
-        }
+            i.get("CCCD_CHUHO"),i.get("soNuocMoi"),i.get("soNuocCu"),tongtienstr,i.get("trangThai")
+               
+           });
+
+
+}
+        
+        
     }
 
     void deleteHoaDon(ThongTinHoaDon hdp) {
@@ -568,21 +558,21 @@ public class QuanLyNuoc extends javax.swing.JPanel {
         }
 
     }
-//
-//    private Date LayNgayThangTu() {
-//        int tuthang = txtTuThang.getSelectedIndex() + 1;
-//        int tunam = txtTuNam.getYear();
-//        String tungay = tunam + "-" + tuthang + "-01";
-//
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        Date date = null;
-//        try {
-//            date = formatter.parse(String.valueOf(tungay));
-//        } catch (Exception e) {
-//        }
-//        return date;
-//    }
-//
+
+    private Date LayNgayThangTu() {
+        int tuthang = txtTuThang.getSelectedIndex() + 1;
+        int tunam = txtTuNam.getYear();
+        String tungay = tunam + "-" + tuthang + "-01";
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = formatter.parse(String.valueOf(tungay));
+        } catch (Exception e) {
+        }
+        return date;
+    }
+
 //    private Date LayNgayThangDen() {
 //        int tuthang = txtDenThang.getSelectedIndex() + 1;
 //        int tunam = txtDenNam.getYear();
@@ -596,32 +586,27 @@ public class QuanLyNuoc extends javax.swing.JPanel {
 //        }
 //        return date;
 //    }
-//
-//    private void LocKetQua(String tungay, String denngay, byte trangthai, String phong) {
-//        list = new HoaDonPhongDAO().searchHoaDonPhong(tungay, denngay, trangthai, phong);
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat formatter1 = new SimpleDateFormat("MM/yyyy");
-//        Model.setRowCount(0);
-//        for (HoaDonPhong hd : list) {
-//            Date date = null;
-//            try {
-//                date = formatter.parse(String.valueOf(hd.getNgayThang()));
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//            String trangthaihd;
-//            String ngayThang = formatter1.format(date);
-//            if (hd.getTrangThai() == 1) {
-//                trangthaihd = "Đã thanh toán";
-//            } else {
-//                trangthaihd = "Chưa thanh toán";
-//            }
-//
-//            Model.addRow(new Object[]{
-//                ngayThang, hd.getMaPhong(), hd.getSoNuocTieuThu(), hd.getSoDienTieuThu(), hd.getTongTien(), trangthaihd
-//            });
-//        }
-//    }
+
+    private void LocKetQua(String tungay, String trangthai, String phong) {
+        listhd = new HoaDonDao().searchBill(tungay,  trangthai, phong);
+       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter1 = new SimpleDateFormat("MM/yyyy");
+        Model.setRowCount(0);
+
+        
+        for (Map i :listhd) {
+            float snm = Float.parseFloat((String) i.get("soNuocMoi"));
+             float snc = Float.parseFloat((String) i.get("soNuocCu"));
+
+            float tongtien=(snm-snc)*5;
+            String tongtienstr = String.valueOf(tongtien);
+
+            Model.addRow(new Object[]{
+            i.get("CCCD_CHUHO"),i.get("soNuocMoi"),i.get("soNuocCu"),tongtienstr,i.get("trangThai")
+               
+           });
+    }
+    }
 //
 //    private void LocKetQuaAll(String tungay, String denngay, byte trangthai) {
 //        list = new HoaDonPhongDAO().searchHoaDonPhongAll(tungay, denngay, trangthai);
