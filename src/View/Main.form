@@ -45,11 +45,7 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="mainPanel" min="-2" pref="1041" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="Name" min="-2" pref="929" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="simpleButtonBar3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="Name" min="-2" pref="929" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -61,10 +57,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Name" min="-2" pref="29" max="-2" attributes="0"/>
-                              <Component id="simpleButtonBar3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="Name" min="-2" pref="29" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Component id="mainPanel" max="32767" attributes="0"/>
                       </Group>
@@ -109,8 +102,6 @@
             <Property name="text" type="java.lang.String" value="CTY D&#x1ecb;ch V&#x1ee5; N&#x1b0;&#x1edb;c Th&#x1ee7; &#x110;&#x1ee9;c"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
-        </Component>
-        <Component class="Component.SimpleButtonBar" name="simpleButtonBar3">
         </Component>
       </SubComponents>
     </Container>

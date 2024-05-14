@@ -14,6 +14,8 @@ import main.raven.form.Form_HomePage;
 import java.awt.Color;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+import main.raven.form.Form_4;
+import main.raven.form.Form_5;
 import main.raven.form.KhoanPhi;
 
 /**
@@ -29,6 +31,8 @@ public class Main extends javax.swing.JFrame {
     private Form_1 form1;
     private Form_2 form2;
     private Form_3 form3;
+     private Form_4 form4;
+      private Form_5 form5;
     private KhoanPhi khoanphi;
     private Form_HomePage homepage;
     private JPanel MainPanel;
@@ -39,6 +43,8 @@ public class Main extends javax.swing.JFrame {
         form1 = new Form_1();
         form2 = new Form_2();
         form3 = new Form_3();
+        form4 = new Form_4();
+        form5 = new Form_5();
         khoanphi= new KhoanPhi();
         homepage= new Form_HomePage();
         
@@ -55,6 +61,12 @@ public class Main extends javax.swing.JFrame {
             }
             else if (index == 4) {
                 setForm(khoanphi);
+            }
+            else if (index == 5) {
+                setForm(form4);
+            }
+            else if (index == 6) {
+                setForm(form5);
             }
         });
         //  set when system open start with home form
@@ -83,7 +95,6 @@ public class Main extends javax.swing.JFrame {
         Logo = new javax.swing.JLabel();
         Logo1 = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
-        simpleButtonBar3 = new Component.SimpleButtonBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -107,10 +118,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1041, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 929, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(simpleButtonBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 929, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         panelBorder1Layout.setVerticalGroup(
@@ -119,9 +127,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(simpleButtonBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
                         .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -193,6 +199,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel mainPanel;
     private main.raven.component.Menu menu;
     private main.raven.swing.PanelBorder panelBorder1;
-    private Component.SimpleButtonBar simpleButtonBar3;
     // End of variables declaration//GEN-END:variables
 }
