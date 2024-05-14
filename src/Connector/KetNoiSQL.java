@@ -19,7 +19,7 @@ public class KetNoiSQL {
     static String portNumber = "1433";
     static String dbName = "QLNUOC";
     static String userID = "sa";
-    static String password = "1234567";
+    static String password = "1234";
 
     public static Connection getConnection() {
         String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
@@ -38,7 +38,6 @@ public class KetNoiSQL {
                
                 connection.close();
             } catch (SQLException e) {
-                e.printStackTrace();
             }
             return true;
         } else {
