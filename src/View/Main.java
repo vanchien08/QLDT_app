@@ -13,6 +13,7 @@ import main.raven.form.Form_Home;
 import main.raven.form.Form_HomePage;
 import java.awt.Color;
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import main.raven.form.KhoanPhi;
 
 /**
@@ -30,6 +31,7 @@ public class Main extends javax.swing.JFrame {
     private Form_3 form3;
     private KhoanPhi khoanphi;
     private Form_HomePage homepage;
+    private JPanel MainPanel;
     public Main() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
@@ -41,22 +43,18 @@ public class Main extends javax.swing.JFrame {
         homepage= new Form_HomePage();
         
        menu.initMoving(Main.this);
-        menu.addEventMenuSelected(new EventMenuSelected() {
-            @Override
-            public void selected(int index) {
-                
-                if (index == 0) {
-                    setForm(homepage);
-                } else if (index == 1) {
-                    setForm(form1);
-                } else if (index == 2) {
-                    setForm(form2);
-                } else if (index == 3) {
-                    setForm(home);
-                }
-                else if (index == 4) {
-                    setForm(khoanphi);
-                }
+        menu.addEventMenuSelected((int index) -> {
+            if (index == 0) {
+                setForm(homepage);
+            } else if (index == 1) {
+                setForm(form1);
+            } else if (index == 2) {
+                setForm(form2);
+            } else if (index == 3) {
+                setForm(home);
+            }
+            else if (index == 4) {
+                setForm(khoanphi);
             }
         });
         //  set when system open start with home form
@@ -81,37 +79,52 @@ public class Main extends javax.swing.JFrame {
 
         panelBorder1 = new main.raven.swing.PanelBorder();
         menu = new main.raven.component.Menu();
-        header2 = new main.raven.component.Header();
         mainPanel = new javax.swing.JPanel();
+        Logo = new javax.swing.JLabel();
+        Logo1 = new javax.swing.JLabel();
+        Name = new javax.swing.JLabel();
+        simpleButtonBar3 = new Component.SimpleButtonBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        header2.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-
         mainPanel.setOpaque(false);
         mainPanel.setLayout(new java.awt.BorderLayout());
+        mainPanel.add(Logo, java.awt.BorderLayout.CENTER);
+        mainPanel.add(Logo1, java.awt.BorderLayout.PAGE_START);
+
+        Name.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Name.setText("CTY Dịch Vụ Nước Thủ Đức");
+        Name.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1041, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 929, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(simpleButtonBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBorder1Layout.createSequentialGroup()
+                        .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(simpleButtonBar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -165,11 +178,21 @@ public class Main extends javax.swing.JFrame {
             }
         });
     }
-
+ public JPanel getMainPanel() {
+        
+        return mainPanel;
+    }
+   public void setMainPanel(JPanel MainPanel) {
+        this.MainPanel = MainPanel;
+    }
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private main.raven.component.Header header2;
+    private javax.swing.JLabel Logo;
+    private javax.swing.JLabel Logo1;
+    private javax.swing.JLabel Name;
     private javax.swing.JPanel mainPanel;
     private main.raven.component.Menu menu;
     private main.raven.swing.PanelBorder panelBorder1;
+    private Component.SimpleButtonBar simpleButtonBar3;
     // End of variables declaration//GEN-END:variables
 }
