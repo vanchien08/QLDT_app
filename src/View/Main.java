@@ -59,13 +59,11 @@ public class Main extends javax.swing.JFrame {
             } else if (index == 3) {
                 setForm(home);
             }
+          
             else if (index == 4) {
-                setForm(khoanphi);
-            }
-            else if (index == 5) {
                 setForm(form4);
             }
-            else if (index == 6) {
+            else if (index == 5) {
                 setForm(form5);
             }
         });

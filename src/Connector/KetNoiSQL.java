@@ -19,7 +19,7 @@ public class KetNoiSQL {
     static String portNumber = "1433";
     static String dbName = "QLNUOC";
     static String userID = "sa";
-    static String password = "1234";
+    static String password = "1234567";
 
     public static Connection getConnection() {
         String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
