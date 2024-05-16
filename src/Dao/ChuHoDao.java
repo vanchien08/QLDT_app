@@ -25,7 +25,7 @@ public class ChuHoDao {
     public void addThongTinChuHo(ThongTinChuHo ttch)
     {
         Connection con = KetNoiSQL.getConnection();
-        String sql="insert into CHUHO (CCCD_ChuHo,Name,DOB,Address,PhoneNum) values(?,?,?,?,?)";
+        String sql="insert into PERSON_INFOS (CCCD,Name,DOB,Address,Phone,Sex) values(?,?,?,?,?,?)";
         int row = 0;
         try {
             PreparedStatement ps =con.prepareStatement(sql);
@@ -39,6 +39,7 @@ public class ChuHoDao {
             
             ps.setString(4,ttch.getAddress());
             ps.setString(5,ttch.getPhoneNum());
+            ps.setBoolean(6,ttch.getGioitinh());
             row = ps.executeUpdate();
 //            if (row > 0) {
 //                JOptionPane.showMessageDialog(this, "Thêm Tài khoản thành công");
@@ -57,7 +58,7 @@ public class ChuHoDao {
      public boolean KiemTraCCCD(String CCCD) {
         
         Connection con = KetNoiSQL.getConnection();
-        String sql ="select * from CHUHO where CCCD_ChuHo='"+CCCD+"' ";
+        String sql ="select * from PERSON_INFOS where CCCD='"+CCCD+"' ";
         try {
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -76,7 +77,7 @@ public class ChuHoDao {
       public boolean KiemTraPhoneNum(String phoneNum) {
         
         Connection con = KetNoiSQL.getConnection();
-        String sql ="select * from CHUHO where Phonenum='"+phoneNum+"' ";
+        String sql ="select * from PERSON_INFOS where Phone='"+phoneNum+"' ";
         try {
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -95,7 +96,7 @@ public class ChuHoDao {
       public boolean KiemTraUsername(String userName) {
         
         Connection con = KetNoiSQL.getConnection();
-        String sql ="select * from ACCOUNT where username='"+userName+"' ";
+        String sql ="select * from ACCOUNTS where Account_Username='"+userName+"' ";
         try {
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);

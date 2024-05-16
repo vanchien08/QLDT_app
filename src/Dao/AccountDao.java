@@ -24,7 +24,7 @@ public class AccountDao {
       public void addAccountChuHo(Map a)
     {
         Connection con = KetNoiSQL.getConnection();
-        String sql="insert into ACCOUNT (CCCD,username,password,priviledge,trangThai) values(?,?,?,?,?)";
+        String sql="insert into ACCOUNTS (CCCD,Account_Username,Account_Password,Privilege,Status) values(?,?,?,?,?)";
         int row = 0;
         try {
             PreparedStatement ps =con.prepareStatement(sql);
@@ -33,8 +33,8 @@ public class AccountDao {
 
             ps.setString(3, (String) a.get("password"));
             
-            ps.setString(4,"CH");
-           ps.setString(5,(String) a.get("trangThai"));
+            ps.setBoolean(4,false);
+           ps.setBoolean(5,false);
         
             
            
@@ -50,7 +50,7 @@ public class AccountDao {
       public boolean KiemTraUsername(String userName) {
         
         Connection con = KetNoiSQL.getConnection();
-        String sql ="select * from ACCOUNT where username='"+userName+"' ";
+        String sql ="select * from ACCOUNTS where Account_Username='"+userName+"' ";
         try {
 
             PreparedStatement preparedStatement = con.prepareStatement(sql);
@@ -69,13 +69,13 @@ public class AccountDao {
        public String getPasswordByUserName(String username) {
            String password="";
         Connection conn = KetNoiSQL.getConnection();
-        String sql = "select * from ACCOUNT where username  ='" + username + "'";
+        String sql = "select * from ACCOUNTS where Account_Username  ='" + username + "'";
         try {
 
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-               password=rs.getString("password");
+               password=rs.getString("Account_Password");
                
             }
 

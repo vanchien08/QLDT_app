@@ -17,7 +17,7 @@ public class KetNoiSQL {
     static String instance = "";
     static String serverName = "localhost";
     static String portNumber = "1433";
-    static String dbName = "QLNUOC";
+    static String dbName = "TmpTinhTienNuoc";
     static String userID = "sa";
     static String password = "1234567";
 

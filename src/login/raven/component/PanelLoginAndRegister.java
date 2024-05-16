@@ -40,7 +40,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
   
     private void initRegister() {
      //   register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
-      register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]10[]10[]10[]10[]25[]push"));
+      register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]10[]10[]10[]10[]10[]25[]push"));
      JLabel label = new JLabel("Create Account");
         label.setFont(new Font("sansserif", 1, 30));
        label.setForeground(new Color(73, 108, 168));
@@ -67,6 +67,12 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
        // txtPhonenum.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
         txtPhonenum.setHint("   Số điện thoại");
         register.add(txtPhonenum, "w 60%");
+        
+        MyTextField txtGTinh = new MyTextField();
+      //  txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/pass.png")));
+        txtGTinh.setHint("   Giới tính (NAM/NU)");
+        register.add(txtGTinh, "w 60%");
+        
         MyTextField txtUsername = new MyTextField();
       //  txtUsername.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/pass.png")));
         txtUsername.setHint("   Tên tài khoản");
@@ -76,6 +82,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
       //  txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/pass.png")));
         txtPass.setHint("   Mật khẩu");
         register.add(txtPass, "w 60%");
+        
         Button cmd = new Button();
         //cmd.setBackground(new Color(7, 164, 121));
         cmd.setBackground(new Color(73, 108, 168));
@@ -105,6 +112,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
          phonenum = txtPhonenum.getText().trim();
          username = txtUsername.getText().trim();
         String password = txtPass.getText().trim();
+        String gioitinh = txtGTinh.getText().trim();
        // System.out.println("check data"+cccd+name);
          String yccccd = "^([0-9]{9})*([0-9]{12})*$";
           String ycsdt = "^[0]{1}[0-9]{9}";
@@ -150,6 +158,9 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
            else if (password.isEmpty()) {
             JOptionPane.showMessageDialog(login, "Không để trống mật khẩu. Vui lòng điền thông tin đầy đủ!");
         }
+            else if (gioitinh.isEmpty()) {
+            JOptionPane.showMessageDialog(login, "Không để trống giới tính. Vui lòng điền thông tin đầy đủ!");
+        }
            else{
             Login loginFrame = (Login) SwingUtilities.getWindowAncestor((Component) e.getSource());
            // loginFrame.init();
@@ -160,7 +171,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             account.put("username", name);
             account.put("password", password);
              account.put("CCCD", cccd );
-             account.put("trangThai", "Chờ duyệt");
+             account.put("trangThai", "0");
            // System.out.print("username password: " + account.get("username") + " " + account.get("password"));
             String dobText = txtDOB.getText();
 
@@ -177,11 +188,17 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             CH.setDOB(dob);
             CH.setAddress(address);
             CH.setPhoneNum(phonenum);
-            
+            if(gioitinh.equals("NAM"))
+            {
+                CH.setGioitinh(true);
+            }
+            else{
+                CH.setGioitinh(false);
+            }
              
-            
-            acd.addAccountChuHo(account);
               CHD.addThongTinChuHo(CH);
+            acd.addAccountChuHo(account);
+            
                 JOptionPane.showMessageDialog(login,"Đăng ký tài khoản thành công!");
 //                System.out.println("add chu ho success !");
 //                System.out.println("chu ho"+CH.getDOB());

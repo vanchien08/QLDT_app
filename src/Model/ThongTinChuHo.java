@@ -18,6 +18,15 @@ public class ThongTinChuHo {
     private String address;
     private String CCCD_NV;
     private String id_congtonuoc;
+    private Boolean gioitinh;
+
+    public Boolean getGioitinh() {
+        return gioitinh;
+    }
+
+    public void setGioitinh(Boolean gioitinh) {
+        this.gioitinh = gioitinh;
+    }
    
 
     
