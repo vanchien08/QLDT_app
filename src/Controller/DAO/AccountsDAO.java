@@ -5,6 +5,7 @@ import Model.Accounts;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class AccountsDAO {
     private List<Accounts> ListAccountDAO = new ArrayList<>();
@@ -66,27 +67,38 @@ public class AccountsDAO {
         // Thêm đối tượng vào trong Customer table và Staff
         String SQL2="";
         
-       
+         List list = new ArrayList();
+        AccountsDAO acd =new AccountsDAO();
+        list =acd.getIDNV();
+        Random random = new Random();
+        int randomm = random.nextInt(list.size()+1);
+        
         try {
              Connection con = new DBS().getConnection();
+            
              if(Acc.getPrivilege()==0){
             
-            SQL2="INSERT INTO CUSTOMERS ( Account_Customer)\n" +
-                    "VALUES (?);";
-    
+            SQL2="INSERT INTO CUSTOMERS ( Account_Customer,ID_Staff_Input)\n" +
+                    "VALUES (?,?);";
+     PreparedStatement rs = con.prepareStatement(SQL2); 
+            rs.setString(1, Acc.getAccount_Username());
+            rs.setInt(2, (int)list.get(randomm));
+            
+            int rowsAffected = rs.executeUpdate();
         }else if(Acc.getPrivilege()==1){
             SQL2="INSERT INTO STAFFS (Account_Staffs) VALUES (?)";
-        }
-           
-            PreparedStatement rs = con.prepareStatement(SQL2); 
+        PreparedStatement rs = con.prepareStatement(SQL2); 
             rs.setString(1, Acc.getAccount_Username());
             
             int rowsAffected = rs.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Đã thêm đối tượng nhân viên và chủ hộ vào hệ thống!!!");
-            } else {
-                System.out.println("Lỗi không thể thêm đối tượng nhân viên vào hệ thống!!!");
-            }            
+        }
+           
+           
+//            if (rowsAffected > 0) {
+//                System.out.println("Đã thêm đối tượng nhân viên và chủ hộ vào hệ thống!!!");
+//            } else {
+//                System.out.println("Lỗi không thể thêm đối tượng nhân viên vào hệ thống!!!");
+//            }            
             
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -230,6 +242,26 @@ public class AccountsDAO {
 
         return password;
     }
+     public List<Integer> getIDNV() {
+        List list = new ArrayList<>();
+        String SQL = "SELECT ID FROM [dbo].[STAFFS]";
+        
+        try (
+            Connection con = new DBS().getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(SQL);
+        ) {
+            while (rs.next()) {
+                
+
+                list.add(rs.getInt("ID"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // Xử lý ngoại lệ (ví dụ: ghi log)
+        }
+        return list;
+    }
+
     
     
 }
