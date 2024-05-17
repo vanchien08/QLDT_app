@@ -1,5 +1,5 @@
 package Controller.DAO;
-import Connector.KetNoiSQL;
+
 import Controller.DBS;
 import Model.Accounts;
 import java.sql.*;
@@ -193,10 +193,10 @@ public class AccountsDAO {
     }
     public boolean KiemTraUsername(String userName) {
         
-        Connection con = KetNoiSQL.getConnection();
-        String sql ="select * from ACCOUNTS where Account_Username='"+userName+"' ";
+       
         try {
-
+                 Connection con = new DBS().getConnection();
+        String sql ="select * from ACCOUNTS where Account_Username='"+userName+"' ";
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -212,10 +212,10 @@ public class AccountsDAO {
     }
      public String getPasswordByUserName(String username) {
            String password="";
-        Connection conn = KetNoiSQL.getConnection();
-        String sql = "select * from ACCOUNTS where Account_Username  ='" + username + "'";
+       
         try {
-
+             Connection conn = new DBS().getConnection();
+        String sql = "select * from ACCOUNTS where Account_Username  ='" + username + "'";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {

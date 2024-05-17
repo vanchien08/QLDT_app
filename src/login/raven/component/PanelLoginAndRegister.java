@@ -2,8 +2,6 @@ package login.raven.component;
 
 import Controller.DAO.AccountsDAO;
 import Controller.DAO.Personal_InfosDAO;
-import Dao.ChuHoDao;
-import Dao.AccountDao;
 import Model.Accounts;
 import Model.Personal_Infos;
 import Model.ThongTinChuHo;
@@ -107,8 +105,8 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         cmd.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ChuHoDao CHD= new ChuHoDao();
-            AccountDao acd = new AccountDao();
+          //  ChuHoDao CHD= new ChuHoDao();
+        Personal_InfosDAO psd =new Personal_InfosDAO(); 
             
            // Login loginjframe= new Login();
             
@@ -133,9 +131,9 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
          String yccccd = "^([0-9]{9})*([0-9]{12})*$";
           String ycsdt = "^[0]{1}[0-9]{9}";
        
-          boolean kiemtracccd = CHD.KiemTraCCCD(cccd);
-          boolean kiemtraphonenum = CHD.KiemTraPhoneNum(phonenum);
-          boolean kiemtrausername = CHD.KiemTraUsername(username);
+          boolean kiemtracccd = psd.KiemTraCCCD(cccd);
+          boolean kiemtraphonenum = psd.KiemTraPhoneNum(phonenum);
+          boolean kiemtrausername = psd.KiemTraUsername(username);
           
           if (ho.isEmpty()) {
             JOptionPane.showMessageDialog(login, "Không để trống họ tên. Vui lòng điền thông tin đầy đủ!");
@@ -207,7 +205,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             try {
              
             Date dob = dateFormat.parse(dobText);
-                  Personal_InfosDAO psd =new Personal_InfosDAO(); 
+                  
                   AccountsDAO accdao = new AccountsDAO();
                   
 //            ThongTinChuHo CH = new ThongTinChuHo();

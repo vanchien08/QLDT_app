@@ -1,8 +1,7 @@
 package Controller;
 
 
-import Connector.KetNoiSQL;
-import static Connector.KetNoiSQL.getConnection;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -32,8 +31,8 @@ public class DBS {
         }
     }
  
-    public static void main(String[] args) {
-        if (KetNoiSQL.kiemTraKetNoi()) {
+    public static void main(String[] args) throws Exception {
+        if (DBS.kiemTraKetNoi()) {
             System.out.println("connect success!");
         } else {
            System.out.println("Can't connect DB!");

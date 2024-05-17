@@ -1,5 +1,6 @@
 package Controller.DAO;
 
+
 import Controller.DBS;
 import Controller.ProgramVariable;
 import Model.Accounts;
@@ -203,5 +204,62 @@ public class Personal_InfosDAO {
                 }
             }
             return Ps;
-    }   
+    } 
+     public boolean KiemTraCCCD(String CCCD) {
+        
+        
+        try {
+               Connection con = new DBS().getConnection();
+        String sql ="select * from PERSON_INFOS where CCCD='"+CCCD+"' ";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
+    }
+      public boolean KiemTraPhoneNum(String phoneNum) {
+        
+        
+        try {
+            Connection con = new DBS().getConnection();
+        String sql ="select * from PERSON_INFOS where Phone='"+phoneNum+"' ";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
+    }
+      public boolean KiemTraUsername(String userName) {
+        
+      
+        try {
+              Connection con = new DBS().getConnection();
+        String sql ="select * from ACCOUNTS where Account_Username='"+userName+"' ";
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
+    }
 }
