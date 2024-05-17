@@ -4,10 +4,7 @@
  */
 package main.raven.form;
 
-/**
- *
- * @author Laptop của Đạt
- */
+
 class spTable {
     
 }
