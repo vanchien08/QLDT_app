@@ -1,7 +1,11 @@
 package login.raven.component;
 
+import Controller.DAO.AccountsDAO;
+import Controller.DAO.Personal_InfosDAO;
 import Dao.ChuHoDao;
 import Dao.AccountDao;
+import Model.Accounts;
+import Model.Personal_Infos;
 import Model.ThongTinChuHo;
 import View.Main;
 import View.Login;
@@ -40,17 +44,27 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
   
     private void initRegister() {
      //   register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
-      register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]10[]10[]10[]10[]10[]25[]push"));
+      register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]10[]10[]10[]10[]10[]10[]10[]25[]push"));
      JLabel label = new JLabel("Create Account");
         label.setFont(new Font("sansserif", 1, 30));
        label.setForeground(new Color(73, 108, 168));
         register.add(label);
-
-    
-        MyTextField txtUser = new MyTextField();
+       
+               MyTextField txtten = new MyTextField();
        // txtUser.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/user.png")));
-        txtUser.setHint("   Họ tên");
-        register.add(txtUser, "w 60%");
+        txtten.setHint("   Tên");
+        register.add(txtten, "w 60%");
+        
+        MyTextField txtho = new MyTextField();
+       // txtUser.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/user.png")));
+        txtho.setHint("   Họ");
+        register.add(txtho, "w 29%, split 2");
+         MyTextField txthodem = new MyTextField();
+       // txtUser.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/user.png")));
+        txthodem.setHint("   Họ đệm");
+        register.add(txthodem, "w 29.5%");
+
+        
         MyTextField txtCCCD = new MyTextField();
        // txtCCCD.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
         txtCCCD.setHint("   Căn cước công dân");
@@ -106,7 +120,9 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
              String username="";
             String ngaysinh="";
             cccd = txtCCCD.getText().trim();
-        String name = txtUser.getText().trim();
+        String ho = txtho.getText().trim();
+        String ten=txtten.getText().trim();
+        String hodem=txthodem.getText().trim();
        ngaysinh = txtDOB.getText().trim();
         String address = txtAddress.getText().trim();
          phonenum = txtPhonenum.getText().trim();
@@ -121,7 +137,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
           boolean kiemtraphonenum = CHD.KiemTraPhoneNum(phonenum);
           boolean kiemtrausername = CHD.KiemTraUsername(username);
           
-          if (name.isEmpty()) {
+          if (ho.isEmpty()) {
             JOptionPane.showMessageDialog(login, "Không để trống họ tên. Vui lòng điền thông tin đầy đủ!");
         }
           else if (cccd.isEmpty()) {
@@ -167,12 +183,22 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             loginFrame.handelSignUp();
             
             
-            Map<String,String> account = new HashMap<>();
-            account.put("username", name);
-            account.put("password", password);
-             account.put("CCCD", cccd );
-             account.put("trangThai", "0");
+//            Map<String,String> account = new HashMap<>();
+//            account.put("username", ho);
+//            account.put("password", password);
+//             account.put("CCCD", cccd );
+//             account.put("trangThai", "0");
            // System.out.print("username password: " + account.get("username") + " " + account.get("password"));
+           int k=0;
+           Accounts acc = new Accounts();
+           acc.setAccount_Password(password);
+           acc.setAccount_Username(username);
+           acc.setCCCD(cccd);
+           acc.setPrivilege(k);
+            System.out.print("prrrrr"+acc.getPrivilege());
+           acc.setStatus(true);
+           
+           
             String dobText = txtDOB.getText();
 
 
@@ -181,24 +207,34 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             try {
              
             Date dob = dateFormat.parse(dobText);
-                   
-            ThongTinChuHo CH = new ThongTinChuHo();
-            CH.setName(name);
-            CH.setCCCD_CH(cccd);
-            CH.setDOB(dob);
-            CH.setAddress(address);
-            CH.setPhoneNum(phonenum);
+                  Personal_InfosDAO psd =new Personal_InfosDAO(); 
+                  AccountsDAO accdao = new AccountsDAO();
+                  
+//            ThongTinChuHo CH = new ThongTinChuHo();
+//            CH.setName(ho);
+//            CH.setCCCD_CH(cccd);
+//            CH.setDOB(dob);
+//            CH.setAddress(address);
+//            CH.setPhoneNum(phonenum);
+                Personal_Infos ps= new Personal_Infos();
+                ps.setAddress(address);
+                ps.setCCCD(cccd);
+                ps.setDOB(new java.sql.Date(dob.getTime()));
+                ps.setFirstname(ten);
+                ps.setLastname(ho);
+                ps.setMiddleName(hodem);
+                ps.setPhone(phonenum);
             if(gioitinh.equals("NAM"))
             {
-                CH.setGioitinh(true);
+                ps.setSex(true);
             }
             else{
-                CH.setGioitinh(false);
+                 ps.setSex(false);
             }
              
-              CHD.addThongTinChuHo(CH);
-            acd.addAccountChuHo(account);
-            
+              psd.AddDAO(ps);
+//            acd.addAccountChuHo(account);
+            accdao.AddDAO(acc);
                 JOptionPane.showMessageDialog(login,"Đăng ký tài khoản thành công!");
 //                System.out.println("add chu ho success !");
 //                System.out.println("chu ho"+CH.getDOB());
@@ -254,7 +290,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             // For example, let's print a message to the console
             String username=txtEmail.getText().trim();
             String password=txtPass.getText().trim();
-           AccountDao acd= new AccountDao();
+           AccountsDAO acd= new AccountsDAO();
            if(acd.KiemTraUsername(username))
            {
                if(acd.getPasswordByUserName(username).equals(password))

@@ -1,4 +1,5 @@
 package Controller.DAO;
+import Connector.KetNoiSQL;
 import Controller.DBS;
 import Model.Accounts;
 import java.sql.*;
@@ -50,7 +51,7 @@ public class AccountsDAO {
             rs.setString(2, Acc.getCCCD());
             rs.setString(3, Acc.getAccount_Password());
             rs.setInt(4, Acc.getPrivilege());    
-            
+       
             int rowsAffected = rs.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Đã thêm người dùng vào hệ thống!!!");
@@ -65,15 +66,18 @@ public class AccountsDAO {
         // Thêm đối tượng vào trong Customer table và Staff
         String SQL2="";
         
-        if(Acc.getPrivilege()==0){
+       
+        try {
+             Connection con = new DBS().getConnection();
+             if(Acc.getPrivilege()==0){
+            
             SQL2="INSERT INTO CUSTOMERS ( Account_Customer)\n" +
-                    "VALUES ( ?);";
+                    "VALUES (?);";
     
         }else if(Acc.getPrivilege()==1){
             SQL2="INSERT INTO STAFFS (Account_Staffs) VALUES (?)";
         }
-        try {
-            Connection con = new DBS().getConnection();
+           
             PreparedStatement rs = con.prepareStatement(SQL2); 
             rs.setString(1, Acc.getAccount_Username());
             
@@ -186,6 +190,45 @@ public class AccountsDAO {
                 ex.printStackTrace();
                 System.out.println("Lỗi hệ thống!!! (AccountsDAO) - UpdateDAO");
         }           
+    }
+    public boolean KiemTraUsername(String userName) {
+        
+        Connection con = KetNoiSQL.getConnection();
+        String sql ="select * from ACCOUNTS where Account_Username='"+userName+"' ";
+        try {
+
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
+    }
+     public String getPasswordByUserName(String username) {
+           String password="";
+        Connection conn = KetNoiSQL.getConnection();
+        String sql = "select * from ACCOUNTS where Account_Username  ='" + username + "'";
+        try {
+
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+               password=rs.getString("Account_Password");
+               
+            }
+
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return password;
     }
     
     
