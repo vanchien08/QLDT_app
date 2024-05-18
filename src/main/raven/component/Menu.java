@@ -13,7 +13,7 @@ import java.awt.event.MouseMotionAdapter;
 import javax.swing.JFrame;
 
 public class Menu extends javax.swing.JPanel {
-
+    
     private EventMenuSelected event;
 
     public void addEventMenuSelected(EventMenuSelected event) {

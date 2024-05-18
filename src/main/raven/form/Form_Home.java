@@ -1,21 +1,67 @@
 package main.raven.form;
 
+import Controller.DSNhanVienController.DSNhanVien;
+import Controller.QLPhanQuyenTKController.DSTaiKhoanPhanQuyen;
+import Controller.QLThongTinChungController.DSThongTinChung;
+import Controller.SupportFunction.StringProcessing;
+import LayMotSoUIdepTaiDay.BangDanhSach;
+import LayMotSoUIdepTaiDay.ComboboxThuong;
+import Model.Accounts;
+import Model.Staffs;
+import View.AdminView.DSNhanVienView.DSNhanVienDialog.FilterLoaiDateDSNVDialog;
+import View.AdminView.DSNhanVienView.DSNhanVienDialog.SortLoaiStringDSNVDialog;
 import main.raven.model.Model_Card;
 import main.raven.model.StatusType;
 import main.raven.swing.ScrollBar;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Form_Home extends javax.swing.JPanel {
+    private Staffs St;
+    public  List<Staffs> dsStaffs;
+    public  List<Accounts> dsAccounts;    
 
     public Form_Home() {
         initComponents();
-   
+        this.dsAccounts = new DSTaiKhoanPhanQuyen().KhoiTaoListAccount();
+        new DSThongTinChung().KhoiTaoListPersonal_Infos();
+        this.dsStaffs = new DSNhanVien().KhoiTaoListStaffs();
+        ShowThongTinTuDBS(BangDSNhanVien);
         
     }
+public void ShowThongTinTuDBS(BangDanhSach bangDS){
+        DefaultTableModel model = (DefaultTableModel) BangDSNhanVien.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged(); 
+        dsAccounts = DSTaiKhoanPhanQuyen.KhoiTaoListAccount();
 
+        dsStaffs = DSNhanVien.getListStaffs();
+        
+        model.setRowCount(0);    
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+       
+        for(Staffs st : dsStaffs){
+            String name = st.getFirstname() + " " + st.getMiddleName()+ " " + st.getLastname();
+            String Ten = new StringProcessing().Name(name);
+           
+            System.out.println(st.isRole());
+            Object[] rowData = {
+                st.getCCCD(), Ten, dateFormat.format(st.getDOB()), 
+                st.getAddress(), st.getPhone(), st.getAccount_Username(),
+                st.getAccount_Password(),st.isRole()==true ? "Ghi Nước":"Nhập hóa đơn",
+            };
+
+            model.addRow(rowData);
+        }   
+        StringProcessing.StringSortingTable(BangDSNhanVien, 0, true);
+        model.fireTableDataChanged();
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -273,7 +319,7 @@ public class Form_Home extends javax.swing.JPanel {
     }//GEN-LAST:event_TimKiemBtActionPerformed
 
     private void LamMoiBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBtActionPerformed
-        MainAdminview.setForm(new DSNhanVienMainView(MainAdminview));
+//        MainAdminview.setForm(new DSNhanVienMainView(MainAdminview));
     }//GEN-LAST:event_LamMoiBtActionPerformed
 
     private void LocBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocBtActionPerformed
@@ -281,7 +327,7 @@ public class Form_Home extends javax.swing.JPanel {
         if(selected == null){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần lọc!!!");
         }else if(selected.equals("Theo ngày sinh")){
-            FilterLoaiDateDSNVDialog filterLoaiDateDSNVDialog = new FilterLoaiDateDSNVDialog(this.MainAdminview, this, true);
+            FilterLoaiDateDSNVDialog filterLoaiDateDSNVDialog = new FilterLoaiDateDSNVDialog( this, true);
             filterLoaiDateDSNVDialog.setVisible(true);
         }
     }//GEN-LAST:event_LocBtActionPerformed
@@ -291,7 +337,7 @@ public class Form_Home extends javax.swing.JPanel {
         if(selected == null){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần sắp xếp!!!");
         }else{
-            SortLoaiStringDSNVDialog sortLoaiStringDSNVDialog =new SortLoaiStringDSNVDialog(this.MainAdminview, this, true);
+            SortLoaiStringDSNVDialog sortLoaiStringDSNVDialog =new SortLoaiStringDSNVDialog( this, true);
             sortLoaiStringDSNVDialog.setVisible(true);
         }
     }//GEN-LAST:event_SapXepBtActionPerformed
@@ -329,4 +375,28 @@ public class Form_Home extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLayeredPane panel;
     // End of variables declaration//GEN-END:variables
+public ComboboxThuong getSapXepCkb() {
+        return SapXepCkb;
+    }
+
+    public void setSapXepCkb(ComboboxThuong SapXepCkb) {
+        this.SapXepCkb = SapXepCkb;
+    }
+    
+    
+    public Staffs getSt() {
+        return St;
+    }
+
+    public void setSt(Staffs St) {
+        this.St = St;
+    }
+    
+    public BangDanhSach getBangDSNhanVien() {
+        return BangDSNhanVien;
+    }
+
+    public void setBangDSNhanVien(BangDanhSach BangDSNhanVien) {
+        this.BangDSNhanVien = BangDSNhanVien;
+    }  
 }

@@ -5,17 +5,37 @@
  */
 package main.raven.form;
 
+import Controller.QLThongTinChungController.DSThongTinChung;
+import Controller.SupportFunction.StringProcessing;
+import LayMotSoUIdepTaiDay.BangDanhSach;
+import LayMotSoUIdepTaiDay.ComboboxThuong;
+import Model.Personal_Infos;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.CapNhatCCCDTTChungDialog;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.CapNhatTTChungDialog;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.FilterLoaiDateTTCDialog;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.FilterLoaiGioiTinhTTCDialog;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.SortLoaiDateTTCDialog;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.SortLoaiStringTTCDialog;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.ThemTTChungDialog;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author RAVEN
  */
 public class Form_1 extends javax.swing.JPanel {
-
+        private Personal_Infos Ps;
+  public  List<Personal_Infos> dsInfos;  
     /**
      * Creates new form Form_1
      */
     public Form_1() {
         initComponents();
+         this.dsInfos = new DSThongTinChung().KhoiTaoListPersonal_Infos();
+        ShowThongTinTuDBS(BangDSTTChung);    
     }
 
     /**
@@ -264,7 +284,34 @@ public class Form_1 extends javax.swing.JPanel {
                 .addGap(12, 12, 12))
         );
     }// </editor-fold>//GEN-END:initComponents
+public void ShowThongTinTuDBS(BangDanhSach bangDS){
+        DefaultTableModel model = (DefaultTableModel) BangDSTTChung.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged(); 
+        
+        dsInfos = DSThongTinChung.getListPersonal_Infos();
+        
+        model.setRowCount(0);    
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        
+        for(Personal_Infos ps : dsInfos){
+            String Gioi_tinh;
+            String name = ps.getFirstname() + " " + ps.getMiddleName()+ " " + ps.getLastname();
+            String Ten = new StringProcessing().Name(name);
+            if(ps.isSex())
+                Gioi_tinh = "Nam";
+            else
+                Gioi_tinh = "Nữ";
+            Object[] rowData = {
+                ps.getCCCD(), Ten, dateFormat.format(ps.getDOB()), 
+                ps.getAddress(), ps.getPhone(), Gioi_tinh
+            };
 
+            model.addRow(rowData);
+        }   
+        StringProcessing.StringSortingTable(BangDSTTChung, 0, true);
+        model.fireTableDataChanged();
+    }
     private void BangDSTTChungMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangDSTTChungMouseReleased
         int i = BangDSTTChung.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) BangDSTTChung.getModel();
@@ -331,10 +378,10 @@ public class Form_1 extends javax.swing.JPanel {
         if(selected == null){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần lọc!!!");
         }else if(selected.equals("Theo ngày sinh")){
-            FilterLoaiDateTTCDialog filterLoaiDateTTCDialog = new FilterLoaiDateTTCDialog(this.MainAdminview, this, true);
+            FilterLoaiDateTTCDialog filterLoaiDateTTCDialog = new FilterLoaiDateTTCDialog( this, true);
             filterLoaiDateTTCDialog.setVisible(true);
         }else{
-            FilterLoaiGioiTinhTTCDialog filterLoaiGioiTinhTTCDialog = new FilterLoaiGioiTinhTTCDialog(this.MainAdminview, this, true);
+            FilterLoaiGioiTinhTTCDialog filterLoaiGioiTinhTTCDialog = new FilterLoaiGioiTinhTTCDialog( this, true);
             filterLoaiGioiTinhTTCDialog.setVisible(true);
         }
     }//GEN-LAST:event_LocBtActionPerformed
@@ -344,15 +391,26 @@ public class Form_1 extends javax.swing.JPanel {
         if(selected == null){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần sắp xếp!!!");
         }else if(selected.equals("Theo ngày sinh")){
-            SortLoaiDateTTCDialog sortLoaiDateTTCDialog = new SortLoaiDateTTCDialog(this.MainAdminview, this, true);
+            SortLoaiDateTTCDialog sortLoaiDateTTCDialog = new SortLoaiDateTTCDialog( this, true);
             sortLoaiDateTTCDialog.setVisible(true);
         }else{
-            SortLoaiStringTTCDialog sortLoaiStringTTCDialog = new SortLoaiStringTTCDialog(this.MainAdminview, this, true);
+            SortLoaiStringTTCDialog sortLoaiStringTTCDialog = new SortLoaiStringTTCDialog( this, true);
             sortLoaiStringTTCDialog.setVisible(true);
         }
     }//GEN-LAST:event_SapXepBtActionPerformed
-
-
+ private void showThemTTChungDialog() {
+        ThemTTChungDialog themTTChungDialog = new ThemTTChungDialog(  true);
+        themTTChungDialog.setVisible(true);
+    }
+private void showCapNhatTTCDialog() {
+        CapNhatTTChungDialog capNhatTTChungDialog = new CapNhatTTChungDialog(this, true);
+        capNhatTTChungDialog.setVisible(true);
+    }    
+    
+    private void showCapNhatCCCDTTCDialog() {
+        CapNhatCCCDTTChungDialog capNhatCCCDTTChungDialog = new CapNhatCCCDTTChungDialog(this, true);
+        capNhatCCCDTTChungDialog.setVisible(true);
+    }   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private LayMotSoUIdepTaiDay.BangDanhSach BangDSTTChung;
     private javax.swing.JScrollPane BangSrllp;
@@ -372,4 +430,28 @@ public class Form_1 extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
+public Personal_Infos getPs() {
+        return Ps;
+    }
+
+    public void setPs(Personal_Infos Ps) {
+        this.Ps = Ps;
+    }
+    
+    public BangDanhSach getBangDSTTChung() {
+        return BangDSTTChung;
+    }
+
+    public void setBangDSTTChung(BangDanhSach BangDSTTChung) {
+        this.BangDSTTChung = BangDSTTChung;
+    }
+    
+    public ComboboxThuong getSapXepCkb() {
+        return SapXepCkb;
+    }
+
+    public void setSapXepCkb(ComboboxThuong SapXepCkb) {
+        this.SapXepCkb = SapXepCkb;
+    }
+
 }

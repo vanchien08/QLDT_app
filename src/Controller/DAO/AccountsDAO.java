@@ -61,7 +61,7 @@ public class AccountsDAO {
             
         } catch (Exception ex) {
             ex.printStackTrace();
-            System.out.println("Lỗi hệ thống!!! (AccountsDAO) - AddDAO");
+//            System.out.println("Lỗi hệ thống!!! (AccountsDAO) - AddDAO");
         }
         // Thêm đối tượng vào trong Customer table và Staff
         String SQL2="";
@@ -69,24 +69,29 @@ public class AccountsDAO {
        
         try {
              Connection con = new DBS().getConnection();
+             System.out.print("checkkkk  "+Acc.getPrivilege());
              if(Acc.getPrivilege()==0){
             
             SQL2="INSERT INTO CUSTOMERS ( Account_Customer)\n" +
                     "VALUES (?);";
-    
-        }else if(Acc.getPrivilege()==1){
-            SQL2="INSERT INTO STAFFS (Account_Staffs) VALUES (?)";
-        }
-           
-            PreparedStatement rs = con.prepareStatement(SQL2); 
+     PreparedStatement rs = con.prepareStatement(SQL2); 
             rs.setString(1, Acc.getAccount_Username());
             
             int rowsAffected = rs.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Đã thêm đối tượng nhân viên và chủ hộ vào hệ thống!!!");
-            } else {
-                System.out.println("Lỗi không thể thêm đối tượng nhân viên vào hệ thống!!!");
-            }            
+        }else if(Acc.getPrivilege()==1){
+            SQL2="INSERT INTO STAFFS (Account_Staffs) VALUES (?)";
+        PreparedStatement rs = con.prepareStatement(SQL2); 
+            rs.setString(1, Acc.getAccount_Username());
+            
+            int rowsAffected = rs.executeUpdate();
+        }
+           
+           
+//            if (rowsAffected > 0) {
+//                System.out.println("Đã thêm đối tượng nhân viên và chủ hộ vào hệ thống!!!");
+//            } else {
+//                System.out.println("Lỗi không thể thêm đối tượng nhân viên vào hệ thống!!!");
+//            }            
             
         } catch (Exception ex) {
             ex.printStackTrace();

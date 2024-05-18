@@ -22,6 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -293,7 +295,12 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
            {
                if(acd.getPasswordByUserName(username).equals(password))
                {
-                    View.Main main =new Main();
+                    View.Main main = null;
+                   try {
+                       main = new Main();
+                   } catch (Exception ex) {
+                       Logger.getLogger(PanelLoginAndRegister.class.getName()).log(Level.SEVERE, null, ex);
+                   }
             main.show(true);
                }
                else{

@@ -12,6 +12,8 @@ import main.raven.form.Form_3;
 import main.raven.form.Form_Home;
 import main.raven.form.Form_HomePage;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import main.raven.form.Form_4;
@@ -36,7 +38,7 @@ public class Main extends javax.swing.JFrame {
     private KhoanPhi khoanphi;
     private Form_HomePage homepage;
     private JPanel MainPanel;
-    public Main() {
+    public Main() throws Exception {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         home = new Form_Home();
@@ -180,7 +182,11 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
+                try {
+                    new Main().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         });

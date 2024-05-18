@@ -5,17 +5,39 @@
  */
 package main.raven.form;
 
+import Controller.DSChuHoController.DSChuHo;
+import Controller.QLPhanQuyenTKController.DSTaiKhoanPhanQuyen;
+import Controller.SupportFunction.StringProcessing;
+import LayMotSoUIdepTaiDay.BangDanhSach;
+import LayMotSoUIdepTaiDay.ComboboxThuong;
+import Model.Accounts;
+import Model.Customers;
+import View.AdminView.DSChuHoView.DSChuHoDialog.FilterLoaiDateDSCHDialog;
+import View.AdminView.DSChuHoView.DSChuHoDialog.SortLoaiStringDSCHDialog;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author RAVEN
  */
-public class Form_2 extends javax.swing.JPanel {
+public final class Form_2 extends javax.swing.JPanel {
+    private Customers Cs;
+//    public  List<Accounts> dsAccounts;    
+
+    public  List<Customers> dsChuHo;  
 
     /**
      * Creates new form Form_1
      */
     public Form_2() {
         initComponents();
+//        this.dsAccounts = new DSTaiKhoanPhanQuyen().KhoiTaoListAccount();
+
+         this.dsChuHo = DSChuHo.KhoiTaoListCustomeres();
+        ShowThongTinTuDBS(BangDSChuHo);    
     }
 
     /**
@@ -226,7 +248,32 @@ public class Form_2 extends javax.swing.JPanel {
                 .addComponent(BangSrllp, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+public void ShowThongTinTuDBS(BangDanhSach bangDS){
+        DefaultTableModel model = (DefaultTableModel) BangDSChuHo.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged(); 
+//        dsAccounts = DSTaiKhoanPhanQuyen.KhoiTaoListAccount();
 
+        dsChuHo = DSChuHo.getListCustomer();
+        
+        model.setRowCount(0);    
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        
+        for(Customers cs : dsChuHo){
+            String name = cs.getFirstname() + " " + cs.getMiddleName()+ " " + cs.getLastname();
+            String Ten = new StringProcessing().Name(name);
+
+            Object[] rowData = {
+                cs.getCCCD(), Ten, dateFormat.format(cs.getDOB()), 
+                cs.getAddress(), cs.getPhone(), cs.getAccount_Username(),
+                cs.getAccount_Password()
+            };
+
+            model.addRow(rowData);
+        }   
+        StringProcessing.StringSortingTable(BangDSChuHo, 0, true);
+        model.fireTableDataChanged();
+    }
     private void BangDSChuHoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangDSChuHoMousePressed
         int i = BangDSChuHo.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) BangDSChuHo.getModel();
@@ -248,7 +295,7 @@ public class Form_2 extends javax.swing.JPanel {
         if(selected == null){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần sắp xếp!!!");
         }else{
-            SortLoaiStringDSCHDialog sortLoaiStringDSCHDialog = new SortLoaiStringDSCHDialog(this.MainAdminview, this, true);
+            SortLoaiStringDSCHDialog sortLoaiStringDSCHDialog = new SortLoaiStringDSCHDialog( this, true);
             sortLoaiStringDSCHDialog.setVisible(true);
         }
     }//GEN-LAST:event_SapXepBt1ActionPerformed
@@ -258,7 +305,7 @@ public class Form_2 extends javax.swing.JPanel {
         if(selected == null){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần lọc!!!");
         }else if(selected.equals("Theo ngày sinh")){
-            FilterLoaiDateDSCHDialog filterLoaiDateDSCHDialog = new FilterLoaiDateDSCHDialog(this.MainAdminview, this, true);
+            FilterLoaiDateDSCHDialog filterLoaiDateDSCHDialog = new FilterLoaiDateDSCHDialog( this, true);
             filterLoaiDateDSCHDialog.setVisible(true);
         }
     }//GEN-LAST:event_LocBtActionPerformed
@@ -297,7 +344,7 @@ public class Form_2 extends javax.swing.JPanel {
     }//GEN-LAST:event_TimKiemBtActionPerformed
 
     private void LamMoiBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBtActionPerformed
-        MainAdminview.setForm(new DSChuHoMainView(MainAdminview));
+//        MainAdminview.setForm(new DSChuHoMainView(MainAdminview));
     }//GEN-LAST:event_LamMoiBtActionPerformed
 
 
@@ -316,4 +363,27 @@ public class Form_2 extends javax.swing.JPanel {
     private javax.swing.JTextField TimKiemTf;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+  public ComboboxThuong getSapXepCkb() {
+        return SapXepCkb;
+    }
+
+    public void setSapXepCkb(ComboboxThuong SapXepCkb) {
+        this.SapXepCkb = SapXepCkb;
+    }
+    
+    public Customers getCs() {
+        return Cs;
+    }
+
+    public void setCs(Customers cs) {
+        this.Cs = cs;
+    }
+    
+    public BangDanhSach getBangDSChuHo() {
+        return BangDSChuHo;
+    }
+
+    public void setBangDSChuHo(BangDanhSach BangDSChuHo) {
+        this.BangDSChuHo = BangDSChuHo;
+    }
 }
