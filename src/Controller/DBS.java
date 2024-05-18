@@ -2,9 +2,12 @@ package Controller;
 
 
 
+import Controller.DAO.AccountsDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBS {
         public static Connection getConnection() throws Exception {
@@ -32,6 +35,7 @@ public class DBS {
     }
  
     public static void main(String[] args) throws Exception {
+      
         if (DBS.kiemTraKetNoi()) {
             System.out.println("connect success!");
         } else {
