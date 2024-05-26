@@ -104,11 +104,10 @@ public class Form_1 extends javax.swing.JPanel {
         });
         BangSrllp.setViewportView(BangDSTTChung);
 
-        TimKiemTf.setBackground(new java.awt.Color(204, 204, 204));
         TimKiemTf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TimKiemTf.setForeground(new java.awt.Color(102, 102, 102));
         TimKiemTf.setToolTipText("");
-        TimKiemTf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TimKiemTf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TimKiemTf.setName(""); // NOI18N
 
         TimKiemCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CCCD", "Họ và tên", "Địa chỉ", "SĐT" }));
@@ -143,7 +142,7 @@ public class Form_1 extends javax.swing.JPanel {
         DangChonTf.setText("NULL");
         DangChonTf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search.png"))); // NOI18N
+        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/search1.png"))); // NOI18N
         TimKiemBt.setText("Tìm kiếm");
         TimKiemBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,11 +150,11 @@ public class Form_1 extends javax.swing.JPanel {
             }
         });
 
-        LamMoiBt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Refresh.png"))); // NOI18N
+        LamMoiBt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/refesh.png"))); // NOI18N
         LamMoiBt1.setText("Làm mới");
         LamMoiBt1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        ThemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Isert_icon.png"))); // NOI18N
+        ThemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/add.png"))); // NOI18N
         ThemBt.setText("Thêm thông tin người dùng");
         ThemBt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ThemBt.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +163,7 @@ public class Form_1 extends javax.swing.JPanel {
             }
         });
 
-        CapNhatBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/6.png"))); // NOI18N
+        CapNhatBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/edit.png"))); // NOI18N
         CapNhatBt.setText("Cập nhật thông tin người dùng");
         CapNhatBt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CapNhatBt.addActionListener(new java.awt.event.ActionListener() {
@@ -178,7 +177,7 @@ public class Form_1 extends javax.swing.JPanel {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        LocBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/filter.png"))); // NOI18N
+        LocBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/filter.png"))); // NOI18N
         LocBt.setText("Lọc");
         LocBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LocBt.addActionListener(new java.awt.event.ActionListener() {
@@ -187,7 +186,7 @@ public class Form_1 extends javax.swing.JPanel {
             }
         });
 
-        SapXepBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/sort.png"))); // NOI18N
+        SapXepBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/sort.png"))); // NOI18N
         SapXepBt.setText("Sắp xếp");
         SapXepBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SapXepBt.addActionListener(new java.awt.event.ActionListener() {
@@ -210,12 +209,12 @@ public class Form_1 extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BangSrllp)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(DangChonLbl)
                                 .addGap(18, 18, 18)
                                 .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TimKiemTf, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TimKiemTf))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,7 +237,7 @@ public class Form_1 extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(SapXepBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LocBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(14, Short.MAX_VALUE))))
+                        .addContainerGap(10, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +246,7 @@ public class Form_1 extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(38, Short.MAX_VALUE)
+                                .addContainerGap(44, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(TimKiemBt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(TimKiemTf))
@@ -265,13 +264,12 @@ public class Form_1 extends javax.swing.JPanel {
                             .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CapNhatCb, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(SapXepCkb, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SapXepBt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(SapXepBt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 37, Short.MAX_VALUE)
                                 .addComponent(ThemBt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(LamMoiBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,9 +277,9 @@ public class Form_1 extends javax.swing.JPanel {
                                 .addComponent(CapNhatBt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator2)
                             .addComponent(jSeparator1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(BangSrllp, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12))
+                        .addGap(12, 12, 12)))
+                .addComponent(BangSrllp, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(223, 223, 223))
         );
     }// </editor-fold>//GEN-END:initComponents
 public void ShowThongTinTuDBS(BangDanhSach bangDS){

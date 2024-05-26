@@ -34,7 +34,7 @@ public final class Form_2 extends javax.swing.JPanel {
      */
     public Form_2() {
         initComponents();
-//        this.dsAccounts = new DSTaiKhoanPhanQuyen().KhoiTaoListAccount();
+        new DSTaiKhoanPhanQuyen().KhoiTaoListAccount();
 
          this.dsChuHo = DSChuHo.KhoiTaoListCustomeres();
         ShowThongTinTuDBS(BangDSChuHo);    
@@ -65,11 +65,10 @@ public final class Form_2 extends javax.swing.JPanel {
 
         setOpaque(false);
 
-        TimKiemTf.setBackground(new java.awt.Color(204, 204, 204));
         TimKiemTf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TimKiemTf.setForeground(new java.awt.Color(102, 102, 102));
         TimKiemTf.setToolTipText("");
-        TimKiemTf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TimKiemTf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TimKiemTf.setName(""); // NOI18N
 
         TimKiemCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CCCD", "Họ và tên", "Địa chỉ", "SĐT", "Account" }));
@@ -139,7 +138,7 @@ public final class Form_2 extends javax.swing.JPanel {
         });
         BangSrllp.setViewportView(BangDSChuHo);
 
-        SapXepBt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/sort.png"))); // NOI18N
+        SapXepBt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/sort.png"))); // NOI18N
         SapXepBt1.setText("Sắp xếp");
         SapXepBt1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SapXepBt1.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +147,7 @@ public final class Form_2 extends javax.swing.JPanel {
             }
         });
 
-        LocBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/filter.png"))); // NOI18N
+        LocBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/filter.png"))); // NOI18N
         LocBt.setText("Lọc");
         LocBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LocBt.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +156,7 @@ public final class Form_2 extends javax.swing.JPanel {
             }
         });
 
-        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search.png"))); // NOI18N
+        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/search1.png"))); // NOI18N
         TimKiemBt.setText("Tìm kiếm");
         TimKiemBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +164,7 @@ public final class Form_2 extends javax.swing.JPanel {
             }
         });
 
-        LamMoiBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Refresh.png"))); // NOI18N
+        LamMoiBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/refesh.png"))); // NOI18N
         LamMoiBt.setText("Làm mới");
         LamMoiBt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LamMoiBt.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +207,7 @@ public final class Form_2 extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(SapXepBt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LocBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(56, Short.MAX_VALUE))
+                        .addContainerGap(44, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BangSrllp)
                         .addContainerGap())))
@@ -228,14 +227,12 @@ public final class Form_2 extends javax.swing.JPanel {
                             .addComponent(SapXepBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap(11, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(TimKiemBt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(LamMoiBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addContainerGap(7, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(TimKiemBt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LamMoiBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(TimKiemTf))
                             .addGap(43, 43, 43)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

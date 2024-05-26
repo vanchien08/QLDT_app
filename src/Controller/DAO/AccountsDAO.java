@@ -75,23 +75,7 @@ public class AccountsDAO {
         
         try {
              Connection con = new DBS().getConnection();
-<<<<<<< HEAD
-             System.out.print("checkkkk  "+Acc.getPrivilege());
-             if(Acc.getPrivilege()==0){
-            
-            SQL2="INSERT INTO CUSTOMERS ( Account_Customer)\n" +
-                    "VALUES (?);";
-     PreparedStatement rs = con.prepareStatement(SQL2); 
-            rs.setString(1, Acc.getAccount_Username());
-            
-            int rowsAffected = rs.executeUpdate();
-        }else if(Acc.getPrivilege()==1){
-            SQL2="INSERT INTO STAFFS (Account_Staffs) VALUES (?)";
-        PreparedStatement rs = con.prepareStatement(SQL2); 
-            rs.setString(1, Acc.getAccount_Username());
-            
-            int rowsAffected = rs.executeUpdate();
-=======
+
             
              if(Acc.getPrivilege()==0){
             
@@ -108,7 +92,7 @@ public class AccountsDAO {
             rs.setString(1, Acc.getAccount_Username());
             
             int rowsAffected = rs.executeUpdate();
->>>>>>> 5b4e35bc272830daa7d41d6fc2826dee2fdd41f2
+
         }
            
            

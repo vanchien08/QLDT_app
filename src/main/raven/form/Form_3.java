@@ -67,11 +67,10 @@ public class Form_3 extends javax.swing.JPanel {
 
         setOpaque(false);
 
-        TimKiemTf.setBackground(new java.awt.Color(204, 204, 204));
         TimKiemTf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TimKiemTf.setForeground(new java.awt.Color(102, 102, 102));
         TimKiemTf.setToolTipText("");
-        TimKiemTf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TimKiemTf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TimKiemTf.setName(""); // NOI18N
 
         TimKiemCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CCCD", "Account" }));
@@ -81,7 +80,7 @@ public class Form_3 extends javax.swing.JPanel {
         TimKiemCb.setLabeText("(Tìm kiếm theo)");
         TimKiemCb.setLineColor(new java.awt.Color(0, 153, 255));
 
-        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search.png"))); // NOI18N
+        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/search1.png"))); // NOI18N
         TimKiemBt.setText("Tìm kiếm");
         TimKiemBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +97,7 @@ public class Form_3 extends javax.swing.JPanel {
             }
         });
 
-        LamMoiBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Refresh.png"))); // NOI18N
+        LamMoiBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/refesh.png"))); // NOI18N
         LamMoiBt.setText("Làm mới");
         LamMoiBt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LamMoiBt.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +106,7 @@ public class Form_3 extends javax.swing.JPanel {
             }
         });
 
-        MoTKBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/unlock.png"))); // NOI18N
+        MoTKBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/unlocked.png"))); // NOI18N
         MoTKBt.setText("Mở khóa Tài khoản");
         MoTKBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +114,7 @@ public class Form_3 extends javax.swing.JPanel {
             }
         });
 
-        KhoaTKBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/lock.png"))); // NOI18N
+        KhoaTKBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/lock.png"))); // NOI18N
         KhoaTKBt.setText("Khóa tài khoản");
         KhoaTKBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +122,7 @@ public class Form_3 extends javax.swing.JPanel {
             }
         });
 
-        PhanQuyenBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/flag.png"))); // NOI18N
+        PhanQuyenBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/audience.png"))); // NOI18N
         PhanQuyenBt.setText("Phân quyền tài khoản");
         PhanQuyenBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         PhanQuyenBt.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +131,7 @@ public class Form_3 extends javax.swing.JPanel {
             }
         });
 
-        CapNhatBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/6.png"))); // NOI18N
+        CapNhatBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/edit.png"))); // NOI18N
         CapNhatBt.setText("Cập nhật thông tin tài khoản");
         CapNhatBt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CapNhatBt.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +150,7 @@ public class Form_3 extends javax.swing.JPanel {
         SapXepCkb.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SapXepCkb.setLabeText("(Chọn thuộc tính cần sắp xếp)");
 
-        LocBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/filter.png"))); // NOI18N
+        LocBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/filter.png"))); // NOI18N
         LocBt.setText("Lọc");
         LocBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LocBt.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +159,7 @@ public class Form_3 extends javax.swing.JPanel {
             }
         });
 
-        SapXepBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/sort.png"))); // NOI18N
+        SapXepBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/sort.png"))); // NOI18N
         SapXepBt.setText("Sắp xếp");
         SapXepBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SapXepBt.addActionListener(new java.awt.event.ActionListener() {
@@ -250,14 +249,14 @@ public class Form_3 extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(LocBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(SapXepBt, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                                    .addComponent(SapXepBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(DangChonLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(CapNhatBt, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 98, Short.MAX_VALUE))
+                        .addGap(0, 95, Short.MAX_VALUE))
                     .addComponent(BangSrllp))
                 .addContainerGap())
         );
@@ -269,12 +268,12 @@ public class Form_3 extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(TimKiemBt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(ThemBt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(TimKiemTf))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(LocCkb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(LocBt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(LocBt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TimKiemTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LamMoiBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,7 +288,7 @@ public class Form_3 extends javax.swing.JPanel {
                     .addComponent(DangChonLbl)
                     .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BangSrllp, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addComponent(BangSrllp, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
