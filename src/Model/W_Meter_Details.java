@@ -7,6 +7,7 @@ public class W_Meter_Details {
      private String ID_W_Meter;
      private int Current_num;
      private Date Creating_Date;
+
      private int id;
      private int staff_input;
 
@@ -25,7 +26,7 @@ public class W_Meter_Details {
     public void setStaff_input(int staff_input) {
         this.staff_input = staff_input;
     }
-    
+
      
     public String getID_W_Meter() {
         return ID_W_Meter;

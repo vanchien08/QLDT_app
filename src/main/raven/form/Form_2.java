@@ -34,7 +34,9 @@ public final class Form_2 extends javax.swing.JPanel {
      */
     public Form_2() {
         initComponents();
+
         new DSTaiKhoanPhanQuyen().KhoiTaoListAccount();
+
 
          this.dsChuHo = DSChuHo.KhoiTaoListCustomeres();
         ShowThongTinTuDBS(BangDSChuHo);    

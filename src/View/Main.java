@@ -18,7 +18,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import main.raven.form.Form_4;
 import main.raven.form.Form_5;
-import main.raven.form.KhoanPhi;
+
 
 /**
  *
@@ -35,7 +35,7 @@ public class Main extends javax.swing.JFrame {
     private Form_3 form3;
      private Form_4 form4;
       private Form_5 form5;
-    private KhoanPhi khoanphi;
+   
     private Form_HomePage homepage;
     private JPanel MainPanel;
     public Main() throws Exception {
@@ -47,7 +47,7 @@ public class Main extends javax.swing.JFrame {
         form3 = new Form_3();
         form4 = new Form_4();
         form5 = new Form_5();
-        khoanphi= new KhoanPhi();
+        
         homepage= new Form_HomePage();
         
        menu.initMoving(Main.this);

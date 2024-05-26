@@ -5,7 +5,12 @@
 package main.raven.form;
 //
 
+<<<<<<< HEAD
 
+=======
+import Connector.KetNoiSQL;
+import Dao.HoaDonDao;
+>>>>>>> 39972a32ecffaa6532f2f75ef3c5596ae6e3cea2
 import Model.ThongTinHoaDon;
 import java.awt.Color;
 import java.awt.Font;
