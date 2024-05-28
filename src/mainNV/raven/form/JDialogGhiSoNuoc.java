@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import login.raven.component.PanelLoginAndRegister;
 
 /**
  *
@@ -32,7 +33,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
          datestr =new W_MeterDetailDAO().convertngay(datestr);
          _date=datestr;
          txtDate.setText(_date);
-          _idStaff=4;
+          _idStaff=PanelLoginAndRegister._idStaff;
          //   System.out.println("id staff" + PanelLoginAndRegister._idStaff);
     }
 

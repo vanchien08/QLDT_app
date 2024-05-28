@@ -38,7 +38,7 @@ public class GhiNuoc extends javax.swing.JPanel {
     int i=-1;
     public GhiNuoc() {
         initComponents();
-        _idstaff=4;
+        _idstaff=PanelLoginAndRegister._idStaff;
          String datestr=sp.format(date);
          datestr =new W_MeterDetailDAO().convertngay(datestr);
          _dateNow=datestr;

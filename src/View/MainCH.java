@@ -14,6 +14,8 @@ import mainCH.raven.form.Form_TTCN;
 import mainCH.raven.form.Form_Home;
 import mainCH.raven.form.Form_HomePage;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import mainCH.raven.form.Form_4;
@@ -39,7 +41,7 @@ public class MainCH extends javax.swing.JFrame {
 
     private Form_HomePage homepage;
     private JPanel MainPanel;
-    public MainCH() {
+    public MainCH() throws Exception {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         home = new Form_Home();
@@ -201,7 +203,11 @@ public class MainCH extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainCH().setVisible(true);
+                try {
+                    new MainCH().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(MainCH.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
         });
