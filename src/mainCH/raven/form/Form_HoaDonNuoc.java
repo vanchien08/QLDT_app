@@ -4,19 +4,78 @@
  */
 package mainCH.raven.form;
 
+import Controller.CustomerView.DSHoaDon.DSHoaDon;
+import Controller.DSHoaDonController.DSHoaDonController;
+import LayMotSoUIdepTaiDay.BangDanhSach;
+import LayMotSoUIdepTaiDay.ComboboxThuong;
+import Model.Invoices;
+import View.CustomerView.DSHoaDonDien.FilterLoaiDateDSHoaDonDialog;
+import View.CustomerView.DSHoaDonDien.SortLoaiStringDSHoaDonDialog;
+
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
  */
-public class Form_HoaDonNuoc extends javax.swing.JPanel {
-
+public final class Form_HoaDonNuoc extends javax.swing.JPanel {
+    private DefaultTableModel model;
+    private List<Invoices>invoiceses=new ArrayList<>();
     /**
      * Creates new form Form_HoaDonNuoc
      */
-    public Form_HoaDonNuoc() {
-        initComponents();
-    }
+    public Form_HoaDonNuoc() throws Exception {
+           initComponents();
+    
 
+        this.BangDSHoaDon.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.model= (DefaultTableModel) BangDSHoaDon.getModel();
+        this.model.getDataVector().removeAllElements();
+        this.model.fireTableDataChanged();
+        LammoiDS();
+        ShowThongTinTuDBS(this.invoiceses);
+    }
+ public  void LammoiDS() throws Exception{
+       this.invoiceses.clear();
+       this.model.setRowCount(0);
+       
+       if(this.DaNhapCTDCB.isSelected()){
+           this.invoiceses=new DSHoaDon().getAllInCase(1);
+       }else if(this.ChuaNhapCTDCB.isSelected()){
+           this.invoiceses=new DSHoaDon().getAllInCase(0);
+       }else{
+           this.invoiceses=new DSHoaDon().getAllInCase(2);
+       }       
+    }
+ public void ShowThongTinTuDBS(List<Invoices>invoicelist) throws Exception{
+        this.model.setRowCount(0);
+        if(invoicelist.isEmpty()){
+            JOptionPane.showMessageDialog(this,"Danh sách Hóa đơn rỗng ");
+        }else{
+            for(Invoices invoices :invoicelist){
+                int id=invoices.getId();
+                String nv = invoices.getStaff_name();
+           
+                int k = invoices.getCurrentNum();
+                String ngaylap=invoices.getInvoice_Date();
+                
+                Object[] datarow={
+                    id,
+                    nv,
+                  
+                    k,
+                    ngaylap
+                };      
+                model.addRow(datarow);
+            }
+        } 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,30 +85,311 @@ public class Form_HoaDonNuoc extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        TimKiemTF = new javax.swing.JTextField();
+        TimKiemCb = new LayMotSoUIdepTaiDay.ComboboxThuong();
+        TimKiemBT = new LayMotSoUIdepTaiDay.ButtonThuong();
+        LamMoiBT = new LayMotSoUIdepTaiDay.ButtonThuong();
+        DaNhapCTDCB = new LayMotSoUIdepTaiDay.CheckBox();
+        ChuaNhapCTDCB = new LayMotSoUIdepTaiDay.CheckBox();
+        SapXepCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
+        SapXepBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
+        LocCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
+        LocBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        BangDSHoaDon = new LayMotSoUIdepTaiDay.BangDanhSach();
 
-        jLabel1.setText("Hoadonnuoc");
+        TimKiemTF.setBackground(new java.awt.Color(231, 231, 231));
+        TimKiemTF.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TimKiemTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimKiemTFActionPerformed(evt);
+            }
+        });
+
+        TimKiemCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mức điện", "Nhân viên lập hóa đơn", " ", " " }));
+        TimKiemCb.setSelectedItem(null
+        );
+        TimKiemCb.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        TimKiemCb.setLabeText("(Tìm kiếm theo)");
+        TimKiemCb.setLineColor(new java.awt.Color(0, 153, 255));
+        TimKiemCb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimKiemCbActionPerformed(evt);
+            }
+        });
+
+        TimKiemBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search.png"))); // NOI18N
+        TimKiemBT.setText("Tìm kiếm");
+        TimKiemBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimKiemBTActionPerformed(evt);
+            }
+        });
+
+        LamMoiBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Refresh.png"))); // NOI18N
+        LamMoiBT.setText("Làm mới");
+        LamMoiBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LamMoiBTActionPerformed(evt);
+            }
+        });
+
+        DaNhapCTDCB.setBackground(new java.awt.Color(153, 153, 153));
+        DaNhapCTDCB.setText("Đã Thanh toán");
+        DaNhapCTDCB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        DaNhapCTDCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DaNhapCTDCBActionPerformed(evt);
+            }
+        });
+
+        ChuaNhapCTDCB.setBackground(new java.awt.Color(153, 153, 153));
+        ChuaNhapCTDCB.setText("Chưa Thanh toán");
+        ChuaNhapCTDCB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ChuaNhapCTDCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChuaNhapCTDCBActionPerformed(evt);
+            }
+        });
+
+        SapXepCkb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Theo ID", "Theo nhân viên ", "Theo mức điện", "Theo số kwh", "Theo ngày lập" }));
+        SapXepCkb.setSelectedItem(null);
+        SapXepCkb.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SapXepCkb.setLabeText("(Chọn thuộc tính cần sắp xếp)");
+        SapXepCkb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SapXepCkbActionPerformed(evt);
+            }
+        });
+
+        SapXepBt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/sort.png"))); // NOI18N
+        SapXepBt1.setText("Sắp xếp");
+        SapXepBt1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        SapXepBt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SapXepBt1ActionPerformed(evt);
+            }
+        });
+
+        LocCkb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Theo ngày sinh" }));
+        LocCkb.setSelectedItem(null);
+        LocCkb.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        LocCkb.setLabeText("(Chọn thuộc tính cần lọc)");
+
+        LocBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/filter.png"))); // NOI18N
+        LocBt.setText("Lọc");
+        LocBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        LocBt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LocBtActionPerformed(evt);
+            }
+        });
+
+        BangDSHoaDon.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nhân viên lập", "Số khối nước", "Ngày lập"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(BangDSHoaDon);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TimKiemTF, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TimKiemBT, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(LamMoiBT, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(DaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ChuaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SapXepCkb, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(SapXepBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LocCkb, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(LocBt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(72, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(201, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(130, 130, 130))
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jLabel1)
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(TimKiemBT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(LamMoiBT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TimKiemTF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ChuaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SapXepCkb, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SapXepBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LocCkb, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LocBt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void TimKiemTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TimKiemTFActionPerformed
+
+    private void TimKiemBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBTActionPerformed
+        BangDSHoaDon.setSelectionMode(2);
+        Object selected = TimKiemCb.getSelectedItem();
+        if(TimKiemTF.getText().replaceAll(" ", "").equals("") || selected == null){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn loại tìm kiếm và không bỏ trống thông tin nhập!!!");
+        }
+       else if(selected.equals("Nhân viên lập hóa đơn")){
+            if(!DSHoaDonController.Searching(TimKiemTF.getText(), BangDSHoaDon, 2))
+            JOptionPane.showMessageDialog(this, "Không tìm thấy Chủ hộ có CCCD: " + TimKiemTF.getText());
+            else
+            JOptionPane.showMessageDialog(this, "Đã tìm thấy Chủ hộ có CCCD: " + TimKiemTF.getText());
+        }
+    }//GEN-LAST:event_TimKiemBTActionPerformed
+
+    private void LamMoiBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBTActionPerformed
+//        try {
+//            ctv.setForm(new DSHoaDonDien(ctv));
+//            DaNhapCTDCB.setSelected(false);
+//            ChuaNhapCTDCB.setSelected(true);
+//        } catch (Exception ex) {
+//            Logger.getLogger(DSHoaDonDien.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+    }//GEN-LAST:event_LamMoiBTActionPerformed
+
+    private void DaNhapCTDCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DaNhapCTDCBActionPerformed
+        //Da thanh toan
+        List<Invoices>tmp=new ArrayList<>();
+        try {
+            this.LammoiDS();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(Form_HoaDonNuoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        for(Invoices in: this.invoiceses){
+            tmp.add(in);
+        }
+        try {
+            ShowThongTinTuDBS(tmp);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(Form_HoaDonNuoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_DaNhapCTDCBActionPerformed
+
+    private void ChuaNhapCTDCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChuaNhapCTDCBActionPerformed
+        List<Invoices>tmp=new ArrayList<>();
+        try {
+            this.LammoiDS();
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(Form_HoaDonNuoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        for(Invoices in: this.invoiceses){
+            tmp.add(in);
+        }
+        try {
+            ShowThongTinTuDBS(tmp);
+        } catch (Exception ex) {
+            java.util.logging.Logger.getLogger(Form_HoaDonNuoc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ChuaNhapCTDCBActionPerformed
+
+    private void SapXepBt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SapXepBt1ActionPerformed
+        Object selected = SapXepCkb.getSelectedItem();
+        if(selected == null){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần sắp xếp!!!");
+        }else{
+            SortLoaiStringDSHoaDonDialog sortLoaiStringDSHoaDonDialog=new SortLoaiStringDSHoaDonDialog( this, true);
+            sortLoaiStringDSHoaDonDialog.setVisible(true);
+        }
+    }//GEN-LAST:event_SapXepBt1ActionPerformed
+
+    private void LocBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocBtActionPerformed
+        Object selected = LocCkb.getSelectedItem();
+        if(selected == null){
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần lọc!!!");
+        }else if(selected.equals("Theo ngày sinh")){
+            FilterLoaiDateDSHoaDonDialog filter = new FilterLoaiDateDSHoaDonDialog ( this, true);
+            filter.setVisible(true);
+        }
+    }//GEN-LAST:event_LocBtActionPerformed
+
+    private void SapXepCkbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SapXepCkbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SapXepCkbActionPerformed
+
+    private void TimKiemCbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemCbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TimKiemCbActionPerformed
+ public ComboboxThuong getSapXepCkb() {
+        return SapXepCkb;
+    }
+
+    public void setSapXepCkb(ComboboxThuong SapXepCkb) {
+        this.SapXepCkb = SapXepCkb;
+    }
+    private void showCapNhatCongToDienDialog() {
+
+    }  
+
+    public BangDanhSach getBangDSHoaDon() {
+        return BangDSHoaDon;
+    }
+
+    public void setBangDSHoaDon(BangDanhSach BangDSHoaDon) {
+        this.BangDSHoaDon = BangDSHoaDon;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private LayMotSoUIdepTaiDay.BangDanhSach BangDSHoaDon;
+    private LayMotSoUIdepTaiDay.CheckBox ChuaNhapCTDCB;
+    private LayMotSoUIdepTaiDay.CheckBox DaNhapCTDCB;
+    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBT;
+    private LayMotSoUIdepTaiDay.ButtonThuong LocBt;
+    private LayMotSoUIdepTaiDay.ComboboxThuong LocCkb;
+    private LayMotSoUIdepTaiDay.ButtonThuong SapXepBt1;
+    private LayMotSoUIdepTaiDay.ComboboxThuong SapXepCkb;
+    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBT;
+    private LayMotSoUIdepTaiDay.ComboboxThuong TimKiemCb;
+    private javax.swing.JTextField TimKiemTF;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
