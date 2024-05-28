@@ -116,6 +116,11 @@ public class Form_1 extends javax.swing.JPanel {
         TimKiemCb.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         TimKiemCb.setLabeText("(Tìm kiếm theo)");
         TimKiemCb.setLineColor(new java.awt.Color(0, 153, 255));
+        TimKiemCb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimKiemCbActionPerformed(evt);
+            }
+        });
 
         CapNhatCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cập nhật thông tin chung", "Cập nhật CCCD" }));
         CapNhatCb.setSelectedItem(null
@@ -396,6 +401,10 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
             sortLoaiStringTTCDialog.setVisible(true);
         }
     }//GEN-LAST:event_SapXepBtActionPerformed
+
+    private void TimKiemCbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemCbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TimKiemCbActionPerformed
  private void showThemTTChungDialog() {
         ThemTTChungDialog themTTChungDialog = new ThemTTChungDialog(  true);
         themTTChungDialog.setVisible(true);

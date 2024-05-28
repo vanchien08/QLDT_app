@@ -4,7 +4,10 @@
  */
 package mainNV.raven.form;
 
-import Dao.HoaDonDao;
+import Controller.DAO.W_MeterDetailDAO;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import javax.swing.JOptionPane;
 
@@ -13,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author DELL
  */
 public class JDialogGhiSoNuoc extends javax.swing.JDialog {
-    private String date_;
+    private String _date;
     /**
      * Creates new form JDialogGhiSoNuoc
      */
@@ -21,6 +24,11 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
        // super(parent, modal);
         initComponents();
          setLocationRelativeTo(null);
+          SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
+    Date date =new Date();
+     String datestr=sp.format(date);
+         datestr =new W_MeterDetailDAO().convertngay(datestr);
+         _date=datestr;
     }
 
     /**
@@ -44,6 +52,8 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
         txtChuHo = new javax.swing.JTextField();
         txtSoNuocCu = new javax.swing.JTextField();
         txtSoNuocMoi = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtCongTo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -74,7 +84,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
 
         jLabel2.setText("THÁNG :");
 
-        jLabel3.setText("CCCD CHỦ HỘ :");
+        jLabel3.setText("CHỦ HỘ");
 
         jLabel4.setText("SỐ NƯỚC CŨ:");
 
@@ -87,52 +97,69 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
 
         jLabel7.setText("SỐ NƯỚC MỚI");
 
+        jLabel5.setText("ID_CongTo");
+
+        txtCongTo.setText("jTextField1");
+        txtCongTo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCongToFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addGap(82, 82, 82)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnGhi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel7)))
+                                .addComponent(jLabel7)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)))
+                            .addComponent(jLabel5))
                         .addGap(49, 49, 49)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtSoNuocMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                             .addComponent(txtSoNuocCu)
-                            .addComponent(txtChuHo))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtCongTo)))
+                    .addComponent(txtChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtDate))
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel3))
-                    .addComponent(txtChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtDate))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtCongTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtSoNuocCu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtSoNuocMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                    .addComponent(txtSoNuocMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
                 .addComponent(btnGhi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -155,17 +182,23 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
 
     private void btnGhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGhiActionPerformed
         // TODO add your handling code here:
-        HoaDonDao hdd = new HoaDonDao();
+        
+       
+        W_MeterDetailDAO hdd = new W_MeterDetailDAO();
     
 
             String sonuoccu = txtSoNuocCu.getText().trim();
             String sonuocmoi = txtSoNuocMoi.getText().trim();
-          
+            int sonuocmoiINT= Integer.valueOf(sonuocmoi);
 
             String kiemtraso = "^[0-9.+]+$";
-            if (!hdd.checkCCCDChuHo(txtChuHo.getText())) {
-                JOptionPane.showMessageDialog(this, "Không tìm thấy chủ hộ này.Vui lòng xem lại CCCD!");
+            if (!hdd.checkExistWMetter(txtCongTo.getText())) {
+                JOptionPane.showMessageDialog(this, "Không tìm thấy Công tơ nước!");
             } 
+            
+             else if (sonuocmoi.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Không được để trống số nước. Vui lòng nhập lại!");
+            }
             else if (!sonuoccu.matches(kiemtraso)) {
                 JOptionPane.showMessageDialog(this, "Định dạng số nước sai. Vui lòng nhập lại!");
             } else if (!sonuocmoi.matches(kiemtraso)) {
@@ -186,8 +219,9 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
 //                        CapNhatDichVuPhong();
 //                        showTable();
                     
-                        hdd.addBangSDNuoc(date_, txtChuHo.getText(), txtSoNuocCu.getText().trim(), txtSoNuocMoi.getText().trim());
-                        hdd.addHoaDonNuoc(date_, txtChuHo.getText(), txtSoNuocCu.getText().trim(), txtSoNuocMoi.getText().trim());
+//                        hdd.addBangSDNuoc(date_, txtChuHo.getText(), txtSoNuocCu.getText().trim(), txtSoNuocMoi.getText().trim());
+//                        hdd.addHoaDonNuoc(date_, txtChuHo.getText(), txtSoNuocCu.getText().trim(), txtSoNuocMoi.getText().trim());
+                           hdd.AddWmetter(txtCongTo.getText(),sonuocmoiINT,3,_date);
                     } else if (test == JOptionPane.NO_OPTION) {
                         JOptionPane.showMessageDialog(this, "Bạn đã hủy cập nhật thành công");
                     }
@@ -197,6 +231,20 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
         
         
     }//GEN-LAST:event_btnGhiActionPerformed
+
+    private void txtCongToFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCongToFocusLost
+        // TODO add your handling code here:
+         W_MeterDetailDAO wmtd= new W_MeterDetailDAO();
+           SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+      //  String thangnay=dateFormat1.format(ps.getCreating_Date());
+        String cccd=wmtd.getCCCDByIDMeter(txtCongTo.getText());
+        String hoten =wmtd.getHotenByCCCD(cccd);
+        txtChuHo.setText(hoten);
+        String thangcu = wmtd.thangnuoccu(_date);
+        int sonuoccu=wmtd.getSonuoccu(thangcu,txtCongTo.getText());
+        txtSoNuocCu.setText(String.valueOf(sonuoccu));
+        String address= wmtd.getaddressByIdmeter(txtCongTo.getText());
+    }//GEN-LAST:event_txtCongToFocusLost
 
     /**
      * @param args the command line arguments
@@ -246,19 +294,21 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtChuHo;
+    private javax.swing.JTextField txtCongTo;
     private javax.swing.JLabel txtDate;
     private javax.swing.JTextField txtSoNuocCu;
     private javax.swing.JTextField txtSoNuocMoi;
     // End of variables declaration//GEN-END:variables
 
-    public void setData(Map data)
-    {
-        txtDate.setText((String) data.get("thangghi"));
-        date_=(String) data.get("thangghi1");
-      //  System.out.println("ngay2 set data"+(String) data.get("thangghi1"));
-    }
+//    public void setData(Map data)
+//    {
+//        txtDate.setText((String) data.get("thangghi"));
+//        date_=(String) data.get("thangghi1");
+//      //  System.out.println("ngay2 set data"+(String) data.get("thangghi1"));
+//    }
 }
