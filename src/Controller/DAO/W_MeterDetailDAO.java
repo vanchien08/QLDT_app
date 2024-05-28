@@ -44,7 +44,7 @@ public class W_MeterDetailDAO {
                   tmp.setID_W_Meter(rs.getString("ID_W_METER"));
                   tmp.setCurrent_num(rs.getInt("Current_Num"));
                   tmp.setCreating_Date(rs.getDate("Creating_Date"));
-                  tmp.setStaff_input(rs.getInt("ID_Staff_Input"));
+//                  tmp.setStaff_input(rs.getInt("ID_Staff_Input"));
                   tmp.setId(rs.getInt("ID"));
                   list.add(tmp);
                   
