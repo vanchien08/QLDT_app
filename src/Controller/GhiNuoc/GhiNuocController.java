@@ -25,13 +25,13 @@ import java.util.logging.Logger;
 public class GhiNuocController {
     private List <W_Meter_Details> listWM;
     
-     public static List <W_Meter_Details> KhoiTaoListCongTo(String k) {
+     public static List <W_Meter_Details> KhoiTaoListCongTo(String k,int id) {
         try {
             Date date =new Date();
         SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
         String datestr=sp.format(date);
             
-         List <W_Meter_Details> listWM = new W_MeterDetailDAO().getChiTietCongTo(k);
+         List <W_Meter_Details> listWM = new W_MeterDetailDAO().getChiTietCongTo(k,id);
             return listWM;
         } catch (Exception ex) {
             Logger.getLogger(DSTaiKhoanPhanQuyen.class.getName()).log(Level.SEVERE, null, ex);

@@ -16,7 +16,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import mainCH.raven.form.Form_4;
 import mainCH.raven.form.Form_5;
-import mainCH.raven.form.KhoanPhi;
+
 
 /**
  *
@@ -32,8 +32,7 @@ public class MainCH extends javax.swing.JFrame {
     private Form_2 form2;
     private Form_3 form3;
      private Form_4 form4;
-      private Form_5 form5;
-    private KhoanPhi khoanphi;
+
     private Form_HomePage homepage;
     private JPanel MainPanel;
     public MainCH() {
@@ -44,8 +43,8 @@ public class MainCH extends javax.swing.JFrame {
         form2 = new Form_2();
         form3 = new Form_3();
         form4 = new Form_4();
-        form5 = new Form_5();
-        khoanphi= new KhoanPhi();
+
+
         homepage= new Form_HomePage();
         
        menu_CH1.initMoving(MainCH.this);
@@ -66,9 +65,7 @@ public class MainCH extends javax.swing.JFrame {
             else if (index == 5) {
                 setForm(form4);
             }
-            else if (index == 6) {
-                setForm(form5);
-            }
+           
         });
         //  set when system open start with home form
         setForm(new Form_HomePage());

@@ -95,10 +95,6 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
 
         jLabel5.setText("CÔNG TƠ:");
 
-        txtNameCH.setText("jLabel8");
-
-        txtIDCongTo.setText("jLabel9");
-
         btUpdate.setText("Cập nhật");
         btUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,17 +109,9 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
             }
         });
 
-        txtDate.setText("jLabel7");
-
-        txtDiaChi.setText("jLabel9");
-
         jLabel7.setText("SỐ NƯỚC CŨ:");
 
         jLabel8.setText("ĐỊA CHỈ :");
-
-        txtSoNuocCu.setText("jTextField1");
-
-        txtSoNuocMoi.setText("jTextField2");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

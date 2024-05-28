@@ -1,4 +1,3 @@
-
 package Model;
 
 import java.sql.Date;
@@ -10,6 +9,7 @@ public class W_Meter_Details {
 
      private int id;
      private int staff_input;
+    private int ID_Staff_Input;
 
     public int getId() {
         return id;
@@ -23,8 +23,8 @@ public class W_Meter_Details {
         this.id = id;
     }
 
-    public void setStaff_input(int staff_input) {
-        this.staff_input = staff_input;
+    public void setID_Staff_Input(int ID_Staff_Input) {
+        this.ID_Staff_Input = ID_Staff_Input;
     }
 
      

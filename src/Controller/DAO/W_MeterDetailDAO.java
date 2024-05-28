@@ -25,14 +25,15 @@ import java.util.UUID;
  * @author DELL
  */
 public class W_MeterDetailDAO {
-    public  List<W_Meter_Details> getChiTietCongTo(String ngay) {
+    public  List<W_Meter_Details> getChiTietCongTo(String ngay,int idstaff) {
     List<W_Meter_Details> list =new ArrayList<>();
-        String SQL="select * from W_METER_DETAILS where Creating_Date=?";
+        String SQL="select * from W_METER_DETAILS where Creating_Date=? and ID_Staff_Input=?";
            try {
             
              Connection con = new DBS().getConnection();
              PreparedStatement ps = con.prepareStatement(SQL);
             ps.setString(1, ngay);
+            ps.setInt(2,idstaff);
 //               SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 //             Date parsedDate = dateFormat.parse(ngay);
 //            java.sql.Date sqlDate = new java.sql.Date(parsedDate.getTime());
@@ -45,7 +46,7 @@ public class W_MeterDetailDAO {
                   tmp.setID_W_Meter(rs.getString("ID_W_METER"));
                   tmp.setCurrent_num(rs.getInt("Current_Num"));
                   tmp.setCreating_Date(rs.getDate("Creating_Date"));
-                  tmp.setStaff_input(rs.getInt("ID_Staff_Input"));
+                  tmp.setID_Staff_Input(rs.getInt("ID_Staff_Input"));
                   tmp.setId(rs.getInt("ID"));
                   list.add(tmp);
                   
@@ -82,7 +83,7 @@ public class W_MeterDetailDAO {
                   tmp.setID_W_Meter(rs.getString("ID_W_METER"));
                   tmp.setCurrent_num(rs.getInt("Current_Num"));
                   tmp.setCreating_Date(rs.getDate("Creating_Date"));
-                  tmp.setStaff_input(rs.getInt("ID_Staff_Input"));
+                  tmp.setID_Staff_Input(rs.getInt("ID_Staff_Input"));
                   tmp.setId(rs.getInt("ID"));
                   list.add(tmp);
                   
@@ -99,19 +100,20 @@ public class W_MeterDetailDAO {
     }
     
     
-    public  List<W_Meter_Details> getChiTietCongToByCCCD(String CCCD,String date) {
+    public  List<W_Meter_Details> getChiTietCongToByCCCD(String CCCD,String date,int idstaff) {
     List<W_Meter_Details> list =new ArrayList<>();
                 String SQL="SELECT * FROM W_METERS wm \n" +
-        "JOIN CUSTOMERS ctm ON wm.ID_Customer = ctm.ID \n" +
-        "join ACCOUNTS acc on acc.Account_Username=ctm.Account_Customer  \n" +
-        "join W_METER_DETAILS wmdt on wmdt.ID_W_METER=wm.ID_W_METER\n" +
-        "where CCCD Like ? and Creating_Date=?";
+"        JOIN CUSTOMERS ctm ON wm.ID_Customer = ctm.ID\n" +
+"        join ACCOUNTS acc on acc.Account_Username=ctm.Account_Customer  \n" +
+"        join W_METER_DETAILS wmdt on wmdt.ID_W_METER=wm.ID_W_METER\n" +
+"        where CCCD Like ? and Creating_Date=? and ctm.ID_Staff_Input=?";
            try {
             
              Connection con = new DBS().getConnection();
              PreparedStatement ps = con.prepareStatement(SQL);
            ps.setString(1, "%" + CCCD + "%");
             ps.setString(2, date);
+             ps.setInt(3, idstaff);
 //               SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 //             Date parsedDate = dateFormat.parse(ngay);
 //            java.sql.Date sqlDate = new java.sql.Date(parsedDate.getTime());
@@ -124,7 +126,7 @@ public class W_MeterDetailDAO {
                   tmp.setID_W_Meter(rs.getString("ID_W_METER"));
                   tmp.setCurrent_num(rs.getInt("Current_Num"));
                   tmp.setCreating_Date(rs.getDate("Creating_Date"));
-                  tmp.setStaff_input(rs.getInt("ID_Staff_Input"));
+                  tmp.setID_Staff_Input(rs.getInt("ID_Staff_Input"));
                   tmp.setId(rs.getInt("ID"));
                   list.add(tmp);
                   
@@ -165,7 +167,7 @@ public class W_MeterDetailDAO {
                   tmp.setID_W_Meter(rs.getString("ID_W_METER"));
                   tmp.setCurrent_num(rs.getInt("Current_Num"));
                   tmp.setCreating_Date(rs.getDate("Creating_Date"));
-                  tmp.setStaff_input(rs.getInt("ID_Staff_Input"));
+                  tmp.setID_Staff_Input(rs.getInt("ID_Staff_Input"));
                   tmp.setId(rs.getInt("ID"));
                   list.add(tmp);
                   
@@ -199,7 +201,7 @@ public class W_MeterDetailDAO {
                 wmd.setID_W_Meter(rs.getString("ID_W_METER"));
                  wmd.setCurrent_num(rs.getInt("Current_Num"));
                   wmd.setCreating_Date(rs.getDate("Creating_Date"));
-                   wmd.setStaff_input(rs.getInt("ID_Staff_Input"));
+                   wmd.setID_Staff_Input(rs.getInt("ID_Staff_Input"));
       
             }
                
@@ -312,9 +314,7 @@ public class W_MeterDetailDAO {
                
         } catch (Exception e) {
         }
-          
-        
-          
+
         return sonuoc;
     }
       public static String getaddressByIdmeter(String idmt) {
@@ -372,7 +372,7 @@ public class W_MeterDetailDAO {
             
             rs.setString(1, idmt);
             rs.setInt(2, currentnum);
-            rs.setInt(3, 2);
+            rs.setInt(3, idstaff);
             rs.setString(4, date);
        
             int rowsAffected = rs.executeUpdate();
@@ -404,11 +404,58 @@ public class W_MeterDetailDAO {
 //            System.out.println("Lỗi hệ thống!!! (AccountsDAO) - AddDAO");
         }
       }
+         public int getPrivilegeByUsername(String username) {
+        int role=0;
+        String SQL="select * from ACCOUNTS where Account_Username=? ";
+           try {
+            
+                 Connection con = new DBS().getConnection();
+             PreparedStatement ps = con.prepareStatement(SQL);
+             ps.setString(1,username);
+            
+            ResultSet rs = ps.executeQuery();
+       
+            while(rs.next()){
+                 
+                role=rs.getInt("Privilege");
+      
+            }
+               
+        } catch (Exception e) {
+        }
+
+        return role;
+    }
+         
+         public int getIDstaffByUsername(String username) {
+        int id=0;
+        String SQL="select * from ACCOUNTS acc join STAFFS stf on acc.Account_Username =stf.Account_Staffs where Account_Username=? ";
+           try {
+            
+                 Connection con = new DBS().getConnection();
+             PreparedStatement ps = con.prepareStatement(SQL);
+             ps.setString(1,username);
+            
+            ResultSet rs = ps.executeQuery();
+       
+            while(rs.next()){
+                 
+                id=rs.getInt("ID");
+      
+            }
+               
+        } catch (Exception e) {
+        }
+
+        return id;
+    }
+         
+        
      
        public static void main(String[] args)
      {
-         
-          UpdateSoNuoc("001",120,"2024-04-01");
+     //    System.out.println("i : "+ getIDstaffByUsername("?tytery"));
+        
 //        W_Meter_Details wmd = getaddressByIdmeter("001","2024-04-01");
 //                 System.out.println("i : "+wmd.getCurrent_num());
       //   String k=convertngay("2000-02-03");

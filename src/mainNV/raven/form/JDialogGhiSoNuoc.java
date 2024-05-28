@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class JDialogGhiSoNuoc extends javax.swing.JDialog {
     private String _date;
+    private int _idStaff;
+    
     /**
      * Creates new form JDialogGhiSoNuoc
      */
@@ -29,6 +31,9 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
      String datestr=sp.format(date);
          datestr =new W_MeterDetailDAO().convertngay(datestr);
          _date=datestr;
+         txtDate.setText(_date);
+          _idStaff=4;
+         //   System.out.println("id staff" + PanelLoginAndRegister._idStaff);
     }
 
     /**
@@ -99,7 +104,6 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
 
         jLabel5.setText("ID_CongTo");
 
-        txtCongTo.setText("jTextField1");
         txtCongTo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtCongToFocusLost(evt);
@@ -221,7 +225,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
                     
 //                        hdd.addBangSDNuoc(date_, txtChuHo.getText(), txtSoNuocCu.getText().trim(), txtSoNuocMoi.getText().trim());
 //                        hdd.addHoaDonNuoc(date_, txtChuHo.getText(), txtSoNuocCu.getText().trim(), txtSoNuocMoi.getText().trim());
-                           hdd.AddWmetter(txtCongTo.getText(),sonuocmoiINT,3,_date);
+                           hdd.AddWmetter(txtCongTo.getText(),sonuocmoiINT,_idStaff,_date);
                     } else if (test == JOptionPane.NO_OPTION) {
                         JOptionPane.showMessageDialog(this, "Bạn đã hủy cập nhật thành công");
                     }
@@ -234,6 +238,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
 
     private void txtCongToFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCongToFocusLost
         // TODO add your handling code here:
+     
          W_MeterDetailDAO wmtd= new W_MeterDetailDAO();
            SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
       //  String thangnay=dateFormat1.format(ps.getCreating_Date());

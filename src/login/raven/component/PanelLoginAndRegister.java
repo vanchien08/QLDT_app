@@ -2,10 +2,13 @@ package login.raven.component;
 
 import Controller.DAO.AccountsDAO;
 import Controller.DAO.Personal_InfosDAO;
+import Controller.DAO.W_MeterDetailDAO;
 import Model.Accounts;
 import Model.Personal_Infos;
 import Model.ThongTinChuHo;
 import View.Main;
+import View.MainCH;
+import View.MainNV;
 import View.Login;
 import login.raven.swing.Button;
 import login.raven.swing.MyPasswordField;
@@ -26,14 +29,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import mainNV.raven.form.GhiNuoc;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     private ActionListener event;
-
+    public static int _idStaff;
     public PanelLoginAndRegister() {
         initComponents();
         initRegister();
@@ -291,17 +296,40 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             String username=txtEmail.getText().trim();
             String password=txtPass.getText().trim();
            AccountsDAO acd= new AccountsDAO();
+           W_MeterDetailDAO wmd = new W_MeterDetailDAO();
+           
            if(acd.KiemTraUsername(username))
            {
                if(acd.getPasswordByUserName(username).equals(password))
                {
-                    View.Main main = null;
+                   int role = wmd.getPrivilegeByUsername(username);
+                   if(role==0)
+                   {
+                    MainCH ch = new MainCH();
+                    ch.setVisible(true);
+                   }
+                   if(role==1)
+                   {
+                       int idStaff= wmd.getIDstaffByUsername(username);
+                       _idStaff=idStaff;
+                  ((JFrame) SwingUtilities.getWindowAncestor((Component) e.getSource())).dispose();
+                    MainNV nv = new MainNV();
+                    nv.setVisible(true);
+                       GhiNuoc gn = new GhiNuoc();
+                   //    gn.getIdStaff(idStaff);
+                   }
+                   
+                    if(role==2)
+                   {
+                   View.Main main = null;
                    try {
                        main = new Main();
                    } catch (Exception ex) {
                        Logger.getLogger(PanelLoginAndRegister.class.getName()).log(Level.SEVERE, null, ex);
                    }
             main.show(true);
+                   }
+                    
                }
                else{
                JOptionPane.showMessageDialog(register, "Mật khẩu không đúng!");
@@ -329,6 +357,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             login.setVisible(true);
         }
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

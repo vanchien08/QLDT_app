@@ -26,23 +26,27 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import login.raven.component.PanelLoginAndRegister;
 
 public class GhiNuoc extends javax.swing.JPanel {
     private List<W_Meter_Details> listghinuoc;
     SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
     Date date =new Date();
     String _dateNow;
+    int _idstaff;
     private W_Meter_Details _wMeter;
     int i=-1;
     public GhiNuoc() {
         initComponents();
-        
+        _idstaff=4;
          String datestr=sp.format(date);
          datestr =new W_MeterDetailDAO().convertngay(datestr);
          _dateNow=datestr;
-        listghinuoc= new GhiNuocController().KhoiTaoListCongTo(datestr);
+        listghinuoc= new GhiNuocController().KhoiTaoListCongTo(datestr,_idstaff);
        setTxtThoiGian();
         ShowThongTinTuDBS(BangGhiNuoc);
+     //   System.out.println("id staff" + PanelLoginAndRegister._idStaff);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -72,6 +76,7 @@ public class GhiNuoc extends javax.swing.JPanel {
         btnLocKetQua = new javax.swing.JButton();
         TimKiemBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
         LamMoiBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
+        jLabel2 = new javax.swing.JLabel();
 
         setOpaque(false);
 
@@ -297,17 +302,22 @@ public class GhiNuoc extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(TimKiemTf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)
-                        .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(TimKiemTf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)
+                                .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(DangChonLbl)
+                                .addGap(33, 33, 33)
+                                .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(DangChonLbl)
-                        .addGap(33, 33, 33)
-                        .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -365,7 +375,9 @@ public class GhiNuoc extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(DangChonLbl)
                                             .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(27, 27, 27))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel2)
+                                        .addGap(5, 5, 5))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -411,14 +423,15 @@ public class GhiNuoc extends javax.swing.JPanel {
             ShowThongTinTuDBS(BangGhiNuoc);
         }
         if((int)selected==1){
-           listghinuoc= wmd.getChiTietCongToByCCCD(textTimKiem,date);
+           listghinuoc= wmd.getChiTietCongToByCCCD(textTimKiem,date,_idstaff);
+            System.out.println("text + date + id stagffg "+ textTimKiem+date+_idstaff);
             ShowThongTinTuDBS(BangGhiNuoc);
         }
         if((int)selected==2){
            listghinuoc= wmd.getListChiTietCongToByIDMeter(textTimKiem,date);
             ShowThongTinTuDBS(BangGhiNuoc);
         }
-        
+
         
      //   System.out.println("selectindex "+selected);
 //        if(TimKiemTf.getText().replaceAll(" ", "").equals("") || selected == null){
@@ -514,7 +527,7 @@ public class GhiNuoc extends javax.swing.JPanel {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             String tungay = formatter.format(LayNgayThangTu());
             // String denngay = formatter.format(LayNgayThangDen());
-            System.out.println("lay ngay -ghinuoc = "+tungay);
+      //      System.out.println("lay ngay -ghinuoc = "+tungay);
           //  String maphong = txtCCCD_CH.getText();
             String trangthai="Chưa thanh toán";
           
@@ -560,15 +573,19 @@ public class GhiNuoc extends javax.swing.JPanel {
       
     }
     public void refreshTable(){
+           SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String tungay = formatter.format(LayNgayThangTu());
       String datestr=sp.format(date);
          datestr =new W_MeterDetailDAO().convertngay(datestr);
-        listghinuoc= new GhiNuocController().KhoiTaoListCongTo(datestr);
+        listghinuoc= new GhiNuocController().KhoiTaoListCongTo(tungay,_idstaff);
        ShowThongTinTuDBS(BangGhiNuoc);
     }
     private void LamMoiBt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBt1ActionPerformed
         // TODO add your handling code here:
 //        JDialogCapNhatHoaDon jdl = new JDialogCapNhatHoaDon(true);
 //        jdl.setVisible(true);
+       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String tungay = formatter.format(LayNgayThangTu());
            if (i == -1) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn hóa đơn để cập nhật trạng thái hóa đơn");
         } else {
@@ -587,7 +604,7 @@ public class GhiNuoc extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) BangGhiNuoc.getModel();
         String idCongTo=(String) model.getValueAt(i, 5);
         
-        W_Meter_Details wmd =new W_MeterDetailDAO().getaddressByIdmeter(idCongTo,_dateNow);
+        W_Meter_Details wmd =new W_MeterDetailDAO().getaddressByIdmeter(idCongTo,tungay);
             capnhathd.setdataHoaDon(wmd);
             capnhathd.setVisible(true);
 //            count = -1;
@@ -645,7 +662,7 @@ public class GhiNuoc extends javax.swing.JPanel {
         model.fireTableDataChanged();
     }
      private void LocKetQua(String tungay, String trangthai) {
-      listghinuoc = new GhiNuocController().KhoiTaoListCongTo(tungay);
+      listghinuoc = new GhiNuocController().KhoiTaoListCongTo(tungay,_idstaff);
 
 //       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //        SimpleDateFormat formatter1 = new SimpleDateFormat("MM/yyyy");
@@ -665,6 +682,7 @@ public class GhiNuoc extends javax.swing.JPanel {
 //           });
 //    }
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private LayMotSoUIdepTaiDay.BangDanhSach BangGhiNuoc;
     private javax.swing.JScrollPane BangSrllp;
@@ -682,6 +700,7 @@ public class GhiNuoc extends javax.swing.JPanel {
     private javax.swing.JTextField TimKiemTf;
     private javax.swing.JButton btnLocKetQua;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
