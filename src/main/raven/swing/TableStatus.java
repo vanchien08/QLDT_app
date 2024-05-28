@@ -44,4 +44,8 @@ public class TableStatus extends JLabel {
         }
         super.paintComponent(grphcs);
     }
+
+    public void setType(mainNV.raven.model.StatusType type) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

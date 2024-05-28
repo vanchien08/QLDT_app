@@ -5,11 +5,22 @@
  */
 package mainNV.raven.form;
 
+import Controller.QLThongTinChungController.DSThongTinChung;
+import Model.Personal_Infos;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.FilterLoaiDateTTCDialog;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.FilterLoaiGioiTinhTTCDialog;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.SortLoaiDateTTCDialog;
+import View.AdminView.QLThongTinChungView.QLTTChungDialog.SortLoaiStringTTCDialog;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author RAVEN
  */
 public class Form_1 extends javax.swing.JPanel {
+
+    private Personal_Infos Ps;
 
     /**
      * Creates new form Form_1
@@ -331,10 +342,10 @@ public class Form_1 extends javax.swing.JPanel {
         if(selected == null){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần lọc!!!");
         }else if(selected.equals("Theo ngày sinh")){
-            FilterLoaiDateTTCDialog filterLoaiDateTTCDialog = new FilterLoaiDateTTCDialog(this.MainAdminview, this, true);
+            FilterLoaiDateTTCDialog filterLoaiDateTTCDialog = new FilterLoaiDateTTCDialog( this, true);
             filterLoaiDateTTCDialog.setVisible(true);
         }else{
-            FilterLoaiGioiTinhTTCDialog filterLoaiGioiTinhTTCDialog = new FilterLoaiGioiTinhTTCDialog(this.MainAdminview, this, true);
+            FilterLoaiGioiTinhTTCDialog filterLoaiGioiTinhTTCDialog = new FilterLoaiGioiTinhTTCDialog( this, true);
             filterLoaiGioiTinhTTCDialog.setVisible(true);
         }
     }//GEN-LAST:event_LocBtActionPerformed
@@ -344,10 +355,10 @@ public class Form_1 extends javax.swing.JPanel {
         if(selected == null){
             JOptionPane.showMessageDialog(this, "Vui lòng chọn thuộc tính cần sắp xếp!!!");
         }else if(selected.equals("Theo ngày sinh")){
-            SortLoaiDateTTCDialog sortLoaiDateTTCDialog = new SortLoaiDateTTCDialog(this.MainAdminview, this, true);
+            SortLoaiDateTTCDialog sortLoaiDateTTCDialog = new SortLoaiDateTTCDialog( this, true);
             sortLoaiDateTTCDialog.setVisible(true);
         }else{
-            SortLoaiStringTTCDialog sortLoaiStringTTCDialog = new SortLoaiStringTTCDialog(this.MainAdminview, this, true);
+            SortLoaiStringTTCDialog sortLoaiStringTTCDialog = new SortLoaiStringTTCDialog( this, true);
             sortLoaiStringTTCDialog.setVisible(true);
         }
     }//GEN-LAST:event_SapXepBtActionPerformed
