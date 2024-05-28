@@ -9,6 +9,8 @@ import main.raven.event.EventMenuSelected;
 import main.raven.form.Form_1;
 import mainCH.raven.form.Form_2;
 import mainCH.raven.form.Form_3;
+import mainCH.raven.form.Form_HoaDonNuoc;
+import mainCH.raven.form.Form_TTCN;
 import mainCH.raven.form.Form_Home;
 import mainCH.raven.form.Form_HomePage;
 import java.awt.Color;
@@ -32,6 +34,8 @@ public class MainCH extends javax.swing.JFrame {
     private Form_2 form2;
     private Form_3 form3;
      private Form_4 form4;
+     private Form_HoaDonNuoc formHDN;
+     private Form_TTCN formTTCN;
 
     private Form_HomePage homepage;
     private JPanel MainPanel;
@@ -43,8 +47,8 @@ public class MainCH extends javax.swing.JFrame {
         form2 = new Form_2();
         form3 = new Form_3();
         form4 = new Form_4();
-
-
+        formHDN =new Form_HoaDonNuoc();
+        formTTCN =new Form_TTCN();
         homepage= new Form_HomePage();
         
        menu_CH1.initMoving(MainCH.this);
@@ -52,14 +56,10 @@ public class MainCH extends javax.swing.JFrame {
             if (index == 0) {
                 setForm(homepage);
             } else if (index == 1) {
-                setForm(form1);
+                setForm(formTTCN);
             }
              else if (index == 2) {
-                setForm(form3);
-            }else if (index == 3) {
-                setForm(form2);
-            } else if (index == 4) {
-                setForm(home);
+                setForm(formHDN);
             }
           
             else if (index == 5) {
