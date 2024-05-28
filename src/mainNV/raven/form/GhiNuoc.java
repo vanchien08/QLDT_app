@@ -1,6 +1,7 @@
 package mainNV.raven.form;
 
 import Controller.DAO.W_MeterDetailDAO;
+import static Controller.DAO.W_MeterDetailDAO.getaddressByIdmeter;
 import Controller.DSNhanVienController.DSNhanVien;
 import Controller.GhiNuoc.GhiNuocController;
 import Controller.QLThongTinChungController.DSThongTinChung;
@@ -29,15 +30,18 @@ import javax.swing.table.DefaultTableModel;
 public class GhiNuoc extends javax.swing.JPanel {
     private List<W_Meter_Details> listghinuoc;
     SimpleDateFormat sp = new SimpleDateFormat("yyyy-MM-dd");
-       
     Date date =new Date();
+    String _dateNow;
+    private W_Meter_Details _wMeter;
+    int i=-1;
     public GhiNuoc() {
         initComponents();
         
          String datestr=sp.format(date);
          datestr =new W_MeterDetailDAO().convertngay(datestr);
+         _dateNow=datestr;
         listghinuoc= new GhiNuocController().KhoiTaoListCongTo(datestr);
-       
+       setTxtThoiGian();
         ShowThongTinTuDBS(BangGhiNuoc);
     }
 
@@ -65,23 +69,21 @@ public class GhiNuoc extends javax.swing.JPanel {
         txtTuThang = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtTuNam = new com.toedter.calendar.JYearChooser();
-        jLabel7 = new javax.swing.JLabel();
-        cbThanhToan = new javax.swing.JCheckBox();
         btnLocKetQua = new javax.swing.JButton();
-        txtCCCD_CH = new javax.swing.JTextField();
+        TimKiemBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
+        LamMoiBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
 
         setOpaque(false);
 
         panel.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
-        TimKiemTf.setBackground(new java.awt.Color(204, 204, 204));
         TimKiemTf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TimKiemTf.setForeground(new java.awt.Color(102, 102, 102));
         TimKiemTf.setToolTipText("");
-        TimKiemTf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TimKiemTf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TimKiemTf.setName(""); // NOI18N
 
-        TimKiemCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CCCD", "Họ và tên", "Địa chỉ", "SĐT", "Account" }));
+        TimKiemCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Họ và tên", "CCCD", "Công tơ" }));
         TimKiemCb.setSelectedItem(null
         );
         TimKiemCb.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -93,7 +95,7 @@ public class GhiNuoc extends javax.swing.JPanel {
             }
         });
 
-        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search.png"))); // NOI18N
+        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/search1.png"))); // NOI18N
         TimKiemBt.setText("Tìm kiếm");
         TimKiemBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +194,6 @@ public class GhiNuoc extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(19, 90, 118));
-        jLabel1.setText("Bộ lọc :");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(19, 90, 118));
@@ -211,24 +212,23 @@ public class GhiNuoc extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(19, 90, 118));
         jLabel4.setText("Từ năm :");
 
+        txtTuNam.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTuNamFocusLost(evt);
+            }
+        });
         txtTuNam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtTuNamMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtTuNamMousePressed(evt);
+            }
         });
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(19, 90, 118));
-        jLabel7.setText("CCCD_CH");
-
-        cbThanhToan.setBackground(new java.awt.Color(255, 255, 255));
-        cbThanhToan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        cbThanhToan.setForeground(new java.awt.Color(19, 90, 118));
-        cbThanhToan.setText("Đã thanh toán");
 
         btnLocKetQua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnLocKetQua.setForeground(new java.awt.Color(19, 90, 118));
-        btnLocKetQua.setText("LỌC KẾT QUẢ");
+        btnLocKetQua.setText("Chọn");
         btnLocKetQua.setOpaque(true);
         btnLocKetQua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,16 +251,11 @@ public class GhiNuoc extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnLocKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCCCD_CH))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(cbThanhToan)))
-                .addContainerGap())
+                        .addComponent(txtTuNam, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(9, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnLocKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,16 +270,27 @@ public class GhiNuoc extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel4)
                     .addComponent(txtTuNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtCCCD_CH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(cbThanhToan)
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
                 .addComponent(btnLocKetQua, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
+
+        TimKiemBt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search.png"))); // NOI18N
+        TimKiemBt1.setText("Ghi nước");
+        TimKiemBt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TimKiemBt1ActionPerformed(evt);
+            }
+        });
+
+        LamMoiBt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/edit.png"))); // NOI18N
+        LamMoiBt1.setText("cập nhật");
+        LamMoiBt1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LamMoiBt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LamMoiBt1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -296,16 +302,22 @@ public class GhiNuoc extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(TimKiemTf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17)
-                        .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(TimKiemBt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LamMoiBt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(DangChonLbl)
                         .addGap(33, 33, 33)
                         .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TimKiemBt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LamMoiBt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TimKiemBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LamMoiBt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -315,7 +327,7 @@ public class GhiNuoc extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                                 .addGap(163, 163, 163))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
@@ -341,17 +353,24 @@ public class GhiNuoc extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TimKiemTf)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TimKiemTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TimKiemCb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                         .addComponent(TimKiemBt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(LamMoiBt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(DangChonLbl)
-                                    .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(DangChonLbl)
+                                            .addComponent(DangChonTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(27, 27, 27))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(TimKiemBt1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(LamMoiBt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,40 +399,61 @@ public class GhiNuoc extends javax.swing.JPanel {
     }//GEN-LAST:event_TimKiemCbActionPerformed
 
     private void TimKiemBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBtActionPerformed
+        W_MeterDetailDAO wmd = new W_MeterDetailDAO();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String date = formatter.format(LayNgayThangTu());
+            
         BangGhiNuoc.setSelectionMode(2);
-        Object selected = TimKiemCb.getSelectedItem();
-        if(TimKiemTf.getText().replaceAll(" ", "").equals("") || selected == null){
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn loại tìm kiếm và không bỏ trống thông tin nhập!!!");
-        }else if(selected.equals("CCCD")){
-            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 1))
-            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có CCCD: " + TimKiemTf.getText());
-            else
-            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có CCCD: " + TimKiemTf.getText());
-        }else if(selected.equals("Họ và tên")){
-            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 2))
-            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có họ tên: " + TimKiemTf.getText());
-            else
-            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có họ tên: " + TimKiemTf.getText());
-        }else if(selected.equals("Địa chỉ")){
-            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 3))
-            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có địa chỉ: " + TimKiemTf.getText());
-            else
-            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có địa chỉ: " + TimKiemTf.getText());
-        }else if(selected.equals("SĐT")){
-            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 4))
-            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có SĐT: " + TimKiemTf.getText());
-            else
-            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có SĐT: " + TimKiemTf.getText());
-        }else if(selected.equals("Account")){
-            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 5))
-            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có Account: " + TimKiemTf.getText());
-            else
-            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có Account: " + TimKiemTf.getText());
+        Object selected = TimKiemCb.getSelectedIndex();
+        String textTimKiem=TimKiemTf.getText();
+         if((int)selected==0){
+           listghinuoc= wmd.getListChiTietCongToByName(textTimKiem,date);
+            ShowThongTinTuDBS(BangGhiNuoc);
         }
+        if((int)selected==1){
+           listghinuoc= wmd.getChiTietCongToByCCCD(textTimKiem,date);
+            ShowThongTinTuDBS(BangGhiNuoc);
+        }
+        if((int)selected==2){
+           listghinuoc= wmd.getListChiTietCongToByIDMeter(textTimKiem,date);
+            ShowThongTinTuDBS(BangGhiNuoc);
+        }
+        
+        
+     //   System.out.println("selectindex "+selected);
+//        if(TimKiemTf.getText().replaceAll(" ", "").equals("") || selected == null){
+//            JOptionPane.showMessageDialog(this, "Vui lòng chọn loại tìm kiếm và không bỏ trống thông tin nhập!!!");
+//        }else if(selected.equals("CCCD")){
+//            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 1))
+//            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có CCCD: " + TimKiemTf.getText());
+//            else
+//            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có CCCD: " + TimKiemTf.getText());
+//        }else if(selected.equals("Họ và tên")){
+//            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 2))
+//            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có họ tên: " + TimKiemTf.getText());
+//            else
+//            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có họ tên: " + TimKiemTf.getText());
+//        }else if(selected.equals("Địa chỉ")){
+//            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 3))
+//            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có địa chỉ: " + TimKiemTf.getText());
+//            else
+//            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có địa chỉ: " + TimKiemTf.getText());
+//        }else if(selected.equals("SĐT")){
+//            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 4))
+//            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có SĐT: " + TimKiemTf.getText());
+//            else
+//            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có SĐT: " + TimKiemTf.getText());
+//        }else if(selected.equals("Account")){
+//            if(!DSNhanVien.Searching(TimKiemTf.getText(), BangGhiNuoc, 5))
+//            JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có Account: " + TimKiemTf.getText());
+//            else
+//            JOptionPane.showMessageDialog(this, "Đã tìm thấy người dùng có Account: " + TimKiemTf.getText());
+//        }
     }//GEN-LAST:event_TimKiemBtActionPerformed
 
     private void LamMoiBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBtActionPerformed
       //  MainAdminview.setForm(new DSNhanVienMainView(MainAdminview));
+      refreshTable();
     }//GEN-LAST:event_LamMoiBtActionPerformed
 
     private void LocBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocBtActionPerformed
@@ -437,19 +477,23 @@ public class GhiNuoc extends javax.swing.JPanel {
     }//GEN-LAST:event_SapXepBtActionPerformed
 
     private void BangGhiNuocMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangGhiNuocMousePressed
-        int i = BangGhiNuoc.getSelectedRow();
+       i = BangGhiNuoc.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) BangGhiNuoc.getModel();
-        Staffs st = DSNhanVien.SearchObjCCCD((String) model.getValueAt(i, 0));
-        this.St = st;
-        DangChonTf.setText(St.getCCCD());
+        String idCongTo=(String) model.getValueAt(i, 5);
+        
+        W_Meter_Details wmd =new W_MeterDetailDAO().getaddressByIdmeter(idCongTo,_dateNow);
+   //     System.out.println("mdafmsdf "+wmd.getCurrent_num());
+//        this.St = st;
+//        DangChonTf.setText(St.getCCCD());
     }//GEN-LAST:event_BangGhiNuocMousePressed
 
     private void BangGhiNuocMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BangGhiNuocMouseReleased
-        int i = BangGhiNuoc.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) BangGhiNuoc.getModel();
-        Staffs st = DSNhanVien.SearchObjCCCD((String) model.getValueAt(i, 0));
-        this.St = st;
-        DangChonTf.setText(St.getCCCD());
+//        int i = BangGhiNuoc.getSelectedRow();
+//        DefaultTableModel model = (DefaultTableModel) BangGhiNuoc.getModel();
+//        Staffs st = DSNhanVien.SearchObjCCCD((String) model.getValueAt(i, 0));
+//        
+//        this.St = st;
+//        DangChonTf.setText(St.getCCCD());
     }//GEN-LAST:event_BangGhiNuocMouseReleased
 
     private void txtTuThangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTuThangActionPerformed
@@ -471,19 +515,85 @@ public class GhiNuoc extends javax.swing.JPanel {
             String tungay = formatter.format(LayNgayThangTu());
             // String denngay = formatter.format(LayNgayThangDen());
             System.out.println("lay ngay -ghinuoc = "+tungay);
-            String maphong = txtCCCD_CH.getText();
+          //  String maphong = txtCCCD_CH.getText();
             String trangthai="Chưa thanh toán";
-            if (cbThanhToan.isSelected()) {
-                trangthai = "Đã thanh toán";
-            }
-            if (maphong.equals("Tất cả")) {
-                //   LocKetQuaAll(tungay, denngay, trangthai);
-            } else {
-                LocKetQua(tungay, trangthai, maphong);
+          
+            
+                LocKetQua(tungay, trangthai);
                       ShowThongTinTuDBS(BangGhiNuoc);
-            }
+          
             //   }
     }//GEN-LAST:event_btnLocKetQuaActionPerformed
+
+    private void TimKiemBt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBt1ActionPerformed
+        // TODO add your handling code here:
+        JDialogGhiSoNuoc jdl =new JDialogGhiSoNuoc(true);
+        jdl.setVisible(true);
+    }//GEN-LAST:event_TimKiemBt1ActionPerformed
+
+    private void txtTuNamFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTuNamFocusLost
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_txtTuNamFocusLost
+
+    private void txtTuNamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTuNamMousePressed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_txtTuNamMousePressed
+
+    public void setTxtThoiGian(){
+        String datenow =_dateNow;
+        W_MeterDetailDAO wmd = new W_MeterDetailDAO();
+        txtTuThang.setSelectedIndex(wmd.getOnlyMonth(datenow));
+        txtTuNam.setYear(wmd.getOnlyYear(datenow));
+//        int tuthang = txtTuThang.getSelectedIndex() + 1;
+//        int tunam = txtTuNam.getYear();
+//        String tungay = tunam + "-" + tuthang + "-01";
+//
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = null;
+//        try {
+//            date = formatter.parse(String.valueOf(tungay));
+//        } catch (Exception e) {
+//        }
+      
+    }
+    public void refreshTable(){
+      String datestr=sp.format(date);
+         datestr =new W_MeterDetailDAO().convertngay(datestr);
+        listghinuoc= new GhiNuocController().KhoiTaoListCongTo(datestr);
+       ShowThongTinTuDBS(BangGhiNuoc);
+    }
+    private void LamMoiBt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBt1ActionPerformed
+        // TODO add your handling code here:
+//        JDialogCapNhatHoaDon jdl = new JDialogCapNhatHoaDon(true);
+//        jdl.setVisible(true);
+           if (i == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn hóa đơn để cập nhật trạng thái hóa đơn");
+        } else {
+//            int count1 = tablehd.getSelectedRow();
+              JDialogCapNhatHoaDon capnhathd = new JDialogCapNhatHoaDon(true);
+//            Map <String,String> i=listhd.get(count1);
+//          
+//              float snm = Float.parseFloat((String) i.get("soNuocMoi"));
+//             float snc = Float.parseFloat((String) i.get("soNuocCu"));
+//
+//            float tongtien=(snm-snc)*5;
+//            String tongtienstr = String.valueOf(tongtien);
+//           //  System.out.println("hoa don"+ hdp.getCCCD_CH());
+      //      capnhathd.dataHoaDon(i,tongtienstr);
+               i = BangGhiNuoc.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) BangGhiNuoc.getModel();
+        String idCongTo=(String) model.getValueAt(i, 5);
+        
+        W_Meter_Details wmd =new W_MeterDetailDAO().getaddressByIdmeter(idCongTo,_dateNow);
+            capnhathd.setdataHoaDon(wmd);
+            capnhathd.setVisible(true);
+//            count = -1;
+//            showTable();
+           }
+    }//GEN-LAST:event_LamMoiBt1ActionPerformed
      private Date LayNgayThangTu() {
         int tuthang = txtTuThang.getSelectedIndex() + 1;
         int tunam = txtTuNam.getYear();
@@ -506,7 +616,7 @@ public class GhiNuoc extends javax.swing.JPanel {
          
      //   listghinuoc = DSThongTinChung.getListPersonal_Infos();
    //     listghinuoc= new GhiNuocController().KhoiTaoListCongTo();
-        System.err.println("vô dược rồi  "+listghinuoc.size());
+   //     System.err.println("vô dược rồi  "+listghinuoc.size());
         model.setRowCount(0);    
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -523,9 +633,10 @@ public class GhiNuoc extends javax.swing.JPanel {
         String hoten =wmtd.getHotenByCCCD(cccd);
         String thangcu = wmtd.thangnuoccu(thangnay);
         int sonuoccu=wmtd.getSonuoccu(thangcu,ps.getID_W_Meter());
+        String address= wmtd.getaddressByIdmeter(ps.getID_W_Meter());
      //       System.err.println("fsdgsd"+ps.getId());
             Object[] rowData = {
-              cccd,hoten,sonuoccu,ps.getCurrent_num(),"sdfg",ps.getID_W_Meter()
+              cccd,hoten,sonuoccu,ps.getCurrent_num(),address,ps.getID_W_Meter()
             };
 
             model.addRow(rowData);
@@ -533,7 +644,7 @@ public class GhiNuoc extends javax.swing.JPanel {
         StringProcessing.StringSortingTable(BangGhiNuoc, 0, true);
         model.fireTableDataChanged();
     }
-     private void LocKetQua(String tungay, String trangthai, String phong) {
+     private void LocKetQua(String tungay, String trangthai) {
       listghinuoc = new GhiNuocController().KhoiTaoListCongTo(tungay);
 
 //       SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -560,23 +671,22 @@ public class GhiNuoc extends javax.swing.JPanel {
     private javax.swing.JLabel DangChonLbl;
     private javax.swing.JTextField DangChonTf;
     private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBt;
+    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBt1;
     private LayMotSoUIdepTaiDay.ButtonThuong LocBt;
     private LayMotSoUIdepTaiDay.ComboboxThuong LocCkb;
     private LayMotSoUIdepTaiDay.ButtonThuong SapXepBt;
     private LayMotSoUIdepTaiDay.ComboboxThuong SapXepCkb;
     private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBt;
+    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBt1;
     private LayMotSoUIdepTaiDay.ComboboxThuong TimKiemCb;
     private javax.swing.JTextField TimKiemTf;
     private javax.swing.JButton btnLocKetQua;
-    private javax.swing.JCheckBox cbThanhToan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLayeredPane panel;
-    private javax.swing.JTextField txtCCCD_CH;
     private com.toedter.calendar.JYearChooser txtTuNam;
     private javax.swing.JComboBox<String> txtTuThang;
     // End of variables declaration//GEN-END:variables
