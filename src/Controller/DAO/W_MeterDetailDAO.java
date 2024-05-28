@@ -63,15 +63,16 @@ public class W_MeterDetailDAO {
         return list;
     }
     
-    public  List<W_Meter_Details> getListChiTietCongToByIDMeter(String idct,String ngay) {
+    public  List<W_Meter_Details> getListChiTietCongToByIDMeter(String idct,String ngay,int idStaff) {
     List<W_Meter_Details> list =new ArrayList<>();
-        String SQL="select * from W_METER_DETAILS where ID_W_METER=? and Creating_Date=?";
+        String SQL="select * from W_METER_DETAILS where ID_W_METER like ? and Creating_Date=? and ID_Staff_Input=?";
            try {
             
              Connection con = new DBS().getConnection();
              PreparedStatement ps = con.prepareStatement(SQL);
              ps.setString(1, "%" +idct+ "%");
             ps.setString(2, ngay);
+            ps.setInt(3, idStaff);
 //               SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 //             Date parsedDate = dateFormat.parse(ngay);
 //            java.sql.Date sqlDate = new java.sql.Date(parsedDate.getTime());
@@ -107,7 +108,7 @@ public class W_MeterDetailDAO {
 "        JOIN CUSTOMERS ctm ON wm.ID_Customer = ctm.ID\n" +
 "        join ACCOUNTS acc on acc.Account_Username=ctm.Account_Customer  \n" +
 "        join W_METER_DETAILS wmdt on wmdt.ID_W_METER=wm.ID_W_METER\n" +
-"        where CCCD Like ? and Creating_Date=? and ctm.ID_Staff_Input=?";
+"        where CCCD Like ? and Creating_Date=? and wmdt.ID_Staff_Input=?";
            try {
             
              Connection con = new DBS().getConnection();
@@ -143,19 +144,20 @@ public class W_MeterDetailDAO {
         return list;
     }
     
-     public  List<W_Meter_Details> getListChiTietCongToByName(String Name,String date) {
+     public  List<W_Meter_Details> getListChiTietCongToByName(String Name,String date,int idStaff) {
     List<W_Meter_Details> list =new ArrayList<>();
                 String SQL="SELECT * FROM W_METERS wm \n" +
 "JOIN CUSTOMERS ctm ON wm.ID_Customer = ctm.ID \n" +
 "join ACCOUNTS acc on acc.Account_Username=ctm.Account_Customer \n" +
 "join W_METER_DETAILS wmdt on wmdt.ID_W_METER=wm.ID_W_METER\n" +
-"join PERSON_INFOS psif on psif.CCCD=acc.CCCD  where CONCAT(Firstname, ' ',  Middlename,' ',Lastname ) like ? and Creating_Date=?";
+"join PERSON_INFOS psif on psif.CCCD=acc.CCCD  where CONCAT(Firstname, ' ',  Middlename,' ',Lastname ) like ? and Creating_Date=? and wmdt.ID_Staff_Input=?";
            try {
             
              Connection con = new DBS().getConnection();
              PreparedStatement ps = con.prepareStatement(SQL);
            ps.setString(1, "%" + Name + "%");
             ps.setString(2, date);
+              ps.setInt(3,idStaff);
 //               SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 //             Date parsedDate = dateFormat.parse(ngay);
 //            java.sql.Date sqlDate = new java.sql.Date(parsedDate.getTime());
@@ -451,11 +453,80 @@ public class W_MeterDetailDAO {
         return id;
     }
          
+          public boolean checkIdStaff(int idstaff,String idmt) {
+       boolean t= false;
+        String SQL="select * from CUSTOMERS ctm \n" +
+"join W_METERS wm on ctm.ID = wm.ID_Customer where ID_Staff_Input=? and ID_W_METER=? ";
+           try {
+            
+                 Connection con = new DBS().getConnection();
+             PreparedStatement ps = con.prepareStatement(SQL);
+             ps.setInt(1,idstaff);
+             ps.setString(2,idmt);
+            
+            ResultSet rs = ps.executeQuery();
+       
+            while(rs.next()){
+                 
+               t=true;
+      
+            }
+               
+        } catch (Exception e) {
+        }
+
+        return t;
+    }
+          
+         public boolean checkExistWMDetail(String idmt,String date) {
+       boolean t= false;
+        String SQL="select * from W_METER_DETAILS where ID_W_METER=? and Creating_Date=?";
+           try {
+            
+                 Connection con = new DBS().getConnection();
+             PreparedStatement ps = con.prepareStatement(SQL);
+             ps.setString(1,idmt);
+             ps.setString(2,date);
+            
+            ResultSet rs = ps.executeQuery();
+       
+            while(rs.next()){
+                 
+               t=true;
+      
+            }
+               
+        } catch (Exception e) {
+        }
+
+        return t;
+    }
+           public void DeleteWMDetail(String idmt,String date) {
+       boolean t= false;
+        String SQL="delete from W_METER_DETAILS where ID_W_METER=? and Creating_Date=?";
+           try {
+            
+                 Connection con = new DBS().getConnection();
+             PreparedStatement ps = con.prepareStatement(SQL);
+             ps.setString(1,idmt);
+             ps.setString(2,date);
+            
+            ps.executeUpdate();
+            ps.close();
+            con.close();
+           
+        } catch (Exception e) {
+        }
+
+      
+    }
+       
         
      
        public static void main(String[] args)
      {
-     //    System.out.println("i : "+ getIDstaffByUsername("?tytery"));
+       
+      //   System.out.println("i : "+ checkExistWMDetail("005","2024-05-01")) ;
         
 //        W_Meter_Details wmd = getaddressByIdmeter("001","2024-04-01");
 //                 System.out.println("i : "+wmd.getCurrent_num());

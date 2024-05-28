@@ -189,8 +189,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtChuHo">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSoNuocCu">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtSoNuocMoi">
         </Component>

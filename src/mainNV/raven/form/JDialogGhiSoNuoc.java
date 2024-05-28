@@ -102,6 +102,10 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
 
         jLabel7.setText("SỐ NƯỚC MỚI");
 
+        txtChuHo.setEditable(false);
+
+        txtSoNuocCu.setEditable(false);
+
         jLabel5.setText("ID_CongTo");
 
         txtCongTo.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -199,7 +203,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
             if (!hdd.checkExistWMetter(txtCongTo.getText())) {
                 JOptionPane.showMessageDialog(this, "Không tìm thấy Công tơ nước!");
             } 
-            
+
              else if (sonuocmoi.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Không được để trống số nước. Vui lòng nhập lại!");
             }
@@ -226,6 +230,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
 //                        hdd.addBangSDNuoc(date_, txtChuHo.getText(), txtSoNuocCu.getText().trim(), txtSoNuocMoi.getText().trim());
 //                        hdd.addHoaDonNuoc(date_, txtChuHo.getText(), txtSoNuocCu.getText().trim(), txtSoNuocMoi.getText().trim());
                            hdd.AddWmetter(txtCongTo.getText(),sonuocmoiINT,_idStaff,_date);
+                           this.dispose();
                     } else if (test == JOptionPane.NO_OPTION) {
                         JOptionPane.showMessageDialog(this, "Bạn đã hủy cập nhật thành công");
                     }
@@ -240,7 +245,15 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
         // TODO add your handling code here:
      
          W_MeterDetailDAO wmtd= new W_MeterDetailDAO();
-           SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+         if (!wmtd.checkIdStaff(_idStaff, txtCongTo.getText())) {
+                JOptionPane.showMessageDialog(this, "Công tơ này không thuộc quyền quản lý của bạn!");
+            }
+         else if (wmtd.checkExistWMDetail(txtCongTo.getText(), _date)) {
+                JOptionPane.showMessageDialog(this, "Số nước tháng này của công tơ đã được ghi!");
+            }
+         else{
+         
+            SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
       //  String thangnay=dateFormat1.format(ps.getCreating_Date());
         String cccd=wmtd.getCCCDByIDMeter(txtCongTo.getText());
         String hoten =wmtd.getHotenByCCCD(cccd);
@@ -249,6 +262,9 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
         int sonuoccu=wmtd.getSonuoccu(thangcu,txtCongTo.getText());
         txtSoNuocCu.setText(String.valueOf(sonuoccu));
         String address= wmtd.getaddressByIdmeter(txtCongTo.getText());
+         }
+        
+        
     }//GEN-LAST:event_txtCongToFocusLost
 
     /**

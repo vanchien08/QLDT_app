@@ -4,6 +4,11 @@
  */
 package mainCH.raven.form;
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author DELL
@@ -14,7 +19,8 @@ public class Form_4 extends javax.swing.JPanel {
      * Creates new form Form_4
      */
     public Form_4() {
-        initComponents();
+          initComponents();
+       
     }
 
     /**
@@ -52,4 +58,6 @@ public class Form_4 extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
+
+   
 }
