@@ -392,6 +392,7 @@ public class GhiNuoc extends javax.swing.JPanel {
 
     private void LamMoiBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBtActionPerformed
       //  MainAdminview.setForm(new DSNhanVienMainView(MainAdminview));
+      i=-1;
       refreshTable();
     }//GEN-LAST:event_LamMoiBtActionPerformed
 
@@ -448,6 +449,7 @@ public class GhiNuoc extends javax.swing.JPanel {
         // TODO add your handling code here:
         JDialogGhiSoNuoc jdl =new JDialogGhiSoNuoc(true);
         jdl.setVisible(true);
+      
     }//GEN-LAST:event_TimKiemBt1ActionPerformed
 
     private void txtTuNamFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTuNamFocusLost
@@ -523,16 +525,23 @@ public class GhiNuoc extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(i==-1)
         {
-              JOptionPane.showMessageDialog(null, "Vui lòng chọn hóa đơn để cập nhật trạng thái hóa đơn");
+              JOptionPane.showMessageDialog(null, "Vui lòng chọn công tơ để xóa!");
         }
-        else{
-         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            String tungay = formatter.format(LayNgayThangTu());
-            DefaultTableModel model = (DefaultTableModel) BangGhiNuoc.getModel();
-        String idCongTo=(String) model.getValueAt(i, 5);
-        new W_MeterDetailDAO().DeleteWMDetail(idCongTo, tungay);
-        refreshTable();
+        
+        else {
+            int test = JOptionPane.showConfirmDialog(null, "Bạn chắc có muốn xóa bảng ghi hay không !", "Thông báo", JOptionPane.YES_NO_OPTION);
+            if (test == JOptionPane.YES_OPTION) {
+                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                    String tungay = formatter.format(LayNgayThangTu());
+                    DefaultTableModel model = (DefaultTableModel) BangGhiNuoc.getModel();
+                String idCongTo=(String) model.getValueAt(i, 5);
+                new W_MeterDetailDAO().DeleteWMDetail(idCongTo, tungay);
+                refreshTable();
+            } else if (test == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Bạn đã hủy xóa bảng ghi thành công");
+            }
         }
+       
        
         
     }//GEN-LAST:event_TimKiemBt2ActionPerformed

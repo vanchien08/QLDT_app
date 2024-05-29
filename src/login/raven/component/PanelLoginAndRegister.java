@@ -1,9 +1,11 @@
 package login.raven.component;
 
 import Controller.DAO.AccountsDAO;
+import Controller.DAO.Customer_InfoDAO;
 import Controller.DAO.Personal_InfosDAO;
 import Controller.DAO.W_MeterDetailDAO;
 import Model.Accounts;
+import Model.Customer_Info;
 import Model.Personal_Infos;
 import Model.ThongTinChuHo;
 import View.Main;
@@ -33,13 +35,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import mainCH.raven.form.Form_TTCN;
 import mainNV.raven.form.GhiNuoc;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     private ActionListener event;
     public static int _idStaff;
-    public PanelLoginAndRegister() {
+    public static Customer_Info _custom_infor;
+      public PanelLoginAndRegister() {
         initComponents();
         initRegister();
         initLogin();
@@ -305,8 +309,21 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                    int role = wmd.getPrivilegeByUsername(username);
                    if(role==0)
                    {
-                    MainCH ch = new MainCH();
-                    ch.setVisible(true);
+                    MainCH ch;
+                      Customer_InfoDAO CI =new Customer_InfoDAO();
+                           Customer_Info cinfor = CI.getInfoByUsername(username);
+                           _custom_infor=cinfor;
+                             System.out.println("accc "+_custom_infor.getAccount());
+                       try {
+                           ch = new MainCH();
+                           ch.setVisible(true);
+                      
+                        
+                           
+                       } catch (Exception ex) {
+                           Logger.getLogger(PanelLoginAndRegister.class.getName()).log(Level.SEVERE, null, ex);
+                       }
+                        
                    }
                    if(role==1)
                    {

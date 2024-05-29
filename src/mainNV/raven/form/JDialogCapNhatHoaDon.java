@@ -7,6 +7,7 @@ package mainNV.raven.form;
 import Controller.DAO.W_MeterDetailDAO;
 
 import Model.W_Meter_Details;
+import View.MainNV;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -120,10 +121,10 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(btUpdate)
-                        .addGap(105, 105, 105)
-                        .addComponent(btExit))
+                        .addGap(112, 112, 112)
+                        .addComponent(btUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
+                        .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +148,7 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtSoNuocCu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                                 .addComponent(txtSoNuocMoi, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,9 +179,9 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
                     .addComponent(txtSoNuocMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, 77)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btUpdate)
-                    .addComponent(btExit))
-                .addContainerGap(118, Short.MAX_VALUE))
+                    .addComponent(btUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,6 +205,7 @@ public class JDialogCapNhatHoaDon extends javax.swing.JDialog {
 
     private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btExitActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
@@ -226,8 +228,8 @@ if(str.equals("") || str.isEmpty()) {
             
             
             JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
-            GhiNuoc ghiNuocFrame = new GhiNuoc();
-                ghiNuocFrame.refreshTable();
+//            GhiNuoc ghiNuocFrame = MainNV.ghinuoc;
+//                ghiNuocFrame.refreshTable();
             this.dispose();
            
         }

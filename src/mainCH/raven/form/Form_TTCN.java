@@ -12,6 +12,7 @@ import Model.Customer_Info;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import login.raven.component.PanelLoginAndRegister;
 
 /**
  *
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class Form_TTCN extends javax.swing.JPanel {
    private ThongTinController infoControl;
-    public  Customer_Info cusInfo;
+    private Customer_Info cusInfo;
     /**
      * Creates new form Form_TTCN
      */
@@ -28,25 +29,26 @@ public class Form_TTCN extends javax.swing.JPanel {
       
         this.infoControl = new ThongTinController();
         
-        try {
-            this.cusInfo = this.infoControl.getInfo();
-            ShowThongTinKhachHang(this.cusInfo);
-        } catch (Exception ex) {
-            Logger.getLogger(Form_TTCN.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
+         //   this.cusInfo = this.infoControl.getInfo();
+         cusInfo=PanelLoginAndRegister._custom_infor;
+     //      System.out.println("namememm "+cusInfo.getAccount());
+            ShowThongTinKhachHang(cusInfo);
+            
+    
     }
- private void ShowThongTinKhachHang(Customer_Info ci){
-        this.cusInfo = ci;
-        this.txtCCCD.setText(cusInfo.getCCCD());
-        this.txtHoTen.setText(cusInfo.getName());
+public void ShowThongTinKhachHang(Customer_Info ci){
+        cusInfo = ci;
+        txtCCCD.setText(cusInfo.getCCCD());
+        txtHoTen.setText(cusInfo.getName());
         if(cusInfo.isSex()){
-            this.txtPhai.setText("Nữ");
+            txtPhai.setText("Nữ");
         }else{
             this.txtPhai.setText("Nam");
         }
         this.txtNs.setText(DateDBToString.DateToString(cusInfo.getDOB()));
-        this.txtSdt.setText(cusInfo.getPhone());
-        this.txtDc.setText(cusInfo.getAddress());
+        txtSdt.setText(cusInfo.getPhone());
+        txtDc.setText(cusInfo.getAddress());
     }
     /**
      * This method is called from within the constructor to initialize the form.

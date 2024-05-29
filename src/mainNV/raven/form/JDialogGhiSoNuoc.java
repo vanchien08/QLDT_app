@@ -60,6 +60,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
         txtSoNuocMoi = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtCongTo = new javax.swing.JTextField();
+        btnGhi1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -115,6 +116,13 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
             }
         });
 
+        btnGhi1.setText("Thoát");
+        btnGhi1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGhi1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -122,7 +130,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnGhi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
@@ -140,8 +148,12 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
                             .addComponent(txtSoNuocMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                             .addComponent(txtSoNuocCu)
                             .addComponent(txtCongTo)))
-                    .addComponent(txtChuHo, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(209, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(btnGhi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(btnGhi1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +179,9 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
                     .addComponent(txtSoNuocMoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addComponent(btnGhi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGhi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGhi1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
@@ -246,7 +260,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
         // TODO add your handling code here:
      
          W_MeterDetailDAO wmtd= new W_MeterDetailDAO();
-         if (!wmtd.checkIdStaff(_idStaff, txtCongTo.getText())) {
+         if (!wmtd.checkIdStaff(_idStaff, txtCongTo.getText()) && !txtCongTo.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Công tơ này không thuộc quyền quản lý của bạn!");
             }
          else if (wmtd.checkExistWMDetail(txtCongTo.getText(), _date)) {
@@ -267,6 +281,12 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
         
         
     }//GEN-LAST:event_txtCongToFocusLost
+
+    private void btnGhi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGhi1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        
+    }//GEN-LAST:event_btnGhi1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,6 +332,7 @@ public class JDialogGhiSoNuoc extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGhi;
+    private javax.swing.JButton btnGhi1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

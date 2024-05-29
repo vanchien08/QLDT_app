@@ -5,9 +5,12 @@
 package mainCH.raven.form;
 
 import Controller.CustomerView.DSHoaDon.DSHoaDon;
+import Controller.DAO.InvoicesDAO;
+import static Controller.DAO.InvoicesDAO.getAllInvoiceChuHo;
 import Controller.DSHoaDonController.DSHoaDonController;
 import LayMotSoUIdepTaiDay.BangDanhSach;
 import LayMotSoUIdepTaiDay.ComboboxThuong;
+import Model.Customer_Info;
 import Model.Invoices;
 import View.CustomerView.DSHoaDonDien.FilterLoaiDateDSHoaDonDialog;
 import View.CustomerView.DSHoaDonDien.SortLoaiStringDSHoaDonDialog;
@@ -19,6 +22,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import login.raven.component.PanelLoginAndRegister;
 
 /**
  *
@@ -26,56 +30,70 @@ import javax.swing.table.DefaultTableModel;
  */
 public final class Form_HoaDonNuoc extends javax.swing.JPanel {
     private DefaultTableModel model;
-    private List<Invoices>invoiceses=new ArrayList<>();
+    private List<Invoices> invoiceses;
+    private Customer_Info _cusInfo ;
     /**
      * Creates new form Form_HoaDonNuoc
      */
-    public Form_HoaDonNuoc() throws Exception {
+    public Form_HoaDonNuoc()  {
            initComponents();
-    
-
+         
+          _cusInfo = PanelLoginAndRegister._custom_infor;
+           System.out.println("accountgfdf " +PanelLoginAndRegister._custom_infor.getName());
+           String account =_cusInfo.getAccount();
+           // account ="NguyenVanK";
+          invoiceses= new InvoicesDAO().getAllInvoiceChuHo(account);
+         System.out.println("size>>> " +invoiceses.get(0).getTotal_Price());
         this.BangDSHoaDon.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.model= (DefaultTableModel) BangDSHoaDon.getModel();
         this.model.getDataVector().removeAllElements();
         this.model.fireTableDataChanged();
-        LammoiDS();
-        ShowThongTinTuDBS(this.invoiceses);
+      //  LammoiDS();
+        ShowThongTinTuDBS(invoiceses);
+        
+            
+   
     }
- public  void LammoiDS() throws Exception{
+ public  void LammoiDS(){
        this.invoiceses.clear();
        this.model.setRowCount(0);
-       
-       if(this.DaNhapCTDCB.isSelected()){
-           this.invoiceses=new DSHoaDon().getAllInCase(1);
-       }else if(this.ChuaNhapCTDCB.isSelected()){
-           this.invoiceses=new DSHoaDon().getAllInCase(0);
-       }else{
-           this.invoiceses=new DSHoaDon().getAllInCase(2);
-       }       
+//       
+//       if(this.DaNhapCTDCB.isSelected()){
+//           this.invoiceses=new DSHoaDon().getAllInCase(1);
+//       }else if(this.ChuaNhapCTDCB.isSelected()){
+//           this.invoiceses=new DSHoaDon().getAllInCase(0);
+//       }else{
+//           this.invoiceses=new DSHoaDon().getAllInCase(2);
+//       }       
     }
- public void ShowThongTinTuDBS(List<Invoices>invoicelist) throws Exception{
+ public void ShowThongTinTuDBS(List invoicelist) {
         this.model.setRowCount(0);
-        if(invoicelist.isEmpty()){
-            JOptionPane.showMessageDialog(this,"Danh sách Hóa đơn rỗng ");
-        }else{
-            for(Invoices invoices :invoicelist){
+        DefaultTableModel model = (DefaultTableModel) BangDSHoaDon.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged(); 
+         
+     //   listghinuoc = DSThongTinChung.getListPersonal_Infos();
+   //     listghinuoc= new GhiNuocController().KhoiTaoListCongTo();
+   //     System.err.println("vô dược rồi  "+listghinuoc.size());
+        model.setRowCount(0);    
+          System.out.println("size>>> " +invoiceses.get(0).getTotal_Price());
+            for(Invoices invoices :invoiceses){
                 int id=invoices.getId();
                 String nv = invoices.getStaff_name();
-           
-                int k = invoices.getCurrentNum();
+            System.out.println("ncvvvv>>> " +nv);
+                int sonuoccu=invoices.getStart_Num();
+                int sonuocmoi=invoices.getEnd_Num();
                 String ngaylap=invoices.getInvoice_Date();
                 
                 Object[] datarow={
-                    id,
-                    nv,
-                  
-                    k,
-                    ngaylap
+                   id,ngaylap,sonuoccu,sonuocmoi,"$"
                 };      
                 model.addRow(datarow);
             }
-        } 
+         
     }
+ 
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -187,20 +205,20 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
 
         BangDSHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nhân viên lập", "Số khối nước", "Ngày lập"
+                "ID", "Ngày ", "Số nước cũ", "Số nước mới", "Tổng tiền"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -295,6 +313,8 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
 //        } catch (Exception ex) {
 //            Logger.getLogger(DSHoaDonDien.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+
+         ShowThongTinTuDBS(invoiceses);
     }//GEN-LAST:event_LamMoiBTActionPerformed
 
     private void DaNhapCTDCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DaNhapCTDCBActionPerformed
