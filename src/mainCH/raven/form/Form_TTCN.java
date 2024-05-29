@@ -32,7 +32,7 @@ public class Form_TTCN extends javax.swing.JPanel {
        
          //   this.cusInfo = this.infoControl.getInfo();
          cusInfo=PanelLoginAndRegister._custom_infor;
-     //      System.out.println("namememm "+cusInfo.getAccount());
+
             ShowThongTinKhachHang(cusInfo);
             
     
@@ -46,7 +46,7 @@ public void ShowThongTinKhachHang(Customer_Info ci){
         }else{
             this.txtPhai.setText("Nam");
         }
-        this.txtNs.setText(DateDBToString.DateToString(cusInfo.getDOB()));
+ //       txtNs.setText(DateDBToString.DateToString(cusInfo.getDOB()));
         txtSdt.setText(cusInfo.getPhone());
         txtDc.setText(cusInfo.getAddress());
     }

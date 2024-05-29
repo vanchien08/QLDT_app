@@ -53,12 +53,13 @@ public class MainCH extends javax.swing.JFrame {
         
        menu_CH1.initMoving(MainCH.this);
         menu_CH1.addEventMenuSelected((int index) -> {
-            if (index == 0) {
-                setForm(homepage);
-            } else if (index == 1) {
+//            if (index == 0) {
+//                setForm(homepage);
+//            } else
+                if (index == 0) {
                 setForm(formTTCN);
             }
-             else if (index == 2) {
+             else if (index == 1) {
                 setForm(formHDN);
             }
           

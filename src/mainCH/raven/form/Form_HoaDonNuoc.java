@@ -104,8 +104,6 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
     private void initComponents() {
 
         TimKiemTF = new javax.swing.JTextField();
-        TimKiemCb = new UI.ComboboxThuong();
-        TimKiemBT = new UI.ButtonThuong();
         LamMoiBT = new UI.ButtonThuong();
         DaNhapCTDCB = new UI.CheckBox();
         ChuaNhapCTDCB = new UI.CheckBox();
@@ -121,26 +119,6 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
         TimKiemTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TimKiemTFActionPerformed(evt);
-            }
-        });
-
-        TimKiemCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mức điện", "Nhân viên lập hóa đơn", " ", " " }));
-        TimKiemCb.setSelectedItem(null
-        );
-        TimKiemCb.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        TimKiemCb.setLabeText("(Tìm kiếm theo)");
-        TimKiemCb.setLineColor(new java.awt.Color(0, 153, 255));
-        TimKiemCb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TimKiemCbActionPerformed(evt);
-            }
-        });
-
-        TimKiemBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search.png"))); // NOI18N
-        TimKiemBT.setText("Tìm kiếm");
-        TimKiemBT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TimKiemBTActionPerformed(evt);
             }
         });
 
@@ -239,14 +217,6 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(TimKiemTF, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TimKiemBT, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LamMoiBT, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(DaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ChuaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,8 +227,13 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(LocCkb, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(LocBt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                        .addComponent(LocBt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(72, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(TimKiemTF, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LamMoiBT, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
@@ -267,13 +242,10 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(TimKiemBT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(LamMoiBT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(TimKiemCb, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TimKiemTF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TimKiemTF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LamMoiBT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ChuaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,20 +262,6 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
     private void TimKiemTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemTFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TimKiemTFActionPerformed
-
-    private void TimKiemBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemBTActionPerformed
-        BangDSHoaDon.setSelectionMode(2);
-        Object selected = TimKiemCb.getSelectedItem();
-        if(TimKiemTF.getText().replaceAll(" ", "").equals("") || selected == null){
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn loại tìm kiếm và không bỏ trống thông tin nhập!!!");
-        }
-       else if(selected.equals("Nhân viên lập hóa đơn")){
-            if(!DSHoaDonController.Searching(TimKiemTF.getText(), BangDSHoaDon, 2))
-            JOptionPane.showMessageDialog(this, "Không tìm thấy Chủ hộ có CCCD: " + TimKiemTF.getText());
-            else
-            JOptionPane.showMessageDialog(this, "Đã tìm thấy Chủ hộ có CCCD: " + TimKiemTF.getText());
-        }
-    }//GEN-LAST:event_TimKiemBTActionPerformed
 
     private void LamMoiBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBTActionPerformed
 //        try {
@@ -375,10 +333,6 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
     private void SapXepCkbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SapXepCkbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SapXepCkbActionPerformed
-
-    private void TimKiemCbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemCbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TimKiemCbActionPerformed
  public ComboboxThuong getSapXepCkb() {
         return SapXepCkb;
     }
@@ -407,8 +361,6 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
     private UI.ComboboxThuong LocCkb;
     private UI.ButtonThuong SapXepBt1;
     private UI.ComboboxThuong SapXepCkb;
-    private UI.ButtonThuong TimKiemBT;
-    private UI.ComboboxThuong TimKiemCb;
     private javax.swing.JTextField TimKiemTF;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
