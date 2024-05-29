@@ -2,7 +2,7 @@ package View.AdminView.QLPhanQuyenTKView.QLPhanQuyenTKDialog;
 
 import Controller.QLPhanQuyenTKController.DSTaiKhoanPhanQuyen;
 import Controller.SupportFunction.CheckingDataExist;
-import LayMotSoUIdepTaiDay.CheckBox;
+import UI.CheckBox;
 import Model.Accounts;
 
 import javax.swing.JOptionPane;
@@ -41,8 +41,8 @@ public class PhanQuyenTaiKhoanDialog extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        NhanVienCbk = new LayMotSoUIdepTaiDay.CheckBox();
-        ChuHoCbk = new LayMotSoUIdepTaiDay.CheckBox();
+        NhanVienCbk = new UI.CheckBox();
+        ChuHoCbk = new UI.CheckBox();
         Logo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -248,9 +248,9 @@ public class PhanQuyenTaiKhoanDialog extends javax.swing.JDialog {
     private javax.swing.JLabel CCCDLbl1;
     private javax.swing.JTextField CCCDTf;
     private javax.swing.JButton CancelBt;
-    private LayMotSoUIdepTaiDay.CheckBox ChuHoCbk;
+    private UI.CheckBox ChuHoCbk;
     private javax.swing.JLabel Logo;
-    private LayMotSoUIdepTaiDay.CheckBox NhanVienCbk;
+    private UI.CheckBox NhanVienCbk;
     private javax.swing.JButton OkBt;
     private javax.swing.ButtonGroup PhanQuyenGrp;
     private javax.swing.JLabel jLabel1;

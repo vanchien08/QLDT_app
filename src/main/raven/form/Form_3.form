@@ -140,7 +140,7 @@
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxThuong" name="TimKiemCb">
+    <Component class="UI.ComboboxThuong" name="TimKiemCb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
@@ -160,7 +160,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="TimKiemBt">
+    <Component class="UI.ButtonThuong" name="TimKiemBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/main/raven/icon/search1.png"/>
@@ -171,7 +171,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TimKiemBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="ThemBt">
+    <Component class="UI.ButtonThuong" name="ThemBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Icon/Isert_icon.png"/>
@@ -183,7 +183,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ThemBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="LamMoiBt">
+    <Component class="UI.ButtonThuong" name="LamMoiBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/main/raven/icon/refesh.png"/>
@@ -195,7 +195,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LamMoiBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="MoTKBt">
+    <Component class="UI.ButtonThuong" name="MoTKBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/main/raven/icon/unlocked.png"/>
@@ -206,7 +206,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MoTKBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="KhoaTKBt">
+    <Component class="UI.ButtonThuong" name="KhoaTKBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/main/raven/icon/lock.png"/>
@@ -217,7 +217,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KhoaTKBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="PhanQuyenBt">
+    <Component class="UI.ButtonThuong" name="PhanQuyenBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/main/raven/icon/audience.png"/>
@@ -231,7 +231,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PhanQuyenBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="CapNhatBt">
+    <Component class="UI.ButtonThuong" name="CapNhatBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/main/raven/icon/edit.png"/>
@@ -243,7 +243,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CapNhatBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxThuong" name="LocCkb">
+    <Component class="UI.ComboboxThuong" name="LocCkb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
@@ -261,7 +261,7 @@
         <Property name="labeText" type="java.lang.String" value="(Ch&#x1ecd;n thu&#x1ed9;c t&#xed;nh c&#x1ea7;n l&#x1ecd;c)"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxThuong" name="SapXepCkb">
+    <Component class="UI.ComboboxThuong" name="SapXepCkb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
@@ -278,7 +278,7 @@
         <Property name="labeText" type="java.lang.String" value="(Ch&#x1ecd;n thu&#x1ed9;c t&#xed;nh c&#x1ea7;n s&#x1eaf;p x&#x1ebf;p)"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="LocBt">
+    <Component class="UI.ButtonThuong" name="LocBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/main/raven/icon/filter.png"/>
@@ -292,7 +292,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LocBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="SapXepBt">
+    <Component class="UI.ButtonThuong" name="SapXepBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/main/raven/icon/sort.png"/>
@@ -337,7 +337,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="LayMotSoUIdepTaiDay.BangDanhSach" name="BangDSPQTKChung">
+        <Component class="UI.BangDanhSach" name="BangDSPQTKChung">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="4">

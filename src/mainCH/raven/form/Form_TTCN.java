@@ -78,8 +78,8 @@ public void ShowThongTinKhachHang(Customer_Info ci){
         txtNs = new javax.swing.JLabel();
         txtDc = new javax.swing.JLabel();
         txtTT = new javax.swing.JLabel();
-        DoiMKBtn = new LayMotSoUIdepTaiDay.ButtonThuong();
-        DoiThongTinBtn = new LayMotSoUIdepTaiDay.ButtonThuong();
+        DoiMKBtn = new UI.ButtonThuong();
+        DoiThongTinBtn = new UI.ButtonThuong();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -371,8 +371,8 @@ private void OkBtn_CNActionPerformed(java.awt.event.ActionEvent evt) {
     }   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.ButtonThuong DoiMKBtn;
-    private LayMotSoUIdepTaiDay.ButtonThuong DoiThongTinBtn;
+    private UI.ButtonThuong DoiMKBtn;
+    private UI.ButtonThuong DoiThongTinBtn;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

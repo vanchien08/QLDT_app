@@ -2,7 +2,7 @@ package Controller.QLPhanQuyenTKController;
 
 import Controller.DAO.AccountsDAO;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
+import UI.BangDanhSach;
 import Model.Accounts;
 import java.util.ArrayList;
 import java.util.HashMap;

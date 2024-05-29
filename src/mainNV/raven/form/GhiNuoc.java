@@ -6,7 +6,7 @@ import Controller.DSNhanVienController.DSNhanVien;
 import Controller.GhiNuoc.GhiNuocController;
 import Controller.QLThongTinChungController.DSThongTinChung;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
+import UI.BangDanhSach;
 import Model.Personal_Infos;
 import Model.Staffs;
 import Model.W_Meter_Details;
@@ -55,11 +55,11 @@ public class GhiNuoc extends javax.swing.JPanel {
 
         panel = new javax.swing.JLayeredPane();
         TimKiemTf = new javax.swing.JTextField();
-        TimKiemCb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        TimKiemBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LamMoiBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        TimKiemCb = new UI.ComboboxThuong();
+        TimKiemBt = new UI.ButtonThuong();
+        LamMoiBt = new UI.ButtonThuong();
         BangSrllp = new javax.swing.JScrollPane();
-        BangGhiNuoc = new LayMotSoUIdepTaiDay.BangDanhSach();
+        BangGhiNuoc = new UI.BangDanhSach();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -67,10 +67,10 @@ public class GhiNuoc extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtTuNam = new com.toedter.calendar.JYearChooser();
         btnLocKetQua = new javax.swing.JButton();
-        TimKiemBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LamMoiBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
+        TimKiemBt1 = new UI.ButtonThuong();
+        LamMoiBt1 = new UI.ButtonThuong();
         jLabel2 = new javax.swing.JLabel();
-        TimKiemBt2 = new LayMotSoUIdepTaiDay.ButtonThuong();
+        TimKiemBt2 = new UI.ButtonThuong();
 
         setOpaque(false);
 
@@ -618,14 +618,14 @@ public class GhiNuoc extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.BangDanhSach BangGhiNuoc;
+    private UI.BangDanhSach BangGhiNuoc;
     private javax.swing.JScrollPane BangSrllp;
-    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBt1;
-    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBt1;
-    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBt2;
-    private LayMotSoUIdepTaiDay.ComboboxThuong TimKiemCb;
+    private UI.ButtonThuong LamMoiBt;
+    private UI.ButtonThuong LamMoiBt1;
+    private UI.ButtonThuong TimKiemBt;
+    private UI.ButtonThuong TimKiemBt1;
+    private UI.ButtonThuong TimKiemBt2;
+    private UI.ComboboxThuong TimKiemCb;
     private javax.swing.JTextField TimKiemTf;
     private javax.swing.JButton btnLocKetQua;
     private javax.swing.JLabel jLabel1;

@@ -7,7 +7,7 @@ import Controller.DAO.W_Meter_DetailsDAO;
 import Controller.DAO.InvoicesDAO;
 import Controller.DAO.Personal_InfosDAO;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
+import UI.BangDanhSach;
 import Model.Customers;
 import Model.W_Meter_Details;
 import Model.W_Meters;

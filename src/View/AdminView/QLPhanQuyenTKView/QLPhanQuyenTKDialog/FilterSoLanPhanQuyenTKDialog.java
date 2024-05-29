@@ -26,9 +26,9 @@ public class FilterSoLanPhanQuyenTKDialog extends javax.swing.JDialog {
         CancelBt = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        MotLanCbk = new LayMotSoUIdepTaiDay.CheckBox();
+        MotLanCbk = new UI.CheckBox();
         jLabel2 = new javax.swing.JLabel();
-        HaiLanCbk = new LayMotSoUIdepTaiDay.CheckBox();
+        HaiLanCbk = new UI.CheckBox();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -149,8 +149,8 @@ public class FilterSoLanPhanQuyenTKDialog extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelBt;
-    private LayMotSoUIdepTaiDay.CheckBox HaiLanCbk;
-    private LayMotSoUIdepTaiDay.CheckBox MotLanCbk;
+    private UI.CheckBox HaiLanCbk;
+    private UI.CheckBox MotLanCbk;
     private javax.swing.JButton OkBt;
     private javax.swing.ButtonGroup PhanQuyenGrp;
     private javax.swing.JLabel jLabel1;

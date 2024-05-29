@@ -26,11 +26,11 @@ public class FilterLoaiPhanQuyenDialog extends javax.swing.JDialog {
         CancelBt = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        NhanVienCbk = new LayMotSoUIdepTaiDay.CheckBox();
-        DaPhanQuyenCbk = new LayMotSoUIdepTaiDay.CheckBox();
+        NhanVienCbk = new UI.CheckBox();
+        DaPhanQuyenCbk = new UI.CheckBox();
         jLabel2 = new javax.swing.JLabel();
-        ChuHoCbk = new LayMotSoUIdepTaiDay.CheckBox();
-        ChuaPhanQuyenCbk = new LayMotSoUIdepTaiDay.CheckBox();
+        ChuHoCbk = new UI.CheckBox();
+        ChuaPhanQuyenCbk = new UI.CheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
@@ -175,10 +175,10 @@ public class FilterLoaiPhanQuyenDialog extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelBt;
-    private LayMotSoUIdepTaiDay.CheckBox ChuHoCbk;
-    private LayMotSoUIdepTaiDay.CheckBox ChuaPhanQuyenCbk;
-    private LayMotSoUIdepTaiDay.CheckBox DaPhanQuyenCbk;
-    private LayMotSoUIdepTaiDay.CheckBox NhanVienCbk;
+    private UI.CheckBox ChuHoCbk;
+    private UI.CheckBox ChuaPhanQuyenCbk;
+    private UI.CheckBox DaPhanQuyenCbk;
+    private UI.CheckBox NhanVienCbk;
     private javax.swing.JButton OkBt;
     private javax.swing.ButtonGroup PhanQuyenGrp;
     private javax.swing.JLabel jLabel1;

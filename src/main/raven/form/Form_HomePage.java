@@ -4,7 +4,7 @@
  */
 package main.raven.form;
 
-import LayMotSoUIdepTaiDay.Chart.ModelChart;
+import UI.Chart.ModelChart;
 import java.awt.Color;
 
 /**
@@ -66,9 +66,9 @@ public void XuLyChart(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BarChart1 = new LayMotSoUIdepTaiDay.Chart.Chart();
-        BarChart2 = new LayMotSoUIdepTaiDay.Chart.Chart();
-        LineChart = new LayMotSoUIdepTaiDay.Chart.LineChart();
+        BarChart1 = new UI.Chart.Chart();
+        BarChart2 = new UI.Chart.Chart();
+        LineChart = new UI.Chart.LineChart();
 
         setOpaque(false);
 
@@ -101,8 +101,8 @@ public void XuLyChart(){
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.Chart.Chart BarChart1;
-    private LayMotSoUIdepTaiDay.Chart.Chart BarChart2;
-    private LayMotSoUIdepTaiDay.Chart.LineChart LineChart;
+    private UI.Chart.Chart BarChart1;
+    private UI.Chart.Chart BarChart2;
+    private UI.Chart.LineChart LineChart;
     // End of variables declaration//GEN-END:variables
 }

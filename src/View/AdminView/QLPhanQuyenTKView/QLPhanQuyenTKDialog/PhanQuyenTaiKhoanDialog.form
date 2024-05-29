@@ -204,7 +204,7 @@
         <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n lo&#x1ea1;i ph&#xe2;n quy&#x1ec1;n:"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="NhanVienCbk">
+    <Component class="UI.CheckBox" name="NhanVienCbk">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -223,7 +223,7 @@
         <Property name="text" type="java.lang.String" value="Nh&#xe2;n vi&#xea;n"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="ChuHoCbk">
+    <Component class="UI.CheckBox" name="ChuHoCbk">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>

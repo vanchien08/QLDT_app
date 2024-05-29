@@ -7,8 +7,8 @@ package main.raven.form;
 
 import Controller.QLPhanQuyenTKController.DSTaiKhoanPhanQuyen;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
-import LayMotSoUIdepTaiDay.ComboboxThuong;
+import UI.BangDanhSach;
+import UI.ComboboxThuong;
 import Model.Accounts;
 import View.AdminView.QLPhanQuyenTKView.QLPhanQuyenTKDialog.CapNhatAccountTKPhanQuyenDialog;
 import View.AdminView.QLPhanQuyenTKView.QLPhanQuyenTKDialog.FilterLoaiPhanQuyenDialog;
@@ -48,22 +48,22 @@ public class Form_3 extends javax.swing.JPanel {
     private void initComponents() {
 
         TimKiemTf = new javax.swing.JTextField();
-        TimKiemCb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        TimKiemBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        ThemBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LamMoiBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        MoTKBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        KhoaTKBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        PhanQuyenBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        CapNhatBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LocCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        SapXepCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        LocBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        SapXepBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        TimKiemCb = new UI.ComboboxThuong();
+        TimKiemBt = new UI.ButtonThuong();
+        ThemBt = new UI.ButtonThuong();
+        LamMoiBt = new UI.ButtonThuong();
+        MoTKBt = new UI.ButtonThuong();
+        KhoaTKBt = new UI.ButtonThuong();
+        PhanQuyenBt = new UI.ButtonThuong();
+        CapNhatBt = new UI.ButtonThuong();
+        LocCkb = new UI.ComboboxThuong();
+        SapXepCkb = new UI.ComboboxThuong();
+        LocBt = new UI.ButtonThuong();
+        SapXepBt = new UI.ButtonThuong();
         DangChonLbl = new javax.swing.JLabel();
         DangChonTf = new javax.swing.JTextField();
         BangSrllp = new javax.swing.JScrollPane();
-        BangDSPQTKChung = new LayMotSoUIdepTaiDay.BangDanhSach();
+        BangDSPQTKChung = new UI.BangDanhSach();
 
         setOpaque(false);
 
@@ -356,6 +356,9 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
 
     private void LamMoiBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBtActionPerformed
 //        MainAdminview.setForm(new QLPhanQuyenTKMainView(MainAdminview));
+
+         this.dsAccounts = new DSTaiKhoanPhanQuyen().KhoiTaoListAccount();
+        ShowThongTinTuDBS(BangDSPQTKChung);        
     }//GEN-LAST:event_LamMoiBtActionPerformed
 
     private void MoTKBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MoTKBtActionPerformed
@@ -498,22 +501,22 @@ private void showThemAccDialog() {
         filterSoLanPhanQuyenTKDialog.setVisible(true);
     } 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.BangDanhSach BangDSPQTKChung;
+    private UI.BangDanhSach BangDSPQTKChung;
     private javax.swing.JScrollPane BangSrllp;
-    private LayMotSoUIdepTaiDay.ButtonThuong CapNhatBt;
+    private UI.ButtonThuong CapNhatBt;
     private javax.swing.JLabel DangChonLbl;
     private javax.swing.JTextField DangChonTf;
-    private LayMotSoUIdepTaiDay.ButtonThuong KhoaTKBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong LocBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong LocCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong MoTKBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong PhanQuyenBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong SapXepBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong SapXepCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong ThemBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong TimKiemCb;
+    private UI.ButtonThuong KhoaTKBt;
+    private UI.ButtonThuong LamMoiBt;
+    private UI.ButtonThuong LocBt;
+    private UI.ComboboxThuong LocCkb;
+    private UI.ButtonThuong MoTKBt;
+    private UI.ButtonThuong PhanQuyenBt;
+    private UI.ButtonThuong SapXepBt;
+    private UI.ComboboxThuong SapXepCkb;
+    private UI.ButtonThuong ThemBt;
+    private UI.ButtonThuong TimKiemBt;
+    private UI.ComboboxThuong TimKiemCb;
     private javax.swing.JTextField TimKiemTf;
     // End of variables declaration//GEN-END:variables
  public BangDanhSach getBangDSPQTKChung() {

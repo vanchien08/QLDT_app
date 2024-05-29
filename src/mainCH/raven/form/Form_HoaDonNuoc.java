@@ -8,8 +8,8 @@ import Controller.CustomerView.DSHoaDon.DSHoaDon;
 import Controller.DAO.InvoicesDAO;
 import static Controller.DAO.InvoicesDAO.getAllInvoiceChuHo;
 import Controller.DSHoaDonController.DSHoaDonController;
-import LayMotSoUIdepTaiDay.BangDanhSach;
-import LayMotSoUIdepTaiDay.ComboboxThuong;
+import UI.BangDanhSach;
+import UI.ComboboxThuong;
 import Model.Customer_Info;
 import Model.Invoices;
 import View.CustomerView.DSHoaDonDien.FilterLoaiDateDSHoaDonDialog;
@@ -104,17 +104,17 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
     private void initComponents() {
 
         TimKiemTF = new javax.swing.JTextField();
-        TimKiemCb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        TimKiemBT = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LamMoiBT = new LayMotSoUIdepTaiDay.ButtonThuong();
-        DaNhapCTDCB = new LayMotSoUIdepTaiDay.CheckBox();
-        ChuaNhapCTDCB = new LayMotSoUIdepTaiDay.CheckBox();
-        SapXepCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        SapXepBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LocCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        LocBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        TimKiemCb = new UI.ComboboxThuong();
+        TimKiemBT = new UI.ButtonThuong();
+        LamMoiBT = new UI.ButtonThuong();
+        DaNhapCTDCB = new UI.CheckBox();
+        ChuaNhapCTDCB = new UI.CheckBox();
+        SapXepCkb = new UI.ComboboxThuong();
+        SapXepBt1 = new UI.ButtonThuong();
+        LocCkb = new UI.ComboboxThuong();
+        LocBt = new UI.ButtonThuong();
         jScrollPane1 = new javax.swing.JScrollPane();
-        BangDSHoaDon = new LayMotSoUIdepTaiDay.BangDanhSach();
+        BangDSHoaDon = new UI.BangDanhSach();
 
         TimKiemTF.setBackground(new java.awt.Color(231, 231, 231));
         TimKiemTF.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -399,16 +399,16 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.BangDanhSach BangDSHoaDon;
-    private LayMotSoUIdepTaiDay.CheckBox ChuaNhapCTDCB;
-    private LayMotSoUIdepTaiDay.CheckBox DaNhapCTDCB;
-    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBT;
-    private LayMotSoUIdepTaiDay.ButtonThuong LocBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong LocCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong SapXepBt1;
-    private LayMotSoUIdepTaiDay.ComboboxThuong SapXepCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBT;
-    private LayMotSoUIdepTaiDay.ComboboxThuong TimKiemCb;
+    private UI.BangDanhSach BangDSHoaDon;
+    private UI.CheckBox ChuaNhapCTDCB;
+    private UI.CheckBox DaNhapCTDCB;
+    private UI.ButtonThuong LamMoiBT;
+    private UI.ButtonThuong LocBt;
+    private UI.ComboboxThuong LocCkb;
+    private UI.ButtonThuong SapXepBt1;
+    private UI.ComboboxThuong SapXepCkb;
+    private UI.ButtonThuong TimKiemBT;
+    private UI.ComboboxThuong TimKiemCb;
     private javax.swing.JTextField TimKiemTF;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

@@ -1,6 +1,6 @@
 package Controller.SupportFunction;
 
-import LayMotSoUIdepTaiDay.BangDanhSach;
+import UI.BangDanhSach;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;

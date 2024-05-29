@@ -318,7 +318,7 @@
             <Property name="text" type="java.lang.String" value="&#x110;ang ho&#x1ea1;t &#x111;&#x1ed9;ng"/>
           </Properties>
         </Component>
-        <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="DoiMKBtn">
+        <Component class="UI.ButtonThuong" name="DoiMKBtn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Icon/icons8_user_20px_1.png"/>
@@ -330,7 +330,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DoiMKBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="DoiThongTinBtn">
+        <Component class="UI.ButtonThuong" name="DoiThongTinBtn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Icon/Refresh.png"/>

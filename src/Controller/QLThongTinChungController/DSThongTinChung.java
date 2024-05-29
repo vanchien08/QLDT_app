@@ -3,7 +3,7 @@ package Controller.QLThongTinChungController;
 import Controller.DAO.AccountsDAO;
 import Controller.DAO.Personal_InfosDAO;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
+import UI.BangDanhSach;
 import Model.Accounts;
 import Model.Personal_Infos;
 import java.text.ParseException;

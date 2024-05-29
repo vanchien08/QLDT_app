@@ -187,9 +187,9 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             JOptionPane.showMessageDialog(login, "Không để trống giới tính. Vui lòng điền thông tin đầy đủ!");
         }
            else{
-            Login loginFrame = (Login) SwingUtilities.getWindowAncestor((Component) e.getSource());
+           
            // loginFrame.init();
-            loginFrame.handelSignUp();
+          //  loginFrame.handelSignUp();
             
             
 //            Map<String,String> account = new HashMap<>();

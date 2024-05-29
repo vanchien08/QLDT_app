@@ -6,7 +6,7 @@ import Controller.DAO.W_MeterDAO;
 import Controller.DAO.Personal_InfosDAO;
 import Controller.DSNhanVienController.DSNhanVien;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
+import UI.BangDanhSach;
 import Model.Customers;
 import Model.W_Meters;
 import Model.Personal_Infos;

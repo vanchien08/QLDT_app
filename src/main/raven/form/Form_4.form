@@ -42,7 +42,7 @@
                               <Component id="ChuaNhapCTDCB" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                      <EmptySpace pref="7" max="32767" attributes="0"/>
                       <Component id="SapXepBt" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
                   </Group>
@@ -79,17 +79,14 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="TimKiemTF">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e7" green="e7" red="e7" type="rgb"/>
-        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-            <EmptyBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
           </Border>
         </Property>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxThuong" name="TimKiemCb">
+    <Component class="UI.ComboboxThuong" name="TimKiemCb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
@@ -112,10 +109,10 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="TimKiemBT">
+    <Component class="UI.ButtonThuong" name="TimKiemBT">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Icon/search.png"/>
+          <Image iconType="3" name="/main/raven/icon/search1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
       </Properties>
@@ -123,10 +120,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TimKiemBTActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="LamMoiBT">
+    <Component class="UI.ButtonThuong" name="LamMoiBT">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Icon/Refresh.png"/>
+          <Image iconType="3" name="/main/raven/icon/refesh.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
       </Properties>
@@ -134,7 +131,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LamMoiBTActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="DaNhapCTDCB">
+    <Component class="UI.CheckBox" name="DaNhapCTDCB">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
@@ -148,7 +145,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DaNhapCTDCBActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="ChuaNhapCTDCB">
+    <Component class="UI.CheckBox" name="ChuaNhapCTDCB">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="99" green="99" red="99" type="rgb"/>
@@ -162,7 +159,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChuaNhapCTDCBActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxThuong" name="SapXepCkb">
+    <Component class="UI.ComboboxThuong" name="SapXepCkb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="6">
@@ -183,10 +180,10 @@
         <Property name="labeText" type="java.lang.String" value="(Ch&#x1ecd;n thu&#x1ed9;c t&#xed;nh c&#x1ea7;n s&#x1eaf;p x&#x1ebf;p)"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="SapXepBt">
+    <Component class="UI.ButtonThuong" name="SapXepBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Icon/sort.png"/>
+          <Image iconType="3" name="/main/raven/icon/sort.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="S&#x1eaf;p x&#x1ebf;p"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -204,16 +201,15 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="LayMotSoUIdepTaiDay.BangDanhSach" name="BangDSThongTinSD">
+        <Component class="UI.BangDanhSach" name="BangDSThongTinSD">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="9" rowCount="4">
+              <Table columnCount="8" rowCount="4">
                 <Column editable="false" title="CCCDCh" type="java.lang.String"/>
                 <Column editable="false" title="T&#xea;n" type="java.lang.String"/>
                 <Column editable="false" title="S&#x110;T" type="java.lang.String"/>
                 <Column editable="false" title="M&#xe3; C&#xf4;ng t&#x1a1;" type="java.lang.String"/>
                 <Column editable="false" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.String"/>
-                <Column editable="false" title="H&#xec;nh th&#x1ee9;c &#x1edf;" type="java.lang.String"/>
                 <Column editable="false" title="CCCD nh&#xe2;n vi&#xea;n" type="java.lang.String"/>
                 <Column editable="false" title="T&#xea;n nh&#xe2;n vi&#xea;n" type="java.lang.String"/>
                 <Column editable="false" title="S&#x110;T nh&#xe2;n vi&#xea;n" type="java.lang.String"/>

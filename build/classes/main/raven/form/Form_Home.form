@@ -48,7 +48,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="panel" pref="27" max="32767" attributes="0"/>
+                                      <Component id="panel" pref="23" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -135,9 +135,6 @@
     </Container>
     <Component class="javax.swing.JTextField" name="TimKiemTf">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
-        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
@@ -146,14 +143,14 @@
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
-            <EmptyBorder/>
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder/>
           </Border>
         </Property>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxThuong" name="TimKiemCb">
+    <Component class="UI.ComboboxThuong" name="TimKiemCb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
@@ -179,10 +176,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TimKiemCbActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="TimKiemBt">
+    <Component class="UI.ButtonThuong" name="TimKiemBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Icon/search.png"/>
+          <Image iconType="3" name="/main/raven/icon/search1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
       </Properties>
@@ -190,10 +187,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TimKiemBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="LamMoiBt">
+    <Component class="UI.ButtonThuong" name="LamMoiBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Icon/Refresh.png"/>
+          <Image iconType="3" name="/main/raven/icon/refesh.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
         <Property name="horizontalAlignment" type="int" value="0"/>
@@ -216,7 +213,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxThuong" name="LocCkb">
+    <Component class="UI.ComboboxThuong" name="LocCkb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -232,7 +229,7 @@
         <Property name="labeText" type="java.lang.String" value="(Ch&#x1ecd;n thu&#x1ed9;c t&#xed;nh c&#x1ea7;n l&#x1ecd;c)"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxThuong" name="SapXepCkb">
+    <Component class="UI.ComboboxThuong" name="SapXepCkb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="6">
@@ -253,10 +250,10 @@
         <Property name="labeText" type="java.lang.String" value="(Ch&#x1ecd;n thu&#x1ed9;c t&#xed;nh c&#x1ea7;n s&#x1eaf;p x&#x1ebf;p)"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="LocBt">
+    <Component class="UI.ButtonThuong" name="LocBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Icon/filter.png"/>
+          <Image iconType="3" name="/main/raven/icon/filter.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="L&#x1ecd;c"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -267,10 +264,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LocBtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ButtonThuong" name="SapXepBt">
+    <Component class="UI.ButtonThuong" name="SapXepBt">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Icon/sort.png"/>
+          <Image iconType="3" name="/main/raven/icon/sort.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="S&#x1eaf;p x&#x1ebf;p"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -312,10 +309,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="LayMotSoUIdepTaiDay.BangDanhSach" name="BangDSNhanVien">
+        <Component class="UI.BangDanhSach" name="BangDSNhanVien">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="8" rowCount="4">
+              <Table columnCount="7" rowCount="4">
                 <Column editable="false" title="CCCD" type="java.lang.String"/>
                 <Column editable="false" title="H&#x1ecd; v&#xe0; t&#xea;n" type="java.lang.String"/>
                 <Column editable="false" title="Ng&#xe0;y sinh" type="java.lang.Object"/>
@@ -323,7 +320,6 @@
                 <Column editable="false" title="S&#x110;T" type="java.lang.String"/>
                 <Column editable="false" title="Account" type="java.lang.String"/>
                 <Column editable="false" title="Password" type="java.lang.String"/>
-                <Column editable="false" title="Vai tr&#xf2;" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="selectionMode" type="int" value="0"/>

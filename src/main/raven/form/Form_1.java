@@ -7,8 +7,8 @@ package main.raven.form;
 
 import Controller.QLThongTinChungController.DSThongTinChung;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
-import LayMotSoUIdepTaiDay.ComboboxThuong;
+import UI.BangDanhSach;
+import UI.ComboboxThuong;
 import Model.Personal_Infos;
 import View.AdminView.QLThongTinChungView.QLTTChungDialog.CapNhatCCCDTTChungDialog;
 import View.AdminView.QLThongTinChungView.QLTTChungDialog.CapNhatTTChungDialog;
@@ -48,21 +48,21 @@ public class Form_1 extends javax.swing.JPanel {
     private void initComponents() {
 
         BangSrllp = new javax.swing.JScrollPane();
-        BangDSTTChung = new LayMotSoUIdepTaiDay.BangDanhSach();
+        BangDSTTChung = new UI.BangDanhSach();
         TimKiemTf = new javax.swing.JTextField();
-        TimKiemCb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        CapNhatCb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        LocCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        SapXepCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
+        TimKiemCb = new UI.ComboboxThuong();
+        CapNhatCb = new UI.ComboboxThuong();
+        LocCkb = new UI.ComboboxThuong();
+        SapXepCkb = new UI.ComboboxThuong();
         DangChonLbl = new javax.swing.JLabel();
         DangChonTf = new javax.swing.JTextField();
-        TimKiemBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LamMoiBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
-        ThemBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        CapNhatBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        TimKiemBt = new UI.ButtonThuong();
+        LamMoiBt1 = new UI.ButtonThuong();
+        ThemBt = new UI.ButtonThuong();
+        CapNhatBt = new UI.ButtonThuong();
         jSeparator1 = new javax.swing.JSeparator();
-        LocBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        SapXepBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        LocBt = new UI.ButtonThuong();
+        SapXepBt = new UI.ButtonThuong();
         jSeparator2 = new javax.swing.JSeparator();
 
         setOpaque(false);
@@ -158,6 +158,11 @@ public class Form_1 extends javax.swing.JPanel {
         LamMoiBt1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/refesh.png"))); // NOI18N
         LamMoiBt1.setText("Làm mới");
         LamMoiBt1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LamMoiBt1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LamMoiBt1ActionPerformed(evt);
+            }
+        });
 
         ThemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/add.png"))); // NOI18N
         ThemBt.setText("Thêm thông tin người dùng");
@@ -405,6 +410,13 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
     private void TimKiemCbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimKiemCbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TimKiemCbActionPerformed
+
+    private void LamMoiBt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBt1ActionPerformed
+        // TODO add your handling code here:
+        
+         ShowThongTinTuDBS(BangDSTTChung);    
+        
+    }//GEN-LAST:event_LamMoiBt1ActionPerformed
  private void showThemTTChungDialog() {
         ThemTTChungDialog themTTChungDialog = new ThemTTChungDialog(  true);
         themTTChungDialog.setVisible(true);
@@ -419,20 +431,20 @@ private void showCapNhatTTCDialog() {
         capNhatCCCDTTChungDialog.setVisible(true);
     }   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.BangDanhSach BangDSTTChung;
+    private UI.BangDanhSach BangDSTTChung;
     private javax.swing.JScrollPane BangSrllp;
-    private LayMotSoUIdepTaiDay.ButtonThuong CapNhatBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong CapNhatCb;
+    private UI.ButtonThuong CapNhatBt;
+    private UI.ComboboxThuong CapNhatCb;
     private javax.swing.JLabel DangChonLbl;
     private javax.swing.JTextField DangChonTf;
-    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBt1;
-    private LayMotSoUIdepTaiDay.ButtonThuong LocBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong LocCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong SapXepBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong SapXepCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong ThemBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong TimKiemCb;
+    private UI.ButtonThuong LamMoiBt1;
+    private UI.ButtonThuong LocBt;
+    private UI.ComboboxThuong LocCkb;
+    private UI.ButtonThuong SapXepBt;
+    private UI.ComboboxThuong SapXepCkb;
+    private UI.ButtonThuong ThemBt;
+    private UI.ButtonThuong TimKiemBt;
+    private UI.ComboboxThuong TimKiemCb;
     private javax.swing.JTextField TimKiemTf;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

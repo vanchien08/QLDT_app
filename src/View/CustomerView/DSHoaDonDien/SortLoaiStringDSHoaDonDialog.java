@@ -36,8 +36,8 @@ public class SortLoaiStringDSHoaDonDialog extends javax.swing.JDialog {
         CancelBt = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        AZCkb = new LayMotSoUIdepTaiDay.CheckBox();
-        ZACkb = new LayMotSoUIdepTaiDay.CheckBox();
+        AZCkb = new UI.CheckBox();
+        ZACkb = new UI.CheckBox();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -149,10 +149,10 @@ public class SortLoaiStringDSHoaDonDialog extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.CheckBox AZCkb;
+    private UI.CheckBox AZCkb;
     private javax.swing.JButton CancelBt;
     private javax.swing.JButton OkBt;
-    private LayMotSoUIdepTaiDay.CheckBox ZACkb;
+    private UI.CheckBox ZACkb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;

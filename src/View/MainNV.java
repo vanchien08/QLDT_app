@@ -8,16 +8,18 @@ package View;
 import mainNV.raven.event.EventMenuSelected;
 import main.raven.form.Form_1;
 import main.raven.form.Form_2;
-import mainNV.raven.form.Form_3;
+
 import mainNV.raven.form.GhiNuoc;
 import main.raven.form.Form_Home;
 import main.raven.form.Form_HomePage;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import mainNV.raven.form.Form_4;
-import mainNV.raven.form.Form_5;
-import mainNV.raven.form.KhoanPhi;
+import main.raven.form.Form_5;
+
 
 /**
  *
@@ -31,11 +33,11 @@ public class MainNV extends javax.swing.JFrame {
     private Form_Home home;
     private Form_1 form1;
     private Form_2 form2;
-    private Form_3 form3;
+
      private Form_4 form4;
       private Form_5 form5;
     private GhiNuoc ghinuoc;
-    private KhoanPhi khoanphi;
+
     private Form_HomePage homepage;
     private JPanel MainPanel;
     public MainNV() {
@@ -44,11 +46,15 @@ public class MainNV extends javax.swing.JFrame {
         home = new Form_Home();
         form1 = new Form_1();
         form2 = new Form_2();
-        form3 = new Form_3();
+
         form4 = new Form_4();
-        form5 = new Form_5();
+        try {
+            form5 = new Form_5();
+        } catch (Exception ex) {
+            Logger.getLogger(MainNV.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ghinuoc=new GhiNuoc();
-        khoanphi= new KhoanPhi();
+
         homepage= new Form_HomePage();
         
        menu2.initMoving(MainNV.this);
@@ -59,11 +65,11 @@ public class MainNV extends javax.swing.JFrame {
                 setForm(form1);
             }
              else if (index == 2) {
-                setForm(home);
+                setForm(form2);
             }else if (index == 3) {
                 setForm(ghinuoc);
             } else if (index == 4) {
-                setForm(home);
+                setForm(form5);
             }
           
             else if (index == 5) {

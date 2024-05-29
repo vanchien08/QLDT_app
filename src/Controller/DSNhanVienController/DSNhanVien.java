@@ -4,7 +4,7 @@ import Controller.DAO.CustomerDAO;
 import Controller.QLPhanQuyenTKController.DSTaiKhoanPhanQuyen;
 import Controller.QLThongTinChungController.DSThongTinChung;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
+import UI.BangDanhSach;
 import Model.Accounts;
 import Model.Customers;
 import Model.Personal_Infos;

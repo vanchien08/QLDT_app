@@ -4,8 +4,8 @@ import Controller.DSNhanVienController.DSNhanVien;
 import Controller.QLPhanQuyenTKController.DSTaiKhoanPhanQuyen;
 import Controller.QLThongTinChungController.DSThongTinChung;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
-import LayMotSoUIdepTaiDay.ComboboxThuong;
+import UI.BangDanhSach;
+import UI.ComboboxThuong;
 import Model.Accounts;
 import Model.Staffs;
 import View.AdminView.DSNhanVienView.DSNhanVienDialog.FilterLoaiDateDSNVDialog;
@@ -54,7 +54,7 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
             Object[] rowData = {
                 st.getCCCD(), Ten, dateFormat.format(st.getDOB()), 
                 st.getAddress(), st.getPhone(), st.getAccount_Username(),
-                st.getAccount_Password(),st.isRole()==true ? "Ghi Nước":"Nhập hóa đơn",
+                st.getAccount_Password(),
             };
 
             model.addRow(rowData);
@@ -68,28 +68,27 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
 
         panel = new javax.swing.JLayeredPane();
         TimKiemTf = new javax.swing.JTextField();
-        TimKiemCb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        TimKiemBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LamMoiBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        TimKiemCb = new UI.ComboboxThuong();
+        TimKiemBt = new UI.ButtonThuong();
+        LamMoiBt = new UI.ButtonThuong();
         jSeparator1 = new javax.swing.JSeparator();
-        LocCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        SapXepCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        LocBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        SapXepBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        LocCkb = new UI.ComboboxThuong();
+        SapXepCkb = new UI.ComboboxThuong();
+        LocBt = new UI.ButtonThuong();
+        SapXepBt = new UI.ButtonThuong();
         DangChonLbl = new javax.swing.JLabel();
         DangChonTf = new javax.swing.JTextField();
         BangSrllp = new javax.swing.JScrollPane();
-        BangDSNhanVien = new LayMotSoUIdepTaiDay.BangDanhSach();
+        BangDSNhanVien = new UI.BangDanhSach();
 
         setOpaque(false);
 
         panel.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
-        TimKiemTf.setBackground(new java.awt.Color(204, 204, 204));
         TimKiemTf.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         TimKiemTf.setForeground(new java.awt.Color(102, 102, 102));
         TimKiemTf.setToolTipText("");
-        TimKiemTf.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TimKiemTf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TimKiemTf.setName(""); // NOI18N
 
         TimKiemCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CCCD", "Họ và tên", "Địa chỉ", "SĐT", "Account" }));
@@ -104,7 +103,7 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
             }
         });
 
-        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search.png"))); // NOI18N
+        TimKiemBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/search1.png"))); // NOI18N
         TimKiemBt.setText("Tìm kiếm");
         TimKiemBt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +111,7 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
             }
         });
 
-        LamMoiBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Refresh.png"))); // NOI18N
+        LamMoiBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/refesh.png"))); // NOI18N
         LamMoiBt.setText("Làm mới");
         LamMoiBt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LamMoiBt.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +135,7 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
         SapXepCkb.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SapXepCkb.setLabeText("(Chọn thuộc tính cần sắp xếp)");
 
-        LocBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/filter.png"))); // NOI18N
+        LocBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/filter.png"))); // NOI18N
         LocBt.setText("Lọc");
         LocBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LocBt.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +144,7 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
             }
         });
 
-        SapXepBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/sort.png"))); // NOI18N
+        SapXepBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/sort.png"))); // NOI18N
         SapXepBt.setText("Sắp xếp");
         SapXepBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SapXepBt.addActionListener(new java.awt.event.ActionListener() {
@@ -164,20 +163,20 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
 
         BangDSNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "CCCD", "Họ và tên", "Ngày sinh", "Địa chỉ", "SĐT", "Account", "Password", "Vai trò"
+                "CCCD", "Họ và tên", "Ngày sinh", "Địa chỉ", "SĐT", "Account", "Password"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -229,7 +228,7 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                                        .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
                                         .addGap(163, 163, 163))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(48, 48, 48)
@@ -320,6 +319,8 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
 
     private void LamMoiBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBtActionPerformed
 //        MainAdminview.setForm(new DSNhanVienMainView(MainAdminview));
+
+                     ShowThongTinTuDBS(BangDSNhanVien);
     }//GEN-LAST:event_LamMoiBtActionPerformed
 
     private void LocBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocBtActionPerformed
@@ -360,17 +361,17 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.BangDanhSach BangDSNhanVien;
+    private UI.BangDanhSach BangDSNhanVien;
     private javax.swing.JScrollPane BangSrllp;
     private javax.swing.JLabel DangChonLbl;
     private javax.swing.JTextField DangChonTf;
-    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong LocBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong LocCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong SapXepBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong SapXepCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong TimKiemCb;
+    private UI.ButtonThuong LamMoiBt;
+    private UI.ButtonThuong LocBt;
+    private UI.ComboboxThuong LocCkb;
+    private UI.ButtonThuong SapXepBt;
+    private UI.ComboboxThuong SapXepCkb;
+    private UI.ButtonThuong TimKiemBt;
+    private UI.ComboboxThuong TimKiemCb;
     private javax.swing.JTextField TimKiemTf;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLayeredPane panel;

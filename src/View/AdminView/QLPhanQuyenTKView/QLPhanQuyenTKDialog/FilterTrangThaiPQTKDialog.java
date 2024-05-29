@@ -27,9 +27,9 @@ public class FilterTrangThaiPQTKDialog extends javax.swing.JDialog {
         CancelBt = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        MoCbk = new LayMotSoUIdepTaiDay.CheckBox();
+        MoCbk = new UI.CheckBox();
         jLabel2 = new javax.swing.JLabel();
-        KhoaCbk = new LayMotSoUIdepTaiDay.CheckBox();
+        KhoaCbk = new UI.CheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(null);
@@ -154,8 +154,8 @@ public class FilterTrangThaiPQTKDialog extends javax.swing.JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelBt;
-    private LayMotSoUIdepTaiDay.CheckBox KhoaCbk;
-    private LayMotSoUIdepTaiDay.CheckBox MoCbk;
+    private UI.CheckBox KhoaCbk;
+    private UI.CheckBox MoCbk;
     private javax.swing.JButton OkBt;
     private javax.swing.ButtonGroup PhanQuyenGrp;
     private javax.swing.JLabel jLabel1;

@@ -30,8 +30,8 @@ public class FilterLoaiGioiTinhTTCDialog extends javax.swing.JDialog {
         CancelBt = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        NamCbk = new LayMotSoUIdepTaiDay.CheckBox();
-        NuCbk = new LayMotSoUIdepTaiDay.CheckBox();
+        NamCbk = new UI.CheckBox();
+        NuCbk = new UI.CheckBox();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -142,8 +142,8 @@ public class FilterLoaiGioiTinhTTCDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelBt;
     private javax.swing.ButtonGroup GioiTinhGrp;
-    private LayMotSoUIdepTaiDay.CheckBox NamCbk;
-    private LayMotSoUIdepTaiDay.CheckBox NuCbk;
+    private UI.CheckBox NamCbk;
+    private UI.CheckBox NuCbk;
     private javax.swing.JButton OkBt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -6,8 +6,8 @@ package main.raven.form;
 
 import Controller.DSPhanCongController.DSPhanCongController;
 import Controller.ThongTinSDDienController.ThongTinSDDienController;
-import LayMotSoUIdepTaiDay.BangDanhSach;
-import LayMotSoUIdepTaiDay.ComboboxThuong;
+import UI.BangDanhSach;
+import UI.ComboboxThuong;
 import Model.Customers;
 import Model.Personal_Infos;
 import Model.W_Meters;
@@ -107,7 +107,7 @@ public class Form_4 extends javax.swing.JPanel {
                                                 tmpcus.getPhone(),     
                                                 tmpe.getID_W_Meter(),              
                                                 tmpe.getAddress(),         
-                                                tmpe.getType_Living(),       
+                                               
                                                 cccdStaff,  
                                                 tenStaff,           
                                                 phoneStaff, 
@@ -130,18 +130,17 @@ public class Form_4 extends javax.swing.JPanel {
     private void initComponents() {
 
         TimKiemTF = new javax.swing.JTextField();
-        TimKiemCb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        TimKiemBT = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LamMoiBT = new LayMotSoUIdepTaiDay.ButtonThuong();
-        DaNhapCTDCB = new LayMotSoUIdepTaiDay.CheckBox();
-        ChuaNhapCTDCB = new LayMotSoUIdepTaiDay.CheckBox();
-        SapXepCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        SapXepBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        TimKiemCb = new UI.ComboboxThuong();
+        TimKiemBT = new UI.ButtonThuong();
+        LamMoiBT = new UI.ButtonThuong();
+        DaNhapCTDCB = new UI.CheckBox();
+        ChuaNhapCTDCB = new UI.CheckBox();
+        SapXepCkb = new UI.ComboboxThuong();
+        SapXepBt = new UI.ButtonThuong();
         jScrollPane1 = new javax.swing.JScrollPane();
-        BangDSThongTinSD = new LayMotSoUIdepTaiDay.BangDanhSach();
+        BangDSThongTinSD = new UI.BangDanhSach();
 
-        TimKiemTF.setBackground(new java.awt.Color(231, 231, 231));
-        TimKiemTF.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TimKiemTF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         TimKiemCb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CCCDCh", "Họ và tên Ch", "Địa chỉ", "SĐTCh", "Hình thức ở" }));
         TimKiemCb.setSelectedItem(null
@@ -150,7 +149,7 @@ public class Form_4 extends javax.swing.JPanel {
         TimKiemCb.setLabeText("(Tìm kiếm theo)");
         TimKiemCb.setLineColor(new java.awt.Color(0, 153, 255));
 
-        TimKiemBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/search.png"))); // NOI18N
+        TimKiemBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/search1.png"))); // NOI18N
         TimKiemBT.setText("Tìm kiếm");
         TimKiemBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +157,7 @@ public class Form_4 extends javax.swing.JPanel {
             }
         });
 
-        LamMoiBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Refresh.png"))); // NOI18N
+        LamMoiBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/refesh.png"))); // NOI18N
         LamMoiBT.setText("Làm mới");
         LamMoiBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +188,7 @@ public class Form_4 extends javax.swing.JPanel {
         SapXepCkb.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SapXepCkb.setLabeText("(Chọn thuộc tính cần sắp xếp)");
 
-        SapXepBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/sort.png"))); // NOI18N
+        SapXepBt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/raven/icon/sort.png"))); // NOI18N
         SapXepBt.setText("Sắp xếp");
         SapXepBt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SapXepBt.addActionListener(new java.awt.event.ActionListener() {
@@ -200,20 +199,20 @@ public class Form_4 extends javax.swing.JPanel {
 
         BangDSThongTinSD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "CCCDCh", "Tên", "SĐT", "Mã Công tơ", "Địa chỉ", "Hình thức ở", "CCCD nhân viên", "Tên nhân viên", "SĐT nhân viên"
+                "CCCDCh", "Tên", "SĐT", "Mã Công tơ", "Địa chỉ", "CCCD nhân viên", "Tên nhân viên", "SĐT nhân viên"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -252,7 +251,7 @@ public class Form_4 extends javax.swing.JPanel {
                                 .addComponent(DaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ChuaNhapCTDCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addComponent(SapXepBt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(189, 189, 189))))
         );
@@ -312,14 +311,15 @@ public class Form_4 extends javax.swing.JPanel {
     }//GEN-LAST:event_TimKiemBTActionPerformed
 
     private void LamMoiBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBTActionPerformed
-//        try {
-//            mainAdminView.setForm(new ThongTinSDDienView(mainAdminView));
-//            DaNhapCTDCB.setSelected(false);
-//            ChuaNhapCTDCB.setSelected(false);
-//            NhapCTDCB.clearSelection();
-//        } catch (Exception ex) {
-//            Logger.getLogger(ThongTinSDDienView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+        //    mainAdminView.setForm(new ThongTinSDDienView(mainAdminView));
+        ShowThongTinTuDBS2(this.listcustomer,this.listemeter);
+            DaNhapCTDCB.setSelected(false);
+            ChuaNhapCTDCB.setSelected(false);
+    //        NhapCTDCB.clearSelection();
+        } catch (Exception ex) {
+      //      Logger.getLogger(ThongTinSDDienView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_LamMoiBTActionPerformed
 
     private void DaNhapCTDCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DaNhapCTDCBActionPerformed
@@ -389,14 +389,14 @@ public class Form_4 extends javax.swing.JPanel {
 
     }  
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.BangDanhSach BangDSThongTinSD;
-    private LayMotSoUIdepTaiDay.CheckBox ChuaNhapCTDCB;
-    private LayMotSoUIdepTaiDay.CheckBox DaNhapCTDCB;
-    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBT;
-    private LayMotSoUIdepTaiDay.ButtonThuong SapXepBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong SapXepCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBT;
-    private LayMotSoUIdepTaiDay.ComboboxThuong TimKiemCb;
+    private UI.BangDanhSach BangDSThongTinSD;
+    private UI.CheckBox ChuaNhapCTDCB;
+    private UI.CheckBox DaNhapCTDCB;
+    private UI.ButtonThuong LamMoiBT;
+    private UI.ButtonThuong SapXepBt;
+    private UI.ComboboxThuong SapXepCkb;
+    private UI.ButtonThuong TimKiemBT;
+    private UI.ComboboxThuong TimKiemCb;
     private javax.swing.JTextField TimKiemTF;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

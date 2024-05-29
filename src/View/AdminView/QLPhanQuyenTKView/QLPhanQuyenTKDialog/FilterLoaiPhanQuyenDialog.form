@@ -141,7 +141,7 @@
         <Property name="text" type="java.lang.String" value="L&#x1ecc;C THEO PH&#xc2;N QUY&#x1ec0;N:"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="NhanVienCbk">
+    <Component class="UI.CheckBox" name="NhanVienCbk">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -160,7 +160,7 @@
         <Property name="text" type="java.lang.String" value="Nh&#xe2;n vi&#xea;n"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="DaPhanQuyenCbk">
+    <Component class="UI.CheckBox" name="DaPhanQuyenCbk">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -187,7 +187,7 @@
         <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n lo&#x1ea1;i ph&#xe2;n quy&#x1ec1;n c&#x1ea7;n l&#x1ecd;c:"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="ChuHoCbk">
+    <Component class="UI.CheckBox" name="ChuHoCbk">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -206,7 +206,7 @@
         <Property name="text" type="java.lang.String" value="Ch&#x1ee7; h&#x1ed9;"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="ChuaPhanQuyenCbk">
+    <Component class="UI.CheckBox" name="ChuaPhanQuyenCbk">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>

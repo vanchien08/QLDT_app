@@ -7,11 +7,9 @@ package View;
 
 import main.raven.event.EventMenuSelected;
 import main.raven.form.Form_1;
-import mainCH.raven.form.Form_2;
 import mainCH.raven.form.Form_3;
 import mainCH.raven.form.Form_HoaDonNuoc;
 import mainCH.raven.form.Form_TTCN;
-import mainCH.raven.form.Form_Home;
 import mainCH.raven.form.Form_HomePage;
 import java.awt.Color;
 import java.util.logging.Level;
@@ -31,9 +29,9 @@ public class MainCH extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    private Form_Home home;
+
     private Form_1 form1;
-    private Form_2 form2;
+
     private Form_3 form3;
      private Form_4 form4;
      private Form_HoaDonNuoc formHDN;
@@ -44,9 +42,9 @@ public class MainCH extends javax.swing.JFrame {
     public MainCH() throws Exception {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
-        home = new Form_Home();
+ 
         form1 = new Form_1();
-        form2 = new Form_2();
+      
         form3 = new Form_3();
         form4 = new Form_4();
         formHDN =new Form_HoaDonNuoc();

@@ -50,11 +50,11 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="LayMotSoUIdepTaiDay.Chart.Chart" name="BarChart1">
+    <Component class="UI.Chart.Chart" name="BarChart1">
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.Chart.Chart" name="BarChart2">
+    <Component class="UI.Chart.Chart" name="BarChart2">
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.Chart.LineChart" name="LineChart">
+    <Component class="UI.Chart.LineChart" name="LineChart">
     </Component>
   </SubComponents>
 </Form>

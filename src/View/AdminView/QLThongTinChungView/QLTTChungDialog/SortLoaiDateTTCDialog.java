@@ -29,8 +29,8 @@ public class SortLoaiDateTTCDialog extends javax.swing.JDialog {
         CancelBt = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        NhoCkb = new LayMotSoUIdepTaiDay.CheckBox();
-        LonCkb = new LayMotSoUIdepTaiDay.CheckBox();
+        NhoCkb = new UI.CheckBox();
+        LonCkb = new UI.CheckBox();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -150,8 +150,8 @@ public class SortLoaiDateTTCDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelBt;
     private javax.swing.ButtonGroup LoaiTuoiGrp;
-    private LayMotSoUIdepTaiDay.CheckBox LonCkb;
-    private LayMotSoUIdepTaiDay.CheckBox NhoCkb;
+    private UI.CheckBox LonCkb;
+    private UI.CheckBox NhoCkb;
     private javax.swing.JButton OkBt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

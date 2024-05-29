@@ -143,7 +143,7 @@
         <Property name="text" type="java.lang.String" value="L&#x1ecc;C THEO NG&#xc0;Y SINH:"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="NgayCkb">
+    <Component class="UI.CheckBox" name="NgayCkb">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -159,7 +159,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NgayCkbActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="NamCkb">
+    <Component class="UI.CheckBox" name="NamCkb">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -183,7 +183,7 @@
         <Property name="text" type="java.lang.String" value="Ch&#x1ecd;n lo&#x1ea1;i l&#x1ecd;c:"/>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.CheckBox" name="ThangCkb">
+    <Component class="UI.CheckBox" name="ThangCkb">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -199,7 +199,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ThangCkbActionPerformed"/>
       </Events>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxCoTheDien" name="NgayCb">
+    <Component class="UI.ComboboxCoTheDien" name="NgayCb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="31">
@@ -244,7 +244,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="LayMotSoUIdepTaiDay.ComboboxCoTheDien" name="ThangCb">
+    <Component class="UI.ComboboxCoTheDien" name="ThangCb">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="12">

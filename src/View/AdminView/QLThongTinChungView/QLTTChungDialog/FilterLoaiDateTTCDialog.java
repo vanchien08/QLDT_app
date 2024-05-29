@@ -36,12 +36,12 @@ public class FilterLoaiDateTTCDialog extends javax.swing.JDialog {
         CancelBt = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        NgayCkb = new LayMotSoUIdepTaiDay.CheckBox();
-        NamCkb = new LayMotSoUIdepTaiDay.CheckBox();
+        NgayCkb = new UI.CheckBox();
+        NamCkb = new UI.CheckBox();
         jLabel2 = new javax.swing.JLabel();
-        ThangCkb = new LayMotSoUIdepTaiDay.CheckBox();
-        NgayCb = new LayMotSoUIdepTaiDay.ComboboxCoTheDien();
-        ThangCb = new LayMotSoUIdepTaiDay.ComboboxCoTheDien();
+        ThangCkb = new UI.CheckBox();
+        NgayCb = new UI.ComboboxCoTheDien();
+        ThangCb = new UI.ComboboxCoTheDien();
         NamCb = new com.toedter.calendar.JYearChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -235,12 +235,12 @@ public class FilterLoaiDateTTCDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelBt;
     private com.toedter.calendar.JYearChooser NamCb;
-    private LayMotSoUIdepTaiDay.CheckBox NamCkb;
-    private LayMotSoUIdepTaiDay.ComboboxCoTheDien NgayCb;
-    private LayMotSoUIdepTaiDay.CheckBox NgayCkb;
+    private UI.CheckBox NamCkb;
+    private UI.ComboboxCoTheDien NgayCb;
+    private UI.CheckBox NgayCkb;
     private javax.swing.JButton OkBt;
-    private LayMotSoUIdepTaiDay.ComboboxCoTheDien ThangCb;
-    private LayMotSoUIdepTaiDay.CheckBox ThangCkb;
+    private UI.ComboboxCoTheDien ThangCb;
+    private UI.CheckBox ThangCkb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;

@@ -8,8 +8,8 @@ package main.raven.form;
 import Controller.DSChuHoController.DSChuHo;
 import Controller.QLPhanQuyenTKController.DSTaiKhoanPhanQuyen;
 import Controller.SupportFunction.StringProcessing;
-import LayMotSoUIdepTaiDay.BangDanhSach;
-import LayMotSoUIdepTaiDay.ComboboxThuong;
+import UI.BangDanhSach;
+import UI.ComboboxThuong;
 import Model.Accounts;
 import Model.Customers;
 import View.AdminView.DSChuHoView.DSChuHoDialog.FilterLoaiDateDSCHDialog;
@@ -52,18 +52,18 @@ public final class Form_2 extends javax.swing.JPanel {
     private void initComponents() {
 
         TimKiemTf = new javax.swing.JTextField();
-        TimKiemCb = new LayMotSoUIdepTaiDay.ComboboxThuong();
+        TimKiemCb = new UI.ComboboxThuong();
         jSeparator1 = new javax.swing.JSeparator();
-        LocCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
-        SapXepCkb = new LayMotSoUIdepTaiDay.ComboboxThuong();
+        LocCkb = new UI.ComboboxThuong();
+        SapXepCkb = new UI.ComboboxThuong();
         DangChonLbl = new javax.swing.JLabel();
         DangChonTf = new javax.swing.JTextField();
         BangSrllp = new javax.swing.JScrollPane();
-        BangDSChuHo = new LayMotSoUIdepTaiDay.BangDanhSach();
-        SapXepBt1 = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LocBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        TimKiemBt = new LayMotSoUIdepTaiDay.ButtonThuong();
-        LamMoiBt = new LayMotSoUIdepTaiDay.ButtonThuong();
+        BangDSChuHo = new UI.BangDanhSach();
+        SapXepBt1 = new UI.ButtonThuong();
+        LocBt = new UI.ButtonThuong();
+        TimKiemBt = new UI.ButtonThuong();
+        LamMoiBt = new UI.ButtonThuong();
 
         setOpaque(false);
 
@@ -344,21 +344,24 @@ public void ShowThongTinTuDBS(BangDanhSach bangDS){
 
     private void LamMoiBtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiBtActionPerformed
 //        MainAdminview.setForm(new DSChuHoMainView(MainAdminview));
+         this.dsChuHo = DSChuHo.KhoiTaoListCustomeres();
+        ShowThongTinTuDBS(BangDSChuHo);    
+        
     }//GEN-LAST:event_LamMoiBtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private LayMotSoUIdepTaiDay.BangDanhSach BangDSChuHo;
+    private UI.BangDanhSach BangDSChuHo;
     private javax.swing.JScrollPane BangSrllp;
     private javax.swing.JLabel DangChonLbl;
     private javax.swing.JTextField DangChonTf;
-    private LayMotSoUIdepTaiDay.ButtonThuong LamMoiBt;
-    private LayMotSoUIdepTaiDay.ButtonThuong LocBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong LocCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong SapXepBt1;
-    private LayMotSoUIdepTaiDay.ComboboxThuong SapXepCkb;
-    private LayMotSoUIdepTaiDay.ButtonThuong TimKiemBt;
-    private LayMotSoUIdepTaiDay.ComboboxThuong TimKiemCb;
+    private UI.ButtonThuong LamMoiBt;
+    private UI.ButtonThuong LocBt;
+    private UI.ComboboxThuong LocCkb;
+    private UI.ButtonThuong SapXepBt1;
+    private UI.ComboboxThuong SapXepCkb;
+    private UI.ButtonThuong TimKiemBt;
+    private UI.ComboboxThuong TimKiemCb;
     private javax.swing.JTextField TimKiemTf;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
