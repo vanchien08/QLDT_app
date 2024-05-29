@@ -64,6 +64,7 @@ public class Form_5 extends javax.swing.JPanel {
                 
                 Object[] datarow={
                     invoiceid,
+                    cccdch,
                     hovatench,
                     hovatennv,
                     ngay,

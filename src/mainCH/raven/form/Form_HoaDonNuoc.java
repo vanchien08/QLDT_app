@@ -39,11 +39,11 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
            initComponents();
          
           _cusInfo = PanelLoginAndRegister._custom_infor;
-           System.out.println("accountgfdf " +PanelLoginAndRegister._custom_infor.getName());
+       //    System.out.println("accountgfdf " +PanelLoginAndRegister._custom_infor.getName());
            String account =_cusInfo.getAccount();
            // account ="NguyenVanK";
           invoiceses= new InvoicesDAO().getAllInvoiceChuHo(account);
-         System.out.println("size>>> " +invoiceses.get(0).getTotal_Price());
+//         System.out.println("size>>> " +invoiceses.get(0).getTotal_Price());
         this.BangDSHoaDon.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.model= (DefaultTableModel) BangDSHoaDon.getModel();
         this.model.getDataVector().removeAllElements();
@@ -76,11 +76,11 @@ public final class Form_HoaDonNuoc extends javax.swing.JPanel {
    //     listghinuoc= new GhiNuocController().KhoiTaoListCongTo();
    //     System.err.println("vô dược rồi  "+listghinuoc.size());
         model.setRowCount(0);    
-          System.out.println("size>>> " +invoiceses.get(0).getTotal_Price());
+//          System.out.println("size>>> " +invoiceses.get(0).getTotal_Price());
             for(Invoices invoices :invoiceses){
                 int id=invoices.getId();
                 String nv = invoices.getStaff_name();
-            System.out.println("ncvvvv>>> " +nv);
+         //   System.out.println("ncvvvv>>> " +nv);
                 int sonuoccu=invoices.getStart_Num();
                 int sonuocmoi=invoices.getEnd_Num();
                 String ngaylap=invoices.getInvoice_Date();

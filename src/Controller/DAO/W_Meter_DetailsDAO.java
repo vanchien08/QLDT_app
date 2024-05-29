@@ -16,7 +16,7 @@ public class W_Meter_DetailsDAO {
    
     public List<W_Meter_Details> getAll() throws Exception{
         this.listEmeterDetail.clear();
-        String SQL="SELECT * FROM E_METER_DETAILS";
+        String SQL="SELECT * FROM W_METER_DETAILS";
            try(
             Connection con = new DBS().getConnection();
             Statement stmt = con.createStatement();

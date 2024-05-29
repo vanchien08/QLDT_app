@@ -104,6 +104,10 @@ public class InvoicesDAO {
 //         System.out.println("i : "+getCCCDByIDMeter("001"));
  //         System.out.println("i : "+getHotenByCCCD("012345678905"));
      } 
+
+    public List<Invoices> getAllInCase(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
      
               
